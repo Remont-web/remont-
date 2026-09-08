@@ -6,10 +6,9 @@
     <title>Ремонт квартир в Москве под ключ</title>
     <style>
         /* ============================================
-           ВСЕ СТИЛИ (обновленные)
+           ВСЕ СТИЛИ (полная версия)
            ============================================ */
 
-        /* ----- ОБЩИЕ СТИЛИ ----- */
         * {
             margin: 0;
             padding: 0;
@@ -111,24 +110,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .fade-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .fade-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
         .fade-in-scale {
             opacity: 0;
             transform: scale(0.85);
@@ -141,7 +122,7 @@
 
         /* ----- ШАПКА (HEADER) ----- */
         header .top {
-            background: #1a1a1a;
+            background: #000000;
             padding: 10px 0;
             position: relative;
             z-index: 100;
@@ -155,46 +136,127 @@
             font-size: 14px;
         }
         header .top__menu {
-            list-style: none;
-            gap: 25px;
+            display: none !important;
         }
-        header .top__menu a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-            transition: 0.3s;
+        header .top .btn {
+            display: none !important;
         }
-        header .top__menu a:hover {
-            color: #fff;
-        }
+
+        /* БУРГЕР-МЕНЮ (три полосочки) */
         .navbar {
-            display: none;
+            display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
             cursor: pointer;
-            padding: 5px 0;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            transition: 0.3s;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        .navbar:hover {
+            background: rgba(255,255,255,0.1);
         }
         .navbar span {
-            width: 25px;
+            width: 28px;
             height: 3px;
             background: #fff;
-            border-radius: 2px;
+            border-radius: 3px;
             transition: 0.3s;
+            display: block;
         }
         .navbar.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+            transform: rotate(45deg) translate(6px, 6px);
         }
         .navbar.active span:nth-child(2) {
             opacity: 0;
         }
         .navbar.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* МОБИЛЬНОЕ МЕНЮ - ПОЛНАЯ ВЕРСИЯ */
+        .menu-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.97);
+            padding: 80px 25px 30px;
+            z-index: 999;
+            overflow-y: auto;
+            animation: fadeInMenu 0.35s ease;
+        }
+        @keyframes fadeInMenu {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .menu-mobile.active {
+            display: block;
+        }
+        .menu-mobile .close-menu {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+        .menu-mobile .close-menu:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+        }
+        .menu-mobile .menu-title {
+            color: #ff6a00;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 25px 18px 8px;
+            border-bottom: none;
+            font-weight: 700;
+            opacity: 0.7;
+        }
+        .menu-mobile .menu-title:first-of-type {
+            padding-top: 0;
+        }
+        .menu-mobile a {
+            display: block;
+            padding: 13px 18px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: 0.3s;
+            border-radius: 8px;
+        }
+        .menu-mobile a:hover {
+            background: rgba(255,106,0,0.12);
+            color: #ff6a00;
+            padding-left: 25px;
+        }
+        .menu-mobile a:active {
+            background: rgba(255,106,0,0.2);
         }
 
         header .middle {
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-            background: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+            background: #000;
             position: relative;
             z-index: 100;
         }
@@ -204,191 +266,42 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             text-decoration: none;
             flex-shrink: 0;
         }
         .logo img {
-            height: 50px;
+            height: 45px;
             width: auto;
         }
         .logo__info b {
-            font-size: 24px;
-            color: #333;
+            font-size: 22px;
+            color: #fff;
         }
         .logo__info b span {
             color: #ff6a00;
         }
         .logo__info p {
-            font-size: 12px;
+            font-size: 11px;
             color: #888;
         }
         .header__contacts {
-            gap: 30px;
-        }
-        .header__contacts-item p {
-            font-size: 12px;
-            color: #888;
-        }
-        .header__tel {
-            font-size: 20px;
-            font-weight: 700;
-            color: #333;
-            text-decoration: none;
+            display: none !important;
         }
         .calc-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-        .calc-link img {
-            height: 40px;
-            width: auto;
+            display: none !important;
         }
 
-        /* ----- МЕНЮ ----- */
-        .menu-wrapper {
-            background: #f8f8f8;
-            border-bottom: 2px solid #ff6a00;
-            position: relative;
-            z-index: 99;
-        }
-        .menu {
-            list-style: none;
-            gap: 0;
-            justify-content: space-between;
-        }
-        .menu__item {
-            position: relative;
-        }
-        .menu__link {
-            display: block;
-            padding: 15px 20px;
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-        .menu__link:hover {
-            background: #ff6a00;
-            color: #fff;
-        }
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #fff;
-            min-width: 220px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            list-style: none;
-            z-index: 100;
-        }
-        .menu__item:hover .submenu {
-            display: block;
-        }
-        .submenu li a {
-            display: block;
-            padding: 10px 20px;
-            color: #333;
-            text-decoration: none;
-            font-size: 13px;
-            border-bottom: 1px solid #f0f0f0;
-            transition: 0.3s;
-        }
-        .submenu li a:hover {
-            background: #ff6a00;
-            color: #fff;
-        }
-        .menu-mobile {
-            display: none;
-            list-style: none;
-            padding: 10px 0;
-            background: #fff;
-        }
-        .menu-mobile.active {
-            display: block;
-        }
-        .menu-mobile a {
-            display: block;
-            padding: 12px 20px;
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-        .menu-mobile a:hover {
-            background: #f5f5f5;
-        }
-
-        /* ----- БОКОВЫЕ КНОПКИ (btns) ----- */
-        .btns {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .btns .flex {
-            background: #1a1a1a;
-            padding: 12px 15px;
-            border-radius: 8px 0 0 8px;
-            gap: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btns .flex:hover {
-            background: #333;
-        }
-        .btns .flex a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .btns .flex img {
-            height: 20px;
-            width: auto;
-        }
-        .btns .orange {
-            background: #ff6a00;
-        }
-        .btns .orange:hover {
-            background: #e55d00;
-        }
-
-        /* ============================================
-           ГЛАВНЫЙ БАННЕР (main) — ОБНОВЛЕН
-           ============================================ */
+        /* ----- ГЛАВНЫЙ БАННЕР - ЧЕРНЫЙ ФОН ----- */
         .main {
             position: relative;
-            padding: 60px 0;
+            padding: 40px 0 60px;
             color: #fff;
             min-height: 100vh;
             display: flex;
             align-items: center;
             overflow: hidden;
-        }
-        /* Фоновое изображение */
-        .main::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.85) 100%),
-                url('assets/main-bg.jpg') center/cover no-repeat;
-            z-index: 0;
+            background: #000000;
         }
         .main .container {
             position: relative;
@@ -402,14 +315,14 @@
             flex: 1;
         }
         .main__title {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
             line-height: 1.15;
             margin-bottom: 15px;
             color: #fff;
         }
         .main__title small {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 400;
             display: block;
             color: #fff;
@@ -423,25 +336,25 @@
             margin: 20px 0;
         }
         .main__list li {
-            padding: 10px 0;
-            padding-left: 35px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%23ffcc00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
-            background-size: 22px;
+            padding: 8px 0;
+            padding-left: 32px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23ffcc00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
+            background-size: 20px;
             color: #fff;
-            font-size: 15px;
+            font-size: 14px;
         }
         .calculator-body {
             flex: 0 0 380px;
             background: #fff;
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
             color: #333;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
         .calculator-body .calc__title {
             font-weight: 700;
             margin-bottom: 10px;
-            font-size: 16px;
+            font-size: 15px;
             color: #333;
         }
         .calculator-body .area {
@@ -482,22 +395,22 @@
         .calculator-body .area__number {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .calculator-body .area__number input {
-            width: 60px;
+            width: 55px;
             text-align: center;
-            padding: 8px;
+            padding: 6px;
             border: 2px solid #ff6a00;
             border-radius: 8px;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             color: #333;
         }
         .calculator-body .area__number-minus,
         .calculator-body .area__number-plus {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             background: #ff6a00;
             color: #fff;
             border-radius: 50%;
@@ -518,10 +431,10 @@
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .calculator-body .radio label {
-            padding: 8px 16px;
+            padding: 6px 14px;
             background: #f0f0f0;
             border-radius: 20px;
             cursor: pointer;
@@ -536,14 +449,14 @@
         }
         .calculator-body .calc__res {
             background: #fff5ed;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: center;
             border: 2px solid #ff6a00;
         }
         .calculator-body .calc__price {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #ff6a00;
         }
@@ -552,10 +465,10 @@
         }
         .calculator-body .calc__input input {
             flex: 1;
-            padding: 12px 15px;
+            padding: 10px 15px;
             border: 2px solid #ddd;
             border-radius: 30px;
-            font-size: 16px;
+            font-size: 15px;
             min-width: 0;
             width: 100%;
             transition: 0.3s;
@@ -565,12 +478,12 @@
             border-color: #ff6a00;
         }
         .calculator-body .calc__btn {
-            padding: 12px 30px;
+            padding: 10px 25px;
             background: #ff6a00;
             color: #fff;
             border: none;
             border-radius: 30px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
@@ -591,8 +504,355 @@
             color: #ff6a00;
         }
 
-        /* ----- ОСТАЛЬНЫЕ СЕКЦИИ (без изменений) ----- */
-        /* ... все остальные стили остаются как в предыдущей версии ... */
+        /* ----- ОСТАЛЬНЫЕ СЕКЦИИ (коротко) ----- */
+        .quiz {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .quiz .section__title {
+            color: #fff;
+        }
+        .quiz__steps p {
+            background: #222;
+            color: #666;
+        }
+        .quiz__steps p.active {
+            background: #ff6a00;
+            color: #fff;
+        }
+        .quiz__steps span {
+            background: #222;
+        }
+        .quiz__content {
+            background: #111;
+            color: #fff;
+        }
+        .quiz__question {
+            color: #fff;
+        }
+        .quiz__input input {
+            background: #222;
+            border: 1px solid #333;
+            color: #fff;
+        }
+        .quiz__input input::placeholder {
+            color: #666;
+        }
+        .quiz .radio label {
+            background: #222;
+            color: #fff;
+        }
+        .quiz .radio input:checked + label {
+            background: #ff6a00;
+            color: #fff;
+        }
+
+        .info {
+            padding: 50px 0;
+            background: #000;
+            color: #ccc;
+        }
+        .info .section__title {
+            color: #fff;
+        }
+        .info p {
+            color: #ccc;
+        }
+        .info ul li {
+            color: #ccc;
+        }
+        .note {
+            background: #111;
+            border-left: 4px solid #ff6a00;
+            color: #ccc;
+        }
+
+        .repair {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .repair .section__title {
+            color: #fff;
+        }
+        .repair__tabs a {
+            background: #1a1a1a;
+            color: #ccc;
+        }
+        .repair__tabs a.active {
+            background: #ff6a00;
+            color: #fff;
+        }
+        .repair__content {
+            background: #111;
+            color: #ccc;
+        }
+        .repair__title {
+            color: #fff;
+        }
+        .repair__list ul li {
+            color: #ccc;
+        }
+
+        .steps {
+            padding: 60px 0;
+            background: #000;
+        }
+        .steps .section__title {
+            color: #fff;
+        }
+        .step p {
+            color: #888;
+        }
+        .step__title {
+            color: #fff;
+        }
+
+        .works {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .works .section__title {
+            color: #fff;
+        }
+        .work {
+            background: #111;
+            color: #ccc;
+        }
+        .work__title {
+            color: #fff;
+        }
+
+        .estimate {
+            padding: 60px 0;
+            background: #000;
+            color: #fff;
+        }
+        .estimate__form input {
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+        }
+
+        .price {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .price .section__title {
+            color: #fff;
+        }
+        .price__tabs a {
+            background: #1a1a1a;
+            color: #ccc;
+        }
+        .price__tabs a.active {
+            background: #ff6a00;
+            color: #fff;
+        }
+        .price__item {
+            background: #111;
+            color: #ccc;
+        }
+        .price__title {
+            color: #fff;
+        }
+
+        .docs {
+            padding: 60px 0;
+            background: #000;
+        }
+        .docs .section__title {
+            color: #fff;
+        }
+        .doc {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+
+        .payment {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .payment .section__title {
+            color: #fff;
+        }
+        .payment__item {
+            background: #111;
+            color: #ccc;
+        }
+        .payment__info div {
+            color: #fff;
+        }
+
+        .offers {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .offers .section__title {
+            color: #fff;
+        }
+        .jolly-slider-extra-wrapper {
+            background: #111;
+        }
+
+        .testimonials {
+            padding: 60px 0;
+            background: #000;
+        }
+        .testimonials .section__title {
+            color: #fff;
+        }
+        .testimonials__col {
+            background: #111;
+            color: #ccc;
+        }
+        .testimonials__title {
+            color: #fff;
+        }
+        .testimonial {
+            border-bottom: 1px solid #222;
+        }
+        .testimonial__name {
+            color: #fff;
+        }
+        .testimonial__text {
+            color: #ccc;
+        }
+
+        .faq {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .faq .section__title {
+            color: #fff;
+        }
+        .faq__item {
+            border-bottom: 1px solid #222;
+        }
+        .faq__question {
+            color: #fff;
+        }
+        .faq__answer {
+            color: #ccc;
+        }
+
+        .categories {
+            padding: 60px 0;
+            background: #000;
+        }
+        .categories .section__title {
+            color: #fff;
+        }
+        .category {
+            background: #111;
+            color: #ccc;
+        }
+        .category__card-title {
+            color: #fff;
+        }
+        .category__info-title {
+            color: #fff;
+        }
+
+        .stock {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .stock .section__title {
+            color: #fff;
+        }
+        .stock__info p {
+            color: #ccc;
+        }
+
+        .offices {
+            padding: 60px 0;
+            background: #0a0a0a;
+        }
+        .offices .section__title {
+            color: #fff;
+        }
+        .cities {
+            background: #111;
+            color: #ccc;
+        }
+        .cities__title {
+            color: #fff;
+        }
+        .cities__tabs a {
+            background: #1a1a1a;
+            color: #ccc;
+        }
+        .cities__tabs a.active {
+            background: #ff6a00;
+            color: #fff;
+        }
+        .cities__list ul li a {
+            color: #ccc;
+        }
+        .cities__list ul li a:hover {
+            color: #ff6a00;
+        }
+
+        .order {
+            padding: 60px 0;
+            background: #000;
+            color: #fff;
+        }
+        .order__form input {
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+        }
+
+        footer {
+            background: #000;
+            color: #888;
+            padding: 40px 0 0;
+        }
+        footer .footer__content {
+            border-bottom: 1px solid #222;
+        }
+        footer .footer__col_1 .logo__info b {
+            color: #fff;
+        }
+        footer .footer__menu a {
+            color: #888;
+        }
+        footer .footer__menu a:hover {
+            color: #ff6a00;
+        }
+        footer .footer__tel a {
+            color: #fff;
+        }
+        footer .footer__bottom {
+            background: #000;
+        }
+        footer .footer__copy {
+            color: #666;
+        }
+        footer .footer__copy span {
+            color: #fff;
+        }
+
+        /* МОДАЛЬНОЕ ОКНО */
+        .modal-content {
+            background: #111;
+            color: #fff;
+        }
+        .modal-header {
+            color: #fff;
+        }
+        .cities-search {
+            background: #222;
+            border: 1px solid #333;
+            color: #fff;
+        }
+        .city-column a {
+            color: #ccc;
+        }
+        .city-column a:hover {
+            color: #ff6a00;
+        }
 
         /* ============================================
            МОБИЛЬНАЯ АДАПТАЦИЯ
@@ -608,27 +868,8 @@
                 margin: 0 auto;
             }
             .main {
-                padding: 40px 0;
+                padding: 30px 0 40px;
                 min-height: auto;
-            }
-            .price__item {
-                flex: 0 0 calc(50% - 10px);
-            }
-            .category {
-                flex: 0 0 calc(50% - 10px);
-            }
-            .repair__images {
-                flex: 1 1 100%;
-            }
-            .work {
-                flex: 0 0 calc(50% - 15px);
-                max-width: 400px;
-            }
-            .stock__sliders {
-                flex: 1 1 100%;
-            }
-            .jolly-slider > div {
-                flex: 0 0 calc(50% - 15px);
             }
             .section__title {
                 font-size: 30px;
@@ -636,37 +877,11 @@
         }
 
         @media (max-width: 768px) {
-            .top__menu {
-                display: none;
-            }
-            .navbar {
-                display: flex;
-            }
-            .header__contacts {
-                display: none;
-            }
-            .calc-link span {
-                display: none;
-            }
-            .menu {
-                display: none;
-            }
-            .menu-mobile {
-                display: block;
-            }
-            .menu-mobile.active {
-                display: block;
-            }
-            
-            .main {
-                padding: 30px 0;
-                min-height: auto;
-            }
             .main__title {
-                font-size: 28px;
+                font-size: 26px;
             }
             .main__title small {
-                font-size: 18px;
+                font-size: 17px;
             }
             .main__list li {
                 font-size: 13px;
@@ -683,7 +898,7 @@
             }
             .calculator-body .radio label {
                 font-size: 12px;
-                padding: 6px 12px;
+                padding: 5px 12px;
             }
             .calculator-body .calc__input {
                 flex-direction: column;
@@ -726,13 +941,6 @@
                 flex: 0 0 100%;
                 max-width: 400px;
                 margin: 0 auto;
-            }
-            .works__slider {
-                justify-content: center;
-            }
-            .work__items {
-                flex-direction: row;
-                flex-wrap: wrap;
             }
             .testimonials__content {
                 flex-direction: column;
@@ -795,18 +1003,10 @@
                 height: 40px;
             }
             .logo__info b {
-                font-size: 20px;
+                font-size: 18px;
             }
             .logo__info p {
                 font-size: 10px;
-            }
-            .header .middle {
-                padding: 15px 0;
-            }
-            .arrow {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
             }
             .steps__items {
                 gap: 10px;
@@ -871,6 +1071,20 @@
             }
             .city-column {
                 flex: 0 0 100px;
+            }
+            .navbar span {
+                width: 24px;
+                height: 2px;
+            }
+            .navbar {
+                padding: 4px 8px;
+            }
+            .menu-mobile {
+                padding: 70px 20px 20px;
+            }
+            .menu-mobile a {
+                font-size: 15px;
+                padding: 12px 18px;
             }
         }
 
@@ -995,10 +1209,26 @@
                 height: 35px;
             }
             .logo__info b {
-                font-size: 17px;
+                font-size: 16px;
             }
-            .calc-link img {
-                height: 32px;
+            .navbar span {
+                width: 22px;
+                height: 2px;
+            }
+            .navbar {
+                padding: 3px 6px;
+                gap: 4px;
+            }
+            .menu-mobile {
+                padding: 60px 15px 15px;
+            }
+            .menu-mobile a {
+                font-size: 14px;
+                padding: 11px 15px;
+            }
+            .menu-mobile .menu-title {
+                font-size: 11px;
+                padding: 18px 15px 6px;
             }
         }
 
@@ -1020,10 +1250,19 @@
                 height: 30px;
             }
             .logo__info b {
-                font-size: 15px;
+                font-size: 14px;
             }
-            .calc-link img {
-                height: 28px;
+            .navbar span {
+                width: 20px;
+                height: 2px;
+            }
+            .navbar {
+                padding: 3px 5px;
+                gap: 3px;
+            }
+            .menu-mobile a {
+                font-size: 13px;
+                padding: 10px 14px;
             }
         }
     </style>
@@ -1041,15 +1280,8 @@
                     <div class="top__city">
                         <a href="javascript:void(0)" class="top__city-title" id="cityBtn">г. Москва</a>
                     </div>
-                    <ul class="top__menu flex">
-                        <li><a href="javascript:void(0)">О компании</a></li>
-                        <li><a href="javascript:void(0)">Портфолио</a></li>
-                        <li><a href="javascript:void(0)">Цены</a></li>
-                        <li><a href="javascript:void(0)">Ремонтникам</a></li>
-                        <li><a href="javascript:void(0)">Контакты</a></li>
-                    </ul>
-                    <a href="javascript:void(0)" class="btn">Заказать звонок</a>
-                    <div class="navbar">
+                    <!-- БУРГЕР-МЕНЮ (три полосочки) -->
+                    <div class="navbar" id="navbarToggle">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -1067,108 +1299,30 @@
                             <p>Ремонт без нервов и переплат</p>
                         </span>
                     </a>
-                    <div class="header__contacts flex">
-                        <div class="header__contacts-item">
-                            <p>Время работы с 9:00 до 18:00 в пн-пт</p>
-                            <a href="tel:+79208950955" class="header__tel">+7(920)895-09-55</a>
-                        </div>
-                        <div class="header__contacts-item universal">
-                            <p><a href="mailto:msk@vse-podklyuch.ru">msk@vse-podklyuch.ru</a></p>
-                            <a href="tel:+79060726622" class="header__tel">+7(906)072-66-22</a>
-                        </div>
-                    </div>
-                    <a href="javascript:void(0)" class="calc-link flex">
-                        <img src="assets/calc.png" alt="Калькулятор">
-                        <span>Калькулятор <br>ремонта</span>
-                    </a>
                 </div>
             </div>
         </div>
-        <div class="menu-wrapper">
-            <div class="container">
-                <ul class="menu flex">
-                    <li class="menu__item">
-                        <a class="menu__link" href="javascript:void(0)">Услуги ремонта</a>
-                        <ul class="submenu">
-                            <li><a href="javascript:void(0)">Демонтажные работы</a></li>
-                            <li><a href="javascript:void(0)">Малярные работы</a></li>
-                            <li><a href="javascript:void(0)">Монтаж гипсокартона</a></li>
-                            <li><a href="javascript:void(0)">Натяжные потолки</a></li>
-                            <li><a href="javascript:void(0)">Поклейка обоев</a></li>
-                            <li><a href="javascript:void(0)">Сантехнические работы</a></li>
-                            <li><a href="javascript:void(0)">Укладка плитки</a></li>
-                            <li><a href="javascript:void(0)">Электромонтаж</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu__item">
-                        <a class="menu__link" href="javascript:void(0)">Ремонт квартир</a>
-                        <ul class="submenu">
-                            <li><a href="javascript:void(0)">Ремонт студии</a></li>
-                            <li><a href="javascript:void(0)">1-комнатная</a></li>
-                            <li><a href="javascript:void(0)">2-комнатная</a></li>
-                            <li><a href="javascript:void(0)">3-комнатная</a></li>
-                            <li><a href="javascript:void(0)">Хрущёвка</a></li>
-                            <li><a href="javascript:void(0)">Сталинка</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu__item">
-                        <a class="menu__link" href="javascript:void(0)">Ремонт комнат</a>
-                        <ul class="submenu">
-                            <li><a href="javascript:void(0)">Ванная</a></li>
-                            <li><a href="javascript:void(0)">Туалет</a></li>
-                            <li><a href="javascript:void(0)">Кухня</a></li>
-                            <li><a href="javascript:void(0)">Спальня</a></li>
-                            <li><a href="javascript:void(0)">Детская</a></li>
-                            <li><a href="javascript:void(0)">Балкон</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu__item">
-                        <a class="menu__link" href="javascript:void(0)">Виды ремонта</a>
-                        <ul class="submenu">
-                            <li><a href="javascript:void(0)">Капитальный</a></li>
-                            <li><a href="javascript:void(0)">Евроремонт</a></li>
-                            <li><a href="javascript:void(0)">Дизайнерский</a></li>
-                            <li><a href="javascript:void(0)">Косметический</a></li>
-                            <li><a href="javascript:void(0)">Черновой</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu__item">
-                        <a class="menu__link" href="javascript:void(0)">Ремонт помещений</a>
-                        <ul class="submenu">
-                            <li><a href="javascript:void(0)">Дом, коттедж</a></li>
-                            <li><a href="javascript:void(0)">Офис</a></li>
-                            <li><a href="javascript:void(0)">Магазин</a></li>
-                            <li><a href="javascript:void(0)">Новостройка</a></li>
-                            <li><a href="javascript:void(0)">Ресторан, кафе</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu__item">
-                        <a class="menu__link" href="javascript:void(0)">Дизайн интерьеров</a>
-                        <ul class="submenu">
-                            <li><a href="javascript:void(0)">Дизайн квартиры</a></li>
-                            <li><a href="javascript:void(0)">Дизайн кухни</a></li>
-                            <li><a href="javascript:void(0)">Дизайн ванной</a></li>
-                            <li><a href="javascript:void(0)">Дизайн офиса</a></li>
-                            <li><a href="javascript:void(0)">Стиль лофт</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="menu-mobile">
-                    <li><a href="javascript:void(0)">О компании</a></li>
-                    <li><a href="javascript:void(0)">Портфолио</a></li>
-                    <li><a href="javascript:void(0)">Цены</a></li>
-                    <li><a href="javascript:void(0)">Ремонтникам</a></li>
-                    <li><a href="javascript:void(0)">Контакты</a></li>
-                    <li><a href="javascript:void(0)">Услуги ремонта</a></li>
-                    <li><a href="javascript:void(0)">Ремонт квартир</a></li>
-                    <li><a href="javascript:void(0)">Ремонт комнат</a></li>
-                    <li><a href="javascript:void(0)">Виды ремонта</a></li>
-                    <li><a href="javascript:void(0)">Ремонт помещений</a></li>
-                    <li><a href="javascript:void(0)">Дизайн интерьеров</a></li>
-                </ul>
-            </div>
-        </div>
     </header>
+
+    <!-- МОБИЛЬНОЕ МЕНЮ (выпадающее) - ПОЛНАЯ ВЕРСИЯ -->
+    <div class="menu-mobile" id="menuMobile">
+        <button class="close-menu" id="closeMenu">✕</button>
+        
+        <div class="menu-title">Основное</div>
+        <a href="javascript:void(0)">О компании</a>
+        <a href="javascript:void(0)">Портфолио</a>
+        <a href="javascript:void(0)">Цены</a>
+        <a href="javascript:void(0)">Ремонтникам</a>
+        <a href="javascript:void(0)">Контакты</a>
+        
+        <div class="menu-title">Услуги</div>
+        <a href="javascript:void(0)">Услуги ремонта</a>
+        <a href="javascript:void(0)">Ремонт квартир</a>
+        <a href="javascript:void(0)">Ремонт комнат</a>
+        <a href="javascript:void(0)">Виды ремонта</a>
+        <a href="javascript:void(0)">Ремонт помещений</a>
+        <a href="javascript:void(0)">Дизайн интерьеров</a>
+    </div>
 
     <!-- БОКОВЫЕ КНОПКИ -->
     <div class="btns">
@@ -1182,9 +1336,7 @@
         </div>
     </div>
 
-    <!-- ============================================
-    ГЛАВНЫЙ БАННЕР — ОБНОВЛЕННЫЙ
-    ============================================ -->
+    <!-- ГЛАВНЫЙ БАННЕР -->
     <section class="main">
         <div class="container">
             <div class="main__content flex">
@@ -1260,10 +1412,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ОСТАЛЬНЫЕ СЕКЦИИ (без изменений)
-    ============================================ -->
-    <!-- QUIZ (ТЕСТ) -->
+    <!-- QUIZ -->
     <section class="quiz" id="quiz">
         <div class="container">
             <h2 class="section__title text-center fade-in">
@@ -1278,9 +1427,7 @@
                 <p class="quiz-step-6">6</p><span class="quiz-step-6"></span>
                 <div class="flex"><img src="assets/gift.png" alt="Подарок"></div>
             </div>
-
             <div class="quiz__items">
-                <!-- ШАГ 1 -->
                 <div class="quiz__item active" id="quiz-step-1">
                     <div class="quiz__content flex">
                         <div class="quiz__img"><img src="assets/quiz-1.png" alt=""></div>
@@ -1304,8 +1451,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- ШАГ 2 -->
                 <div class="quiz__item" id="quiz-step-2">
                     <div class="quiz__content flex">
                         <div class="quiz__img"><img src="assets/quiz-2.png" alt=""></div>
@@ -1325,8 +1470,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- ШАГ 3 -->
                 <div class="quiz__item" id="quiz-step-3">
                     <div class="quiz__content flex">
                         <div class="quiz__img"><img src="assets/quiz-3.png" alt=""></div>
@@ -1350,8 +1493,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- ШАГ 4 -->
                 <div class="quiz__item" id="quiz-step-4">
                     <div class="quiz__content flex">
                         <div class="quiz__img"><img src="assets/quiz-4.png" alt=""></div>
@@ -1375,8 +1516,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- ШАГ 5 -->
                 <div class="quiz__item" id="quiz-step-5">
                     <div class="quiz__content flex">
                         <div class="quiz__img"><img src="assets/quiz-5.png" alt=""></div>
@@ -1403,8 +1542,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- ШАГ 6 -->
                 <div class="quiz__item" id="quiz-step-6">
                     <div class="quiz__content flex">
                         <div class="quiz__img"><img src="assets/quiz-6.png" alt=""></div>
@@ -1430,8 +1567,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- ШАГ 7 (ФИНАЛ) -->
                 <div class="quiz__item" id="quiz-step-7">
                     <div class="quiz__content flex">
                         <div class="quiz__img"><img src="assets/quiz-7.png" alt=""></div>
@@ -1459,8 +1594,7 @@
         </div>
     </section>
 
-    <!-- ОСТАЛЬНЫЕ СЕКЦИИ (сокращены для экономии места, но их нужно добавить) -->
-    <!-- ИНФО БЛОК -->
+    <!-- ИНФО -->
     <section class="info">
         <div class="container">
             <h2 class="section__title text-center fade-in">Как сделать ремонт и <span>сберечь свои нервы с деньгами</span> в 2026!</h2>
@@ -1476,13 +1610,939 @@
         </div>
     </section>
 
-    <!-- Остальные секции (repair, steps, works, estimate, price, docs, payment, offers, testimonials, faq, categories, stock, offices, order, footer) -->
-    <!-- ... (они остаются без изменений из предыдущей версии) ... -->
+    <!-- ВАРИАНТЫ РЕМОНТА -->
+    <section class="repair" id="repair">
+        <div class="container">
+            <h2 class="section__title text-center fade-in"><span>Варианты</span> ремонта помещения в Москве</h2>
+            <div class="repair__tabs flex fade-in">
+                <a href="javascript:void(0)" class="active" data-tab="repair-1">Капитальный</a>
+                <a href="javascript:void(0)" data-tab="repair-2">Евроремонт</a>
+                <a href="javascript:void(0)" data-tab="repair-3">Дизайнерский</a>
+                <a href="javascript:void(0)" data-tab="repair-4">Косметический</a>
+                <a href="javascript:void(0)" data-tab="repair-5">Черновой</a>
+            </div>
+            <div class="repair__item active fade-in" id="repair-1">
+                <div class="repair__content flex">
+                    <div class="repair__images">
+                        <div class="repair__slider"><img src="assets/kapital_nyy_remont1.jpg" alt="Капитальный ремонт"></div>
+                        <div class="repair__thumbnails">
+                            <div class="repair__thumbnail"><img src="assets/kapital_nyy_remont1.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kapital_nyy_remont2.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kapital_nyy_remont3.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="repair__info">
+                        <h3 class="repair__title">Капитальный ремонт <span>от 6 990 руб./кв. м</span></h3>
+                        <p>Капитальный ремонт — полная перезагрузка пространства. От демонтажа старых коммуникаций до чистовой отделки.</p>
+                        <div class="repair__list">
+                            <div class="repair__list-title">Что входит:</div>
+                            <ul>
+                                <li>Разработка проекта интерьера</li>
+                                <li>Подбор отделочных материалов</li>
+                                <li>Изменение планировки</li>
+                                <li>Демонтаж перегородок</li>
+                            </ul>
+                            <a href="javascript:void(0)" class="repair__more">Показать все</a>
+                            <a href="javascript:void(0)" class="regular-link">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="repair__item" id="repair-2">
+                <div class="repair__content flex">
+                    <div class="repair__images">
+                        <div class="repair__slider"><img src="assets/dizaynerskiy_remont1.JPG" alt="Евроремонт"></div>
+                        <div class="repair__thumbnails">
+                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont1.JPG" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kosmeticheskiy_remont3.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="repair__info">
+                        <h3 class="repair__title">Евроремонт <span>от 8 990 руб./кв. м</span></h3>
+                        <p>Евроремонт — стандарт качества. Каждая деталь имеет значение: от ровности стен до подбора материалов.</p>
+                        <div class="repair__list">
+                            <div class="repair__list-title">Что входит:</div>
+                            <ul>
+                                <li>Разработка проекта интерьера</li>
+                                <li>Подбор отделочных материалов</li>
+                                <li>Изменение планировки</li>
+                            </ul>
+                            <a href="javascript:void(0)" class="repair__more">Показать все</a>
+                            <a href="javascript:void(0)" class="regular-link">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="repair__item" id="repair-3">
+                <div class="repair__content flex">
+                    <div class="repair__images">
+                        <div class="repair__slider"><img src="assets/dizaynerskiy_remont.jpg" alt="Дизайнерский"></div>
+                        <div class="repair__thumbnails">
+                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont1.JPG" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont.jpeg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="repair__info">
+                        <h3 class="repair__title">Дизайнерский ремонт <span>от 8 990 руб./кв. м</span></h3>
+                        <p>Дизайнерский ремонт — это авторский интерьер. Каждая деталь — осознанный выбор.</p>
+                        <div class="repair__list">
+                            <div class="repair__list-title">Что входит:</div>
+                            <ul>
+                                <li>Разработка дизайн-проекта</li>
+                                <li>Подбор цветовой гаммы</li>
+                                <li>Подбор мебели</li>
+                            </ul>
+                            <a href="javascript:void(0)" class="repair__more">Показать все</a>
+                            <a href="javascript:void(0)" class="regular-link">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="repair__item" id="repair-4">
+                <div class="repair__content flex">
+                    <div class="repair__images">
+                        <div class="repair__slider"><img src="assets/kosmeticheskiy_remont.jpg" alt="Косметический"></div>
+                        <div class="repair__thumbnails">
+                            <div class="repair__thumbnail"><img src="assets/kosmeticheskiy_remont.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kosmeticheskiy_remont2.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kosmeticheskiy_remont3.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="repair__info">
+                        <h3 class="repair__title">Косметический ремонт <span>от 4 990 руб./кв. м</span></h3>
+                        <p>Обновление без лишних сложностей. Покраска, укладка пола, замена дверей и окон.</p>
+                        <div class="repair__list">
+                            <div class="repair__list-title">Что входит:</div>
+                            <ul>
+                                <li>Покраска стен и потолков</li>
+                                <li>Укладка напольного покрытия</li>
+                                <li>Замена дверей и окон</li>
+                            </ul>
+                            <a href="javascript:void(0)" class="repair__more">Показать все</a>
+                            <a href="javascript:void(0)" class="regular-link">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="repair__item" id="repair-5">
+                <div class="repair__content flex">
+                    <div class="repair__images">
+                        <div class="repair__slider"><img src="assets/chernovoy_remont.jpg" alt="Черновой"></div>
+                        <div class="repair__thumbnails">
+                            <div class="repair__thumbnail"><img src="assets/chernovoy_remont.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/Chernovoy_remont_2.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/Chernovoy_remont_3.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="repair__info">
+                        <h3 class="repair__title">Черновой ремонт <span>от 3 000 руб./кв. м</span></h3>
+                        <p>База для будущего интерьера. Сносим всё отжившее, прокладываем коммуникации.</p>
+                        <div class="repair__list">
+                            <div class="repair__list-title">Что входит:</div>
+                            <ul>
+                                <li>Демонтаж старых покрытий</li>
+                                <li>Очистка поверхностей</li>
+                                <li>Укладка стяжки</li>
+                            </ul>
+                            <a href="javascript:void(0)" class="repair__more">Показать все</a>
+                            <a href="javascript:void(0)" class="regular-link">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="repair__btn flex">
+                <a href="javascript:void(0)" class="flex"><img src="assets/ruler.png" alt=""><span>Записаться на замер</span></a>
+            </div>
+        </div>
+    </section>
 
-    <!-- МОДАЛЬНОЕ ОКНО (города) -->
+    <!-- ЭТАПЫ -->
+    <section class="steps" id="steps">
+        <div class="container">
+            <h2 class="section__title text-center fade-in"><span>Все этапы</span> ремонта квартиры в Москве</h2>
+            <div class="steps__items flex">
+                <div class="step fade-in-scale step_1">
+                    <div class="step__icon flex"><img src="assets/step-1.png" alt=""></div>
+                    <div class="step__number">1</div>
+                    <div class="step__title">Заполняете заявку</div>
+                    <p>Укажите имя, телефон, время звонка</p>
+                </div>
+                <div class="step fade-in-scale step_2">
+                    <div class="step__icon flex"><img src="assets/step-2.png" alt=""></div>
+                    <div class="step__number">2</div>
+                    <div class="step__title">Бесплатная смета</div>
+                    <p>Замеры и точный расчет стоимости</p>
+                </div>
+                <div class="step fade-in-scale step_3">
+                    <div class="step__icon flex"><img src="assets/step-3.png" alt=""></div>
+                    <div class="step__number">3</div>
+                    <div class="step__title">Подписываем договор</div>
+                    <p>Все права и обязанности зафиксированы</p>
+                </div>
+                <div class="step fade-in-scale step_4">
+                    <div class="step__icon flex"><img src="assets/step-4.png" alt=""></div>
+                    <div class="step__number">4</div>
+                    <div class="step__title">Привозим материалы</div>
+                    <p>Поставка от 1 дня без предоплат</p>
+                </div>
+                <div class="step fade-in-scale step_5">
+                    <div class="step__icon flex"><img src="assets/step-5.png" alt=""></div>
+                    <div class="step__number">5</div>
+                    <div class="step__title">Делаем ремонт</div>
+                    <p>Соблюдение сроков и качества</p>
+                </div>
+                <div class="step fade-in-scale step_6">
+                    <div class="step__icon flex"><img src="assets/step-6.png" alt=""></div>
+                    <div class="step__number">6</div>
+                    <div class="step__title">Убираем мусор</div>
+                    <p>Готово к комфортной жизни</p>
+                </div>
+                <div class="step fade-in-scale step_7">
+                    <div class="step__icon flex"><img src="assets/step-7.png" alt=""></div>
+                    <div class="step__number">7</div>
+                    <div class="step__title">Оплата</div>
+                    <p>Цена фиксирована до подписания договора</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОСТАЛЬНЫЕ СЕКЦИИ (коротко) -->
+    <section class="works" id="works">
+        <div class="container">
+            <h2 class="section__title text-center fade-in"><span>Примеры</span> ремонтов квартир в Москве</h2>
+            <div class="works__slider-wrapper">
+                <div class="arrow arrow_prev works__arrow_prev">‹</div>
+                <div class="arrow arrow_next works__arrow_next">›</div>
+                <div class="works__slider flex">
+                    <div class="work fade-in-scale">
+                        <div class="work__img"><img src="assets/Izobrazhenie_WhatsApp_2025_10_20_v_15.57.43_1f9aeadc.jpg" alt=""></div>
+                        <div class="work__info">
+                            <h4 class="work__title">Ремонт магазина</h4>
+                            <div class="work__items flex">
+                                <div class="work__item flex">
+                                    <img src="assets/work-1.png" alt="">
+                                    <div class="work__item-info"><div class="work__item-title">Тип ремонта</div><p>Эконом-класс</p></div>
+                                </div>
+                                <div class="work__item flex">
+                                    <img src="assets/work-3.png" alt="">
+                                    <div class="work__item-info"><div class="work__item-title">Срок</div><p>3 недели</p></div>
+                                </div>
+                                <div class="work__item flex">
+                                    <img src="assets/work-4.png" alt="">
+                                    <div class="work__item-info"><div class="work__item-title">Площадь</div><p>55м²</p></div>
+                                </div>
+                            </div>
+                            <div class="work__images flex">
+                                <div><img src="assets/Izobrazhenie_WhatsApp_2025_10_20_v_15.57.43_1f9aeadc.jpg" alt=""></div>
+                                <div><img src="assets/Izobrazhenie_WhatsApp_2025_10_20_v_15.53.49_fc1257b5.jpg" alt=""></div>
+                                <div><img src="assets/Izobrazhenie_WhatsApp_2025_10_20_v_15.57.43_99a6897f.jpg" alt=""></div>
+                            </div>
+                            <div class="work__btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                        </div>
+                    </div>
+                    <div class="work fade-in-scale">
+                        <div class="work__img"><img src="assets/ob.jpg" alt=""></div>
+                        <div class="work__info">
+                            <h4 class="work__title">Ремонт санузла</h4>
+                            <div class="work__items flex">
+                                <div class="work__item flex">
+                                    <img src="assets/work-1.png" alt="">
+                                    <div class="work__item-info"><div class="work__item-title">Тип ремонта</div><p>Эконом-класс</p></div>
+                                </div>
+                                <div class="work__item flex">
+                                    <img src="assets/work-4.png" alt="">
+                                    <div class="work__item-info"><div class="work__item-title">Площадь</div><p>6м²</p></div>
+                                </div>
+                            </div>
+                            <div class="work__images flex">
+                                <div><img src="assets/ob.jpg" alt=""></div>
+                                <div><img src="assets/photo_2023_02_28_20_31_25.jpg" alt=""></div>
+                                <div><img src="assets/photo_2023_02_28_20_31_23.jpg" alt=""></div>
+                            </div>
+                            <div class="work__btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                        </div>
+                    </div>
+                    <div class="work fade-in-scale">
+                        <div class="work__img"><img src="assets/94164f1699c141d261262ab4.jpg" alt=""></div>
+                        <div class="work__info">
+                            <h4 class="work__title">Ремонт 2-комнатной</h4>
+                            <div class="work__items flex">
+                                <div class="work__item flex">
+                                    <img src="assets/work-1.png" alt="">
+                                    <div class="work__item-info"><div class="work__item-title">Тип ремонта</div><p>Премиум</p></div>
+                                </div>
+                                <div class="work__item flex">
+                                    <img src="assets/work-4.png" alt="">
+                                    <div class="work__item-info"><div class="work__item-title">Площадь</div><p>56м²</p></div>
+                                </div>
+                            </div>
+                            <div class="work__images flex">
+                                <div><img src="assets/94164f1699c141d261262ab4.jpg" alt=""></div>
+                                <div><img src="assets/7b684050a596a2047895d491.jpg" alt=""></div>
+                                <div><img src="assets/69344b49a47ff5c7f5685cb5.jpg" alt=""></div>
+                            </div>
+                            <div class="work__btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dots works__dots flex">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="estimate" id="estimate">
+        <div class="container">
+            <div class="estimate__content flex">
+                <div class="estimate__info">
+                    <h2 class="section__title white mb-20 fade-in">Как сэкономить на ремонте?</h2>
+                    <p class="estimate__description fade-in">Получите точную смету и стоимость. В 90% случаев мы подбираем лучшее решение с наименьшей ценой.</p>
+                    <form class="estimate__form flex fade-in">
+                        <input type="text" placeholder="Как Вас зовут?" required>
+                        <input type="tel" placeholder="Ваш телефон" required>
+                        <button type="submit" class="btn btn_3">Записаться на замер</button>
+                        <div class="estimate__note">Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности</div>
+                    </form>
+                </div>
+                <div class="estimate__img fade-in-right"><img src="assets/estimate-img.png" alt="Смета"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="price" id="price">
+        <div class="container">
+            <h2 class="section__title text-center mb-20 fade-in"><span>Подробная смета</span> на ремонт</h2>
+            <div class="price__tabs flex fade-in">
+                <a href="javascript:void(0)" class="active" data-tab="price-1">Услуги ремонта</a>
+                <a href="javascript:void(0)" data-tab="price-2">Ремонт помещений</a>
+            </div>
+            <div class="price__block active" id="price-1">
+                <div class="price__items flex">
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/demontazh.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Демонтажные работы</a>
+                        <div class="price__value">от 150 руб./кв. м</div>
+                        <p>Разбор покрытий, снос перекрытий</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/kistochka.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Малярные работы</a>
+                        <div class="price__value">от 100 руб./кв. м</div>
+                        <p>Подготовка и покраска поверхностей</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/gipsokarton.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Монтаж гипсокартона</a>
+                        <div class="price__value">от 200 руб./кв. м</div>
+                        <p>Стены, перекрытия, арки</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/potolok.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Натяжные потолки</a>
+                        <div class="price__value">от 300 руб./кв. м</div>
+                        <p>Монтаж профиля и полотна</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/oboi.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Поклейка обоев</a>
+                        <div class="price__value">от 120 руб./кв. м</div>
+                        <p>Подготовка и поклейка</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/kran.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Сантехнические работы</a>
+                        <div class="price__value">от 500 руб.</div>
+                        <p>Монтаж водопровода, отопления</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/truba.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Монтаж труб</a>
+                        <div class="price__value">от 250 руб.</div>
+                        <p>Монтаж и замена труб</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/plitka.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Укладка плитки</a>
+                        <div class="price__value">от 500 руб./кв. м</div>
+                        <p>Укладка, затирка швов</p>
+                    </div>
+                    <div class="price__btn flex">
+                        <a href="javascript:void(0)" class="flex"><img src="assets/eye.png" alt=""><span>Показать все (8)</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="price__block" id="price-2">
+                <div class="price__items flex">
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/dom.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Ремонт дома, коттеджа</a>
+                        <div class="price__value">от 2 300 руб./кв. м</div>
+                        <p>Все виды ремонтных работ</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/kreslo.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Ремонт офиса</a>
+                        <div class="price__value">от 3 300 руб./кв. м</div>
+                        <p>Косметический и капитальный</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/cart.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Ремонт магазина</a>
+                        <div class="price__value">от 3 300 руб./кв. м</div>
+                        <p>Полный комплекс работ</p>
+                    </div>
+                    <div class="price__item fade-in-scale">
+                        <div class="price__icon flex"><img src="assets/kvartira.png" alt=""></div>
+                        <a class="price__title" href="javascript:void(0)">Ремонт новостройки</a>
+                        <div class="price__value">от 2 500 руб./кв. м</div>
+                        <p>Отделка и коммуникации</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ДОКУМЕНТЫ -->
+    <section class="docs" id="docs">
+        <div class="container">
+            <h2 class="section__title white text-center fade-in"><span>Документы</span> на ремонт</h2>
+            <div class="docs__items flex">
+                <div class="doc flex fade-in-scale">
+                    <div class="doc__icon"></div>
+                    <div class="doc__info">
+                        <div>Матрица стоимостей</div>
+                        <a href="javascript:void(0)">Посмотреть PDF</a>
+                    </div>
+                </div>
+                <div class="doc flex fade-in-scale">
+                    <div class="doc__icon"></div>
+                    <div class="doc__info">
+                        <div>Образец договора</div>
+                        <a href="javascript:void(0)">Посмотреть PDF</a>
+                    </div>
+                </div>
+                <div class="doc flex fade-in-scale">
+                    <div class="doc__icon"></div>
+                    <div class="doc__info">
+                        <div>Пример сметы</div>
+                        <a href="javascript:void(0)">Посмотреть PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОПЛАТА -->
+    <section class="payment" id="payment">
+        <div class="container">
+            <h2 class="section__title text-center fade-in"><span>Источники финансирования</span></h2>
+            <div class="payment__items flex">
+                <div class="payment__item flex fade-in-scale">
+                    <div class="payment__icon flex"><img src="assets/payment-1.png" alt=""></div>
+                    <div class="payment__info"><div>Наличный расчёт</div><p>на месте</p></div>
+                </div>
+                <div class="payment__item flex fade-in-scale">
+                    <div class="payment__icon flex"><img src="assets/payment-2.png" alt=""></div>
+                    <div class="payment__info"><div>Рассрочка</div><p>на 3-9 месяцев</p></div>
+                </div>
+                <div class="payment__item flex fade-in-scale">
+                    <div class="payment__icon flex"><img src="assets/payment-3.png" alt=""></div>
+                    <div class="payment__info"><div>Кредит</div><p>до 2-х лет</p></div>
+                </div>
+                <div class="payment__item flex fade-in-scale">
+                    <div class="payment__icon flex"><img src="assets/payment-4.png" alt=""></div>
+                    <div class="payment__info"><div>Безналичный</div><p>на наш счёт</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- АКЦИИ -->
+    <section class="offers" id="offers">
+        <div class="container">
+            <h2 class="section__title text-center fade-in"><span>Спецпредложения</span></h2>
+            <div class="jolly-slider-wrapper">
+                <div class="jolly-slider">
+                    <div><img src="assets/elders22.jpg" alt="Пенсионерам"></div>
+                    <div><img src="assets/large_remont_3_.jpg" alt="Крупным объектам"></div>
+                    <div><img src="assets/just_married22.jpg" alt="Молодоженам"></div>
+                    <div><img src="assets/move22.jpg" alt="Новоселам"></div>
+                </div>
+                <div class="jolly-slider-extra-wrapper">
+                    <div class="jolly-slide-controls">
+                        <div class="jolly-slide-control active" data-index="0">Пенсионерам</div>
+                        <div class="jolly-slide-control" data-index="1">Крупным объектам</div>
+                        <div class="jolly-slide-control" data-index="2">Молодоженам</div>
+                        <div class="jolly-slide-control" data-index="3">Новоселам</div>
+                    </div>
+                    <div class="jolly-slider-extra-body">
+                        <div class="jolly-slider-extra active" data-index="0">
+                            <div class="jolly-caption">Скидка 5%</div>
+                            <div class="jolly-text">Скидка 5% нашим уважаемым людям!</div>
+                        </div>
+                        <div class="jolly-slider-extra" data-index="1">
+                            <div class="jolly-caption">Скидка 7%</div>
+                            <div class="jolly-text">Для объектов 100+ м²</div>
+                        </div>
+                        <div class="jolly-slider-extra" data-index="2">
+                            <div class="jolly-caption">Скидка 4%</div>
+                            <div class="jolly-text">Молодым семьям (до 1 года в браке)</div>
+                        </div>
+                        <div class="jolly-slider-extra" data-index="3">
+                            <div class="jolly-caption">Скидка 4%</div>
+                            <div class="jolly-text">Тем, кто недавно переехал</div>
+                        </div>
+                    </div>
+                    <div class="jolly-slider-extra-footer">
+                        <a href="javascript:void(0)" class="jolly-button">Получить скидку</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section__title text-center fade-in">Отзывы клиентов <span>в интернете</span></h2>
+            <div class="testimonials__content flex">
+                <div class="testimonials__col flex fade-in">
+                    <div class="testimonials__items">
+                        <div class="testimonials__top flex">
+                            <div class="testimonials__service flex"><img src="assets/google.png" alt="Google"></div>
+                            <div class="testimonials__title">Google</div>
+                            <div class="testimonials__rating flex"><p>4.7</p><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
+                        </div>
+                        <div class="testimonial flex">
+                            <div class="testimonial__info">
+                                <div class="testimonial__name">Серафим Васильев</div>
+                                <div class="testimonial__date">15 июня 2025</div>
+                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                            <p class="testimonial__text">Делали отделку лоджии под ключ. Ребята подошли ответственно, всё шло поэтапно, без задержек.</p>
+                        </div>
+                        <div class="testimonial flex">
+                            <div class="testimonial__info">
+                                <div class="testimonial__name">Рамис Швабросян</div>
+                                <div class="testimonial__date">2 июня 2025</div>
+                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
+                            </div>
+                            <p class="testimonial__text">Круто организовали ремонт гостиной. Реализовали все наши запросы, рекомендуем!</p>
+                        </div>
+                        <a href="javascript:void(0)" class="testimonials__more btn">Показать ещё</a>
+                    </div>
+                </div>
+                <div class="testimonials__col flex fade-in">
+                    <div class="testimonials__items">
+                        <div class="testimonials__top flex">
+                            <div class="testimonials__service flex"><img src="assets/yandex.png" alt="Yandex"></div>
+                            <div class="testimonials__title">Yandex</div>
+                            <div class="testimonials__rating flex"><p>4.7</p><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
+                        </div>
+                        <div class="testimonial flex">
+                            <div class="testimonial__info">
+                                <div class="testimonial__name">Алексей Сисьмеков</div>
+                                <div class="testimonial__date">9 июня 2025</div>
+                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                            <p class="testimonial__text">Обратился для монтажа реечного потолка. Работу выполнили за день, без пыли и шума.</p>
+                        </div>
+                        <div class="testimonial flex">
+                            <div class="testimonial__info">
+                                <div class="testimonial__name">Матвей Пнёв</div>
+                                <div class="testimonial__date">16 мая 2025</div>
+                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                            <p class="testimonial__text">Приятно удивил профессиональный подход. Все этапы спланированы, работы выполнили точно в срок.</p>
+                        </div>
+                        <a href="javascript:void(0)" class="testimonials__more btn">Показать ещё</a>
+                    </div>
+                </div>
+                <div class="testimonials__col flex fade-in">
+                    <div class="testimonials__items">
+                        <div class="testimonials__top flex">
+                            <div class="testimonials__service flex"><img src="assets/yell.png" alt="Yell"></div>
+                            <div class="testimonials__title">Yell.ru</div>
+                            <div class="testimonials__rating flex"><p>4.7</p><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
+                        </div>
+                        <div class="testimonial flex">
+                            <div class="testimonial__info">
+                                <div class="testimonial__name">Дмитрий Харченко</div>
+                                <div class="testimonial__date">5 июня 2025</div>
+                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                            <p class="testimonial__text">Срочный косметический ремонт перед сдачей. Быстро, качественно, без сюрпризов по цене.</p>
+                        </div>
+                        <div class="testimonial flex">
+                            <div class="testimonial__info">
+                                <div class="testimonial__name">Федя Соколов</div>
+                                <div class="testimonial__date">13 мая 2025</div>
+                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
+                            </div>
+                            <p class="testimonial__text">Ремонт в ванной. Мастера предложили стильный дизайн-проект, учли все наши желания.</p>
+                        </div>
+                        <a href="javascript:void(0)" class="testimonials__more btn">Показать ещё</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ВОПРОСЫ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section__title text-center fade-in">Часто задаваемые <span>вопросы</span></h2>
+            <div class="faq__item fade-in">
+                <div class="faq__question">Как осуществляется закупка материалов?</div>
+                <div class="faq__answer">
+                    <p>Компания предлагает два варианта: самостоятельно или доверить команде "ПОД КЛЮЧ".</p>
+                </div>
+            </div>
+            <div class="faq__item fade-in">
+                <div class="faq__question">Как производится оплата?</div>
+                <div class="faq__answer">
+                    <p>Принимаем любые формы оплаты. Не требует предоплат. Оплата поэтапно.</p>
+                </div>
+            </div>
+            <div class="faq__item fade-in">
+                <div class="faq__question">Какой гарантийный срок?</div>
+                <div class="faq__answer">
+                    <p>Гарантия 1 год. При необходимости помогаем и после этого срока.</p>
+                </div>
+            </div>
+            <div class="faq__item fade-in">
+                <div class="faq__question">Должен ли я контролировать ход работ?</div>
+                <div class="faq__answer">
+                    <p>За каждым объектом закреплён опытный бригадир, который контролирует качество работ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАТЕГОРИИ -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section__title text-center fade-in">Ремонт в Москве <span>по видам комнат</span></h2>
+            <div class="categories__items flex">
+                <div class="category fade-in-scale">
+                    <div class="category__card">
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919.jpeg" alt="Комнаты"></div>
+                        <div class="category__card-title">Комнаты</div>
+                    </div>
+                    <div class="category__info">
+                        <div class="category__info-title">Ремонт комнат</div>
+                        <p>От демонтажа до установки окон и дверей</p>
+                        <div class="category__info-btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                    </div>
+                </div>
+                <div class="category fade-in-scale">
+                    <div class="category__card">
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919.jpg" alt="Кухни"></div>
+                        <div class="category__card-title">Кухни</div>
+                    </div>
+                    <div class="category__info">
+                        <div class="category__info-title">Ремонт кухонь</div>
+                        <p>Монтаж мебели, электропроводки, сантехники</p>
+                        <div class="category__info-btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                    </div>
+                </div>
+                <div class="category fade-in-scale">
+                    <div class="category__card">
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(1).jpg" alt="Спальни"></div>
+                        <div class="category__card-title">Спальни</div>
+                    </div>
+                    <div class="category__info">
+                        <div class="category__info-title">Ремонт спален</div>
+                        <p>Дизайн-проект, напольное покрытие, освещение</p>
+                        <div class="category__info-btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                    </div>
+                </div>
+                <div class="category fade-in-scale">
+                    <div class="category__card">
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(2).jpg" alt="Детская"></div>
+                        <div class="category__card-title">Детская</div>
+                    </div>
+                    <div class="category__info">
+                        <div class="category__info-title">Ремонт детских</div>
+                        <p>Безопасная и удобная среда для детей</p>
+                        <div class="category__info-btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                    </div>
+                </div>
+                <div class="category fade-in-scale">
+                    <div class="category__card">
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(3).jpg" alt="Гостиная"></div>
+                        <div class="category__card-title">Гостиная</div>
+                    </div>
+                    <div class="category__info">
+                        <div class="category__info-title">Ремонт гостиных</div>
+                        <p>Уютное пространство для встреч и отдыха</p>
+                        <div class="category__info-btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                    </div>
+                </div>
+                <div class="category fade-in-scale">
+                    <div class="category__card">
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(4).jpg" alt="Ванная"></div>
+                        <div class="category__card-title">Ванная</div>
+                    </div>
+                    <div class="category__info">
+                        <div class="category__info-title">Ремонт ванных</div>
+                        <p>Сантехника, плитка, электропроводка</p>
+                        <div class="category__info-btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                    </div>
+                </div>
+                <div class="category fade-in-scale">
+                    <div class="category__card">
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(5).jpeg" alt="Санузлы"></div>
+                        <div class="category__card-title">Санузлы</div>
+                    </div>
+                    <div class="category__info">
+                        <div class="category__info-title">Ремонт санузлов</div>
+                        <p>Монтаж сантехники, плитки, освещения</p>
+                        <div class="category__info-btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                    </div>
+                </div>
+                <div class="category fade-in-scale">
+                    <div class="category__card">
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(6).jpg" alt="Балконы"></div>
+                        <div class="category__card-title">Балконы</div>
+                    </div>
+                    <div class="category__info">
+                        <div class="category__info-title">Ремонт балконов</div>
+                        <p>Утепление, замена окон, отделка</p>
+                        <div class="category__info-btn flex"><a href="javascript:void(0)" class="btn">Подробнее</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СКЛАД -->
+    <section class="stock" id="stock">
+        <div class="container">
+            <h2 class="section__title fade-in">Собственный склад <span>строительных материалов</span></h2>
+            <div class="stock__content flex">
+                <div class="stock__info fade-in">
+                    <p><b>ПОД КЛЮЧ</b> — одна из сильных компаний на рынке ремонта. Собственный склад — часть системы.</p>
+                    <p><b>Закупки напрямую у поставщиков</b> — материалы обходятся дешевле.</p>
+                    <p><b>Склад — точка контроля.</b> Все материалы проверены, брак отсеивается.</p>
+                    <p><b>В итоге:</b> меньше сроки, ниже цена, стабильный результат.</p>
+                </div>
+                <div class="stock__sliders fade-in-right">
+                    <div class="stock__slider"><img src="assets/stroitel_nye_materialy2.jpg" alt="Склад"></div>
+                    <div class="stock__thumbnails">
+                        <div><img src="assets/stroitel_nye_materialy2.jpg" alt=""></div>
+                        <div><img src="assets/sklad_stroymaterialov.jpg" alt=""></div>
+                        <div><img src="assets/sklad_stroymaterialov1.jpg" alt=""></div>
+                        <div><img src="assets/stroymaterialy_na_sklade.jpg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОФИСЫ -->
+    <section class="offices" id="offices">
+        <div class="container">
+            <h2 class="section__title mb-30 text-center fade-in">Наш <span>филиал в Москве</span></h2>
+            <div class="offices__maps fade-in">
+                <div style="height:300px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;border-radius:10px;font-size:18px;color:#888;border:1px solid #333;">
+                    📍 Москва, улица Привольная, д. 61к1
+                </div>
+            </div>
+            <div class="cities fade-in">
+                <div class="cities__title">Наши представители есть в городах:</div>
+                <div class="cities__tabs flex">
+                    <a href="javascript:void(0)" class="active" data-city="cfo">ЦФО</a>
+                    <a href="javascript:void(0)" data-city="szfo">СЗФО</a>
+                    <a href="javascript:void(0)" data-city="ufo">ЮФО</a>
+                    <a href="javascript:void(0)" data-city="pfo">ПФО</a>
+                    <a href="javascript:void(0)" data-city="urfo">УрФО</a>
+                    <a href="javascript:void(0)" data-city="sfo">СФО</a>
+                    <a href="javascript:void(0)" data-city="dfo">ДФО</a>
+                </div>
+                <div class="cities__lists">
+                    <div class="cities__list active" id="cfo">
+                        <ul class="flex">
+                            <li><a href="javascript:void(0)">Белгород</a></li>
+                            <li><a href="javascript:void(0)">Брянск</a></li>
+                            <li><a href="javascript:void(0)">Владимир</a></li>
+                            <li><a href="javascript:void(0)">Воронеж</a></li>
+                            <li><a href="javascript:void(0)">Иваново</a></li>
+                            <li><a href="javascript:void(0)">Калуга</a></li>
+                            <li><a href="javascript:void(0)">Кострома</a></li>
+                            <li><a href="javascript:void(0)">Курск</a></li>
+                            <li><a href="javascript:void(0)">Липецк</a></li>
+                            <li><a href="javascript:void(0)">Орёл</a></li>
+                            <li><a href="javascript:void(0)">Рязань</a></li>
+                            <li><a href="javascript:void(0)">Смоленск</a></li>
+                            <li><a href="javascript:void(0)">Тамбов</a></li>
+                            <li><a href="javascript:void(0)">Тверь</a></li>
+                            <li><a href="javascript:void(0)">Тула</a></li>
+                            <li><a href="javascript:void(0)">Ярославль</a></li>
+                        </ul>
+                    </div>
+                    <div class="cities__list" id="szfo">
+                        <ul class="flex">
+                            <li><a href="javascript:void(0)">Архангельск</a></li>
+                            <li><a href="javascript:void(0)">Великий Новгород</a></li>
+                            <li><a href="javascript:void(0)">Вологда</a></li>
+                            <li><a href="javascript:void(0)">Калининград</a></li>
+                            <li><a href="javascript:void(0)">Мурманск</a></li>
+                            <li><a href="javascript:void(0)">Петрозаводск</a></li>
+                            <li><a href="javascript:void(0)">Псков</a></li>
+                            <li><a href="javascript:void(0)">Санкт-Петербург</a></li>
+                        </ul>
+                    </div>
+                    <div class="cities__list" id="ufo">
+                        <ul class="flex">
+                            <li><a href="javascript:void(0)">Астрахань</a></li>
+                            <li><a href="javascript:void(0)">Волгоград</a></li>
+                            <li><a href="javascript:void(0)">Краснодар</a></li>
+                            <li><a href="javascript:void(0)">Новороссийск</a></li>
+                            <li><a href="javascript:void(0)">Ростов-на-Дону</a></li>
+                            <li><a href="javascript:void(0)">Севастополь</a></li>
+                            <li><a href="javascript:void(0)">Симферополь</a></li>
+                            <li><a href="javascript:void(0)">Сочи</a></li>
+                        </ul>
+                    </div>
+                    <div class="cities__list" id="pfo">
+                        <ul class="flex">
+                            <li><a href="javascript:void(0)">Ижевск</a></li>
+                            <li><a href="javascript:void(0)">Казань</a></li>
+                            <li><a href="javascript:void(0)">Киров</a></li>
+                            <li><a href="javascript:void(0)">Нижний Новгород</a></li>
+                            <li><a href="javascript:void(0)">Оренбург</a></li>
+                            <li><a href="javascript:void(0)">Пенза</a></li>
+                            <li><a href="javascript:void(0)">Пермь</a></li>
+                            <li><a href="javascript:void(0)">Самара</a></li>
+                            <li><a href="javascript:void(0)">Саратов</a></li>
+                            <li><a href="javascript:void(0)">Уфа</a></li>
+                            <li><a href="javascript:void(0)">Чебоксары</a></li>
+                        </ul>
+                    </div>
+                    <div class="cities__list" id="urfo">
+                        <ul class="flex">
+                            <li><a href="javascript:void(0)">Екатеринбург</a></li>
+                            <li><a href="javascript:void(0)">Курган</a></li>
+                            <li><a href="javascript:void(0)">Магнитогорск</a></li>
+                            <li><a href="javascript:void(0)">Нижневартовск</a></li>
+                            <li><a href="javascript:void(0)">Сургут</a></li>
+                            <li><a href="javascript:void(0)">Тюмень</a></li>
+                            <li><a href="javascript:void(0)">Челябинск</a></li>
+                        </ul>
+                    </div>
+                    <div class="cities__list" id="sfo">
+                        <ul class="flex">
+                            <li><a href="javascript:void(0)">Барнаул</a></li>
+                            <li><a href="javascript:void(0)">Иркутск</a></li>
+                            <li><a href="javascript:void(0)">Кемерово</a></li>
+                            <li><a href="javascript:void(0)">Красноярск</a></li>
+                            <li><a href="javascript:void(0)">Новокузнецк</a></li>
+                            <li><a href="javascript:void(0)">Новосибирск</a></li>
+                            <li><a href="javascript:void(0)">Омск</a></li>
+                            <li><a href="javascript:void(0)">Томск</a></li>
+                            <li><a href="javascript:void(0)">Улан-Удэ</a></li>
+                        </ul>
+                    </div>
+                    <div class="cities__list" id="dfo">
+                        <ul class="flex">
+                            <li><a href="javascript:void(0)">Владивосток</a></li>
+                            <li><a href="javascript:void(0)">Хабаровск</a></li>
+                            <li><a href="javascript:void(0)">Якутск</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАКАЗ -->
+    <section class="order" id="order">
+        <div class="container">
+            <div class="order__block">
+                <h2 class="section__title text-center white mb-20 fade-in">Хотите скидку на ремонт?</h2>
+                <p class="order__description fade-in">Оставьте заявку сейчас <span>и получите скидку до 7%</span></p>
+                <form class="order__form flex fade-in">
+                    <input type="text" placeholder="Как Вас зовут?" required>
+                    <input type="tel" placeholder="Номер телефона" required>
+                    <button type="submit" class="btn">Получить скидку</button>
+                </form>
+                <div class="order__note fade-in">Нажимая на кнопку, Вы даете согласие на обработку персональных данных</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <div class="container">
+            <div class="footer__content flex">
+                <div class="footer__col footer__col_1 flex">
+                    <a href="javascript:void(0)" class="logo">
+                        <img src="assets/logo.png" alt="Логотип">
+                        <span class="logo__info">
+                            <b><span>Под</span> ключ</b>
+                            <p>Ремонт без нервов и переплат</p>
+                        </span>
+                    </a>
+                    <p class="footer__text">Информация по ценам не является публичной офертой.</p>
+                </div>
+                <div class="footer__col footer__col_2">
+                    <ul class="footer__menu">
+                        <li><a href="javascript:void(0)">Услуги ремонта</a></li>
+                        <li><a href="javascript:void(0)">Ремонт квартир</a></li>
+                        <li><a href="javascript:void(0)">Ремонт комнат</a></li>
+                        <li><a href="javascript:void(0)">Виды ремонта</a></li>
+                        <li><a href="javascript:void(0)">Ремонт помещений</a></li>
+                        <li><a href="javascript:void(0)">Дизайн интерьеров</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col footer__col_3">
+                    <ul class="footer__menu">
+                        <li><a href="javascript:void(0)">О компании</a></li>
+                        <li><a href="javascript:void(0)">Портфолио</a></li>
+                        <li><a href="javascript:void(0)">Цены</a></li>
+                        <li><a href="javascript:void(0)">Ремонтникам</a></li>
+                        <li><a href="javascript:void(0)">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col footer__col_4 flex">
+                    <div class="footer__contacts">
+                        <div class="footer__time">Время работы с 9:00 до 18:00 пн-пт</div>
+                        <div class="footer__tel">
+                            <a href="tel:+79208950955">+7(920)895-09-55</a><br>
+                            <a href="tel:+79060726622">+7(906)072-66-22</a>
+                        </div>
+                        <div class="footer__address">Москва, улица Привольная, д. 61к1</div>
+                        <div class="footer__email"><a href="mailto:msk@vse-podklyuch.ru">msk@vse-podklyuch.ru</a></div>
+                    </div>
+                    <div class="footer__socials flex">
+                        <a href="javascript:void(0)"><img src="assets/vk.png" alt="VK"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <div class="footer__bottom-content flex">
+                    <p class="footer__copy">© 2016-2026, <span>“Ремонт квартир в Москве под ключ”</span></p>
+                    <div class="footer__links flex">
+                        <a href="javascript:void(0)">Политика конфиденциальности</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal" id="cityModal">
         <div class="modal-content">
-            <div class="modal-header">Выберите свой город из списка</div>
+            <div class="modal-header">Выберите свой город</div>
             <input class="cities-search" type="text" placeholder="Фильтр...">
             <div class="cities-row">
                 <div class="city-column"><a href="javascript:void(0)">Москва</a></div>
@@ -1502,22 +2562,17 @@
     ============================================ -->
     <script>
         // ============================================
-        // 0. АНИМАЦИИ ПРИ СКРОЛЛЕ (Intersection Observer)
+        // 0. АНИМАЦИИ ПРИ СКРОЛЛЕ
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
             const animateElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-scale');
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
             animateElements.forEach(el => observer.observe(el));
         });
 
@@ -1540,7 +2595,6 @@
             valueInput.value = this.value;
             updateCalc();
         });
-
         valueInput.addEventListener('input', function() {
             let val = parseInt(this.value) || 10;
             if (val < 10) val = 10;
@@ -1549,11 +2603,9 @@
             range.value = val;
             updateCalc();
         });
-
         document.querySelectorAll('input[name="aptType"], input[name="renovType"]').forEach(el => {
             el.addEventListener('change', updateCalc);
         });
-
         document.getElementById('minusBtn').addEventListener('click', function() {
             let val = parseInt(valueInput.value) || 84;
             if (val > 10) val--;
@@ -1561,7 +2613,6 @@
             range.value = val;
             updateCalc();
         });
-
         document.getElementById('plusBtn').addEventListener('click', function() {
             let val = parseInt(valueInput.value) || 84;
             if (val < 200) val++;
@@ -1571,7 +2622,7 @@
         });
 
         // ============================================
-        // 2. QUIZ (пошаговый тест)
+        // 2. QUIZ
         // ============================================
         const quizSteps = document.querySelectorAll('.quiz__item');
         const stepIndicators = document.querySelectorAll('.quiz__steps p');
@@ -1584,7 +2635,6 @@
                 showQuizStep(nextStep);
             });
         });
-
         document.querySelectorAll('.quiz__prev').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1601,36 +2651,89 @@
                 el.classList.toggle('active', index < step);
             });
             stepLines.forEach((el, index) => {
-                if (index < step - 1) {
-                    el.style.background = '#ff6a00';
-                } else {
-                    el.style.background = '#ddd';
-                }
+                el.style.background = index < step - 1 ? '#ff6a00' : '#222';
             });
         }
 
         // ============================================
-        // 3. БУРГЕР-МЕНЮ
+        // 3. ВКЛАДКИ
         // ============================================
-        const navbar = document.querySelector('.navbar');
-        const menuMobile = document.querySelector('.menu-mobile');
+        document.querySelectorAll('.repair__tabs a').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.repair__tabs a').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.repair__item').forEach(item => item.classList.remove('active'));
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
 
-        navbar.addEventListener('click', function() {
+        document.querySelectorAll('.price__tabs a').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.price__tabs a').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.price__block').forEach(block => block.classList.remove('active'));
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+
+        // ============================================
+        // 4. АКЦИИ
+        // ============================================
+        const slides = document.querySelectorAll('.jolly-slider-extra');
+        const controls = document.querySelectorAll('.jolly-slide-control');
+
+        controls.forEach(control => {
+            control.addEventListener('click', function() {
+                controls.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                const index = parseInt(this.dataset.index);
+                slides.forEach(s => s.classList.remove('active'));
+                slides[index].classList.add('active');
+            });
+        });
+
+        // ============================================
+        // 5. FAQ
+        // ============================================
+        document.querySelectorAll('.faq__question').forEach(q => {
+            q.addEventListener('click', function() {
+                this.classList.toggle('active');
+                this.nextElementSibling.classList.toggle('show');
+            });
+        });
+
+        // ============================================
+        // 6. БУРГЕР-МЕНЮ
+        // ============================================
+        const navbarToggle = document.getElementById('navbarToggle');
+        const menuMobile = document.getElementById('menuMobile');
+        const closeMenu = document.getElementById('closeMenu');
+
+        navbarToggle.addEventListener('click', function() {
             this.classList.toggle('active');
             menuMobile.classList.toggle('active');
             document.body.style.overflow = menuMobile.classList.contains('active') ? 'hidden' : '';
         });
 
+        closeMenu.addEventListener('click', function() {
+            navbarToggle.classList.remove('active');
+            menuMobile.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Закрываем меню при клике на ссылку
         menuMobile.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function() {
-                navbar.classList.remove('active');
+                navbarToggle.classList.remove('active');
                 menuMobile.classList.remove('active');
                 document.body.style.overflow = '';
             });
         });
 
         // ============================================
-        // 4. МОДАЛЬНОЕ ОКНО (города)
+        // 7. МОДАЛЬНОЕ ОКНО (города)
         // ============================================
         document.getElementById('cityBtn').addEventListener('click', function(e) {
             e.preventDefault();
@@ -1646,7 +2749,7 @@
         });
 
         // ============================================
-        // 5. ФИЛЬТР ГОРОДОВ
+        // 8. ФИЛЬТР ГОРОДОВ
         // ============================================
         const citySearch = document.querySelector('.cities-search');
         const cityColumns = document.querySelectorAll('.city-column');
@@ -1654,23 +2757,88 @@
         citySearch.addEventListener('input', function() {
             const filter = this.value.toLowerCase();
             cityColumns.forEach(col => {
-                const text = col.textContent.toLowerCase();
-                col.style.display = text.includes(filter) ? '' : 'none';
+                col.style.display = col.textContent.toLowerCase().includes(filter) ? '' : 'none';
             });
         });
 
         // ============================================
-        // 6. ОТКЛЮЧЕНИЕ ВСЕХ КНОПОК
+        // 9. ВКЛАДКИ ГОРОДОВ
+        // ============================================
+        document.querySelectorAll('.cities__tabs a').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.cities__tabs a').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.cities__list').forEach(list => list.classList.remove('active'));
+                document.getElementById(this.dataset.city).classList.add('active');
+            });
+        });
+
+        // ============================================
+        // 10. ГАЛЕРЕЯ РАБОТ
+        // ============================================
+        let currentWork = 0;
+        const works = document.querySelectorAll('.work');
+        const dots = document.querySelectorAll('.works__dots span');
+
+        function showWork(index) {
+            works.forEach((w, i) => {
+                w.style.display = i === index ? 'flex' : 'none';
+            });
+            dots.forEach((d, i) => {
+                d.classList.toggle('active', i === index);
+            });
+        }
+
+        document.querySelector('.works__arrow_prev').addEventListener('click', function() {
+            currentWork = (currentWork - 1 + works.length) % works.length;
+            showWork(currentWork);
+        });
+        document.querySelector('.works__arrow_next').addEventListener('click', function() {
+            currentWork = (currentWork + 1) % works.length;
+            showWork(currentWork);
+        });
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                currentWork = index;
+                showWork(currentWork);
+            });
+        });
+        showWork(0);
+
+        // ============================================
+        // 11. СКЛАД (thumbnails)
+        // ============================================
+        const stockMain = document.querySelector('.stock__slider img');
+        const stockThumbs = document.querySelectorAll('.stock__thumbnail img');
+
+        stockThumbs.forEach((thumb, index) => {
+            thumb.parentElement.addEventListener('click', function() {
+                stockMain.src = thumb.src;
+                stockThumbs.forEach(t => t.parentElement.style.borderColor = 'transparent');
+                this.style.borderColor = '#ff6a00';
+            });
+        });
+
+        // ============================================
+        // 12. РЕМОНТ (thumbnails)
+        // ============================================
+        document.querySelectorAll('.repair__item.active .repair__thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const slider = this.closest('.repair__images').querySelector('.repair__slider img');
+                slider.src = this.querySelector('img').src;
+                this.parentElement.querySelectorAll('.repair__thumbnail').forEach(t => t.style.borderColor = 'transparent');
+                this.style.borderColor = '#ff6a00';
+            });
+        });
+
+        // ============================================
+        // 13. ОТКЛЮЧЕНИЕ КНОПОК И ФОРМ
         // ============================================
         document.querySelectorAll('a[href="javascript:void(0)"]').forEach(el => {
-            el.addEventListener('click', function(e) {
-                e.preventDefault();
-            });
+            el.addEventListener('click', function(e) { e.preventDefault(); });
         });
 
-        // ============================================
-        // 7. ОТПРАВКА ФОРМ (заглушка)
-        // ============================================
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -1682,6 +2850,7 @@
         console.log('✅ Сайт полностью загружен и готов к работе!');
         console.log('📱 Адаптивный дизайн включён');
         console.log('✨ Плавные анимации активны');
+        console.log('📋 Все пункты меню отображаются');
     </script>
 
 </body>
