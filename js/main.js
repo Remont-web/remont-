@@ -194,31 +194,45 @@ document.querySelectorAll('.faq__question').forEach(q => {
 });
 
 // ============================================
-// 9. БУРГЕР-МЕНЮ
+// 9. БУРГЕР-МЕНЮ (ИСПРАВЛЕННОЕ)
 // ============================================
 const navbarToggle = document.getElementById('navbarToggle');
 const menuMobile = document.getElementById('menuMobile');
 const closeMenu = document.getElementById('closeMenu');
 
 if (navbarToggle && menuMobile && closeMenu) {
-    navbarToggle.addEventListener('click', function() {
+    // Открытие меню
+    navbarToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
         this.classList.toggle('active');
         menuMobile.classList.toggle('active');
-        document.body.style.overflow = menuMobile.classList.contains('active') ? 'hidden' : '';
+        document.body.classList.toggle('menu-open');
     });
 
-    closeMenu.addEventListener('click', function() {
+    // Закрытие по крестику
+    closeMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
         navbarToggle.classList.remove('active');
         menuMobile.classList.remove('active');
-        document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
     });
 
+    // Закрытие при клике на ссылку
     menuMobile.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function() {
             navbarToggle.classList.remove('active');
             menuMobile.classList.remove('active');
-            document.body.style.overflow = '';
+            document.body.classList.remove('menu-open');
         });
+    });
+
+    // Закрытие при клике вне меню (на фон)
+    menuMobile.addEventListener('click', function(e) {
+        if (e.target === this) {
+            navbarToggle.classList.remove('active');
+            menuMobile.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
     });
 }
 
