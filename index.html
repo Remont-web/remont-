@@ -6,7 +6,7 @@
     <title>Ремонт квартир в Москве под ключ</title>
     <style>
         /* ============================================
-           ВСЕ СТИЛИ (полная версия)
+           ВСЕ СТИЛИ (ПОЛНАЯ ВЕРСИЯ)
            ============================================ */
 
         /* ----- ОБЩИЕ СТИЛИ ----- */
@@ -25,6 +25,11 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        body.dark-theme {
+            background: #1a1a1a;
+            color: #e0e0e0;
         }
         .container {
             max-width: 1200px;
@@ -100,8 +105,11 @@
         .section__title.white span {
             color: #ffcc00;
         }
+        body.dark-theme .section__title {
+            color: #fff;
+        }
 
-        /* ----- АНИМАЦИИ ПРИ СКРОЛЛЕ ----- */
+        /* ----- АНИМАЦИИ ----- */
         .fade-in {
             opacity: 0;
             transform: translateY(50px);
@@ -110,24 +118,6 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .fade-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .fade-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
         }
         .fade-in-scale {
             opacity: 0;
@@ -138,8 +128,67 @@
             opacity: 1;
             transform: scale(1);
         }
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-        /* ----- ШАПКА (HEADER) ----- */
+        /* ----- ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ ----- */
+        .theme-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+        .theme-toggle {
+            width: 48px;
+            height: 26px;
+            background: #444;
+            border-radius: 13px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+        .theme-toggle.active {
+            background: #ff6a00;
+        }
+        .theme-toggle .toggle-circle {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: 0.3s;
+        }
+        .theme-toggle.active .toggle-circle {
+            left: 25px;
+        }
+        .theme-toggle-label {
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+        .theme-toggle-label.light {
+            opacity: 1;
+        }
+        body.dark-theme .theme-toggle-label.dark {
+            opacity: 1;
+        }
+        body.dark-theme .theme-toggle-label.light {
+            opacity: 0.5;
+        }
+
+        /* ----- ШАПКА ----- */
         header .top {
             background: #000000;
             padding: 10px 0;
@@ -154,49 +203,50 @@
             text-decoration: none;
             font-size: 14px;
         }
-        /* Скрываем старое меню */
         header .top__menu {
             display: none !important;
         }
         header .top .btn {
             display: none !important;
         }
-
-        /* БУРГЕР-МЕНЮ (три полосочки) */
+        .top-right-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
         .navbar {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
             cursor: pointer;
-            padding: 5px 10px;
+            padding: 5px 8px;
             background: rgba(255,255,255,0.05);
-            border-radius: 8px;
+            border-radius: 6px;
             transition: 0.3s;
-            margin-left: auto;
             flex-shrink: 0;
         }
         .navbar:hover {
             background: rgba(255,255,255,0.1);
         }
         .navbar span {
-            width: 28px;
-            height: 3px;
+            width: 24px;
+            height: 2.5px;
             background: #fff;
             border-radius: 3px;
             transition: 0.3s;
             display: block;
         }
         .navbar.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
+            transform: rotate(45deg) translate(5px, 5px);
         }
         .navbar.active span:nth-child(2) {
             opacity: 0;
         }
         .navbar.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        /* МОБИЛЬНОЕ МЕНЮ - ПОЛНАЯ ВЕРСИЯ */
         .menu-mobile {
             display: none;
             position: fixed;
@@ -211,18 +261,10 @@
             animation: fadeInMenu 0.35s ease;
         }
         @keyframes fadeInMenu {
-            from {
-                opacity: 0;
-                transform: translateX(100%);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
         }
-        .menu-mobile.active {
-            display: block;
-        }
+        .menu-mobile.active { display: block; }
         .menu-mobile .close-menu {
             position: absolute;
             top: 18px;
@@ -236,10 +278,7 @@
             opacity: 0.7;
             transition: 0.3s;
         }
-        .menu-mobile .close-menu:hover {
-            opacity: 1;
-            transform: rotate(90deg);
-        }
+        .menu-mobile .close-menu:hover { opacity: 1; transform: rotate(90deg); }
         .menu-mobile .menu-title {
             color: #ff6a00;
             font-size: 12px;
@@ -250,9 +289,7 @@
             font-weight: 700;
             opacity: 0.7;
         }
-        .menu-mobile .menu-title:first-of-type {
-            padding-top: 0;
-        }
+        .menu-mobile .menu-title:first-of-type { padding-top: 0; }
         .menu-mobile a {
             display: block;
             padding: 13px 18px;
@@ -268,9 +305,6 @@
             background: rgba(255,106,0,0.12);
             color: #ff6a00;
             padding-left: 25px;
-        }
-        .menu-mobile a:active {
-            background: rgba(255,106,0,0.2);
         }
 
         header .middle {
@@ -290,29 +324,14 @@
             text-decoration: none;
             flex-shrink: 0;
         }
-        .logo img {
-            height: 45px;
-            width: auto;
-        }
-        .logo__info b {
-            font-size: 22px;
-            color: #fff;
-        }
-        .logo__info b span {
-            color: #ff6a00;
-        }
-        .logo__info p {
-            font-size: 11px;
-            color: #888;
-        }
-        .header__contacts {
-            display: none !important;
-        }
-        .calc-link {
-            display: none !important;
-        }
+        .logo img { height: 45px; width: auto; }
+        .logo__info b { font-size: 22px; color: #fff; }
+        .logo__info b span { color: #ff6a00; }
+        .logo__info p { font-size: 11px; color: #888; }
+        .header__contacts { display: none !important; }
+        .calc-link { display: none !important; }
 
-        /* ----- ГЛАВНЫЙ БАННЕР - ЧЕРНЫЙ ФОН ----- */
+        /* ----- ГЛАВНЫЙ БАННЕР ----- */
         .main {
             position: relative;
             padding: 40px 0 60px;
@@ -323,33 +342,23 @@
             overflow: hidden;
             background: #000000;
         }
-        .main .container {
-            position: relative;
-            z-index: 1;
-            width: 100%;
+        .main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.92) 100%),
+                        url('assets/main-bg.jpg') center/cover no-repeat;
+            z-index: 0;
         }
-        .main__content {
-            gap: 40px;
-        }
-        .main__info {
-            flex: 1;
-        }
-        .main__title {
-            font-size: 42px;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-        .main__title small {
-            font-size: 22px;
-            font-weight: 400;
-            display: block;
-            color: #fff;
-        }
-        .main__title small span {
-            color: #ffcc00;
-        }
+        .main .container { position: relative; z-index: 1; width: 100%; }
+        .main__content { gap: 40px; }
+        .main__info { flex: 1; }
+        .main__title { font-size: 42px; font-weight: 700; line-height: 1.15; margin-bottom: 15px; color: #fff; }
+        .main__title small { font-size: 22px; font-weight: 400; display: block; color: #fff; }
+        .main__title small span { color: #ffcc00; }
         .main__list {
             list-style: none;
             padding: 0;
@@ -363,6 +372,8 @@
             color: #fff;
             font-size: 14px;
         }
+
+        /* ----- КАЛЬКУЛЯТОР ----- */
         .calculator-body {
             flex: 0 0 380px;
             background: #fff;
@@ -371,19 +382,23 @@
             color: #333;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
-        .calculator-body .calc__title {
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 15px;
-            color: #333;
+        body.dark-theme .calculator-body {
+            background: #2a2a2a;
+            color: #e0e0e0;
         }
-        .calculator-body .area {
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .calculator-body .area__input {
-            flex: 1;
-        }
+        body.dark-theme .calculator-body .calc__title { color: #e0e0e0; }
+        body.dark-theme .calculator-body .calc__res { background: #333; border-color: #ff6a00; }
+        body.dark-theme .calculator-body .calc__res-title { color: #e0e0e0; }
+        body.dark-theme .calculator-body .area__number input { background: #333; color: #fff; border-color: #ff6a00; }
+        body.dark-theme .calculator-body .calc__input input { background: #333; color: #fff; border-color: #444; }
+        body.dark-theme .calculator-body .calc__input input::placeholder { color: #888; }
+        body.dark-theme .calculator-body .radio label { background: #333; color: #e0e0e0; }
+        body.dark-theme .calculator-body .radio input:checked + label { background: #ff6a00; color: #fff; }
+        body.dark-theme .calculator-body .calc__note { color: #888; }
+
+        .calculator-body .calc__title { font-weight: 700; margin-bottom: 10px; font-size: 15px; color: #333; }
+        .calculator-body .area { gap: 15px; margin-bottom: 20px; }
+        .calculator-body .area__input { flex: 1; }
         .calculator-body .area__input input[type="range"] {
             width: 100%;
             height: 6px;
@@ -403,14 +418,6 @@
             cursor: pointer;
             border: 2px solid #fff;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-        .calculator-body .area__input input[type="range"]::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #ff6a00;
-            cursor: pointer;
-            border: 2px solid #fff;
         }
         .calculator-body .area__number {
             display: flex;
@@ -444,9 +451,7 @@
             transition: 0.2s;
         }
         .calculator-body .area__number-minus:active,
-        .calculator-body .area__number-plus:active {
-            transform: scale(0.9);
-        }
+        .calculator-body .area__number-plus:active { transform: scale(0.9); }
         .calculator-body .radio {
             display: flex;
             gap: 8px;
@@ -475,14 +480,8 @@
             text-align: center;
             border: 2px solid #ff6a00;
         }
-        .calculator-body .calc__price {
-            font-size: 28px;
-            font-weight: 700;
-            color: #ff6a00;
-        }
-        .calculator-body .calc__input {
-            gap: 10px;
-        }
+        .calculator-body .calc__price { font-size: 28px; font-weight: 700; color: #ff6a00; }
+        .calculator-body .calc__input { gap: 10px; }
         .calculator-body .calc__input input {
             flex: 1;
             padding: 10px 15px;
@@ -493,10 +492,7 @@
             width: 100%;
             transition: 0.3s;
         }
-        .calculator-body .calc__input input:focus {
-            outline: none;
-            border-color: #ff6a00;
-        }
+        .calculator-body .calc__input input:focus { outline: none; border-color: #ff6a00; }
         .calculator-body .calc__btn {
             padding: 10px 25px;
             background: #ff6a00;
@@ -509,22 +505,12 @@
             transition: 0.3s;
             white-space: nowrap;
         }
-        .calculator-body .calc__btn:hover {
-            background: #e55d00;
-        }
-        .calculator-body .calc__btn:active {
-            transform: scale(0.98);
-        }
-        .calculator-body .calc__note {
-            font-size: 11px;
-            color: #999;
-            margin-top: 10px;
-        }
-        .calculator-body .calc__note a {
-            color: #ff6a00;
-        }
+        .calculator-body .calc__btn:hover { background: #e55d00; }
+        .calculator-body .calc__btn:active { transform: scale(0.98); }
+        .calculator-body .calc__note { font-size: 11px; color: #999; margin-top: 10px; }
+        .calculator-body .calc__note a { color: #ff6a00; }
 
-        /* ----- БОКОВЫЕ КНОПКИ (btns) ----- */
+        /* ----- БОКОВЫЕ КНОПКИ ----- */
         .btns {
             position: fixed;
             right: 0;
@@ -534,7 +520,9 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        .btns.hidden-btns { transform: translateX(100%) translateY(-50%); }
         .btns .flex {
             background: #1a1a1a;
             padding: 12px 15px;
@@ -543,34 +531,45 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .btns .flex:hover {
-            background: #333;
-        }
-        .btns .flex a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .btns .flex img {
-            height: 20px;
-            width: auto;
-        }
-        .btns .orange {
-            background: #ff6a00;
-        }
-        .btns .orange:hover {
-            background: #e55d00;
-        }
+        .btns .flex:hover { background: #333; }
+        .btns .flex a { color: #fff; text-decoration: none; font-size: 13px; font-weight: 600; }
+        .btns .flex img { height: 20px; width: auto; }
+        .btns .orange { background: #ff6a00; }
+        .btns .orange:hover { background: #e55d00; }
 
-        /* ----- QUIZ (ТЕСТ) ----- */
+        .btns-toggle {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            width: 30px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 8px 0 0 8px;
+            font-size: 16px;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+            border: none;
+            opacity: 0.7;
+        }
+        .btns-toggle:hover { opacity: 1; background: rgba(0,0,0,0.7); }
+        .btns-toggle .toggle-arrow { transition: 0.3s; }
+        .btns-toggle.hidden-toggle .toggle-arrow { transform: rotate(180deg); }
+
+        /* ----- QUIZ ----- */
         .quiz {
             padding: 60px 0;
-            background: #0a0a0a;
+            background: #f5f5f5;
         }
-        .quiz .section__title {
-            color: #fff;
-        }
+        body.dark-theme .quiz { background: #1a1a1a; }
+        .quiz .section__title { color: #333; }
+        body.dark-theme .quiz .section__title { color: #fff; }
         .quiz__steps {
             justify-content: center;
             gap: 5px;
@@ -581,98 +580,121 @@
             width: 35px;
             height: 35px;
             border-radius: 50%;
-            background: #222;
+            background: #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            color: #666;
+            color: #999;
             transition: 0.3s;
         }
-        .quiz__steps p.active {
-            background: #ff6a00;
-            color: #fff;
-        }
-        .quiz__steps span {
-            width: 30px;
-            height: 2px;
-            background: #222;
-            transition: 0.3s;
-        }
-        .quiz__item {
-            display: none;
-        }
+        .quiz__steps p.active { background: #ff6a00; color: #fff; }
+        .quiz__steps span { width: 30px; height: 2px; background: #ddd; transition: 0.3s; }
+        body.dark-theme .quiz__steps p { background: #333; color: #666; }
+        body.dark-theme .quiz__steps span { background: #333; }
+        .quiz__item { display: none; }
         .quiz__item.active {
             display: block;
             animation: fadeSlideIn 0.5s ease;
         }
         @keyframes fadeSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .quiz__content {
-            background: #111;
+            background: #fff;
             border-radius: 15px;
             padding: 30px;
             gap: 30px;
-            color: #fff;
+            color: #333;
         }
-        .quiz__img {
-            flex: 0 0 200px;
-        }
-        .quiz__img img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .quiz__info {
-            flex: 1;
-        }
+        body.dark-theme .quiz__content { background: #2a2a2a; color: #e0e0e0; }
+        .quiz__img { flex: 0 0 200px; }
+        .quiz__img img { width: 100%; border-radius: 10px; }
+        .quiz__info { flex: 1; }
         .quiz__question {
             font-size: 20px;
             font-weight: 700;
             display: block;
             margin-bottom: 15px;
-            color: #fff;
+            color: #333;
         }
-        .quiz__question span {
-            color: #ff6a00;
-        }
+        body.dark-theme .quiz__question { color: #fff; }
+        .quiz__question span { color: #ff6a00; }
         .quiz__input input {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #333;
+            border: 1px solid #ddd;
             border-radius: 30px;
             font-size: 16px;
             margin-bottom: 15px;
-            background: #222;
-            color: #fff;
+            background: #fff;
+            color: #333;
         }
-        .quiz__input input::placeholder {
-            color: #666;
-        }
-        .quiz__btns {
-            gap: 15px;
-            margin-top: 15px;
+        body.dark-theme .quiz__input input { background: #333; border-color: #444; color: #fff; }
+        body.dark-theme .quiz__input input::placeholder { color: #888; }
+        .quiz__btns { gap: 15px; margin-top: 15px; }
+
+        /* ВЕРТИКАЛЬНЫЕ РАДИОКНОПКИ */
+        .quiz .radio {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
         }
         .quiz .radio label {
-            padding: 8px 18px;
-            background: #222;
-            border-radius: 20px;
+            padding: 12px 18px 12px 50px;
+            background: #f5f5f5;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 15px;
             transition: 0.3s;
-            color: #fff;
+            border: 2px solid #e0e0e0;
+            position: relative;
+            color: #333;
+            display: flex;
+            align-items: center;
+            min-height: 48px;
         }
+        body.dark-theme .quiz .radio label { background: #333; border-color: #444; color: #e0e0e0; }
+        .quiz .radio label::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            background: #fff;
+            transition: 0.3s;
+        }
+        body.dark-theme .quiz .radio label::before { background: #444; border-color: #555; }
         .quiz .radio input:checked + label {
-            background: #ff6a00;
-            color: #fff;
+            border-color: #ff6a00;
+            background: #fff5ed;
         }
+        body.dark-theme .quiz .radio input:checked + label { background: #2a1a0a; }
+        .quiz .radio input:checked + label::before {
+            border-color: #ff6a00;
+            background: #ff6a00;
+            box-shadow: 0 0 0 4px rgba(255,106,0,0.2);
+        }
+        .quiz .radio input:checked + label::after {
+            content: '✓';
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            z-index: 1;
+        }
+        .quiz .radio input { display: none; }
+        .quiz .radio label:hover { border-color: #ff6a00; }
+
         .discount {
             flex: 0 0 180px;
             background: linear-gradient(135deg, #ff6a00, #ff8c00);
@@ -682,55 +704,40 @@
             flex-direction: column;
             text-align: center;
         }
-        .discount__size {
-            font-size: 28px;
-            font-weight: 700;
-        }
-        .discount__full {
-            font-size: 20px;
-            font-weight: 700;
-        }
-        .discount__img img {
-            height: 60px;
-            margin-top: 10px;
-        }
+        .discount__size { font-size: 28px; font-weight: 700; }
+        .discount__full { font-size: 20px; font-weight: 700; }
+        .discount__img img { height: 60px; margin-top: 10px; }
 
         /* ----- ИНФО БЛОК ----- */
         .info {
             padding: 50px 0;
-            background: #000;
-            color: #ccc;
+            background: #fff;
+            color: #333;
         }
-        .info .section__title {
-            color: #fff;
-        }
-        .info p {
-            color: #ccc;
-        }
-        .info ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
+        body.dark-theme .info { background: #1a1a1a; color: #ccc; }
+        .info .section__title { color: #333; }
+        body.dark-theme .info .section__title { color: #fff; }
+        .info p { color: #555; }
+        body.dark-theme .info p { color: #ccc; }
+        .info ul { list-style: none; padding: 0; margin: 20px 0; }
         .info ul li {
             padding: 8px 0;
             padding-left: 25px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23ff6a00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
             background-size: 16px;
-            color: #ccc;
+            color: #555;
         }
+        body.dark-theme .info ul li { color: #ccc; }
         .note {
-            background: #111;
+            background: #f8f8f8;
             padding: 20px;
             border-left: 4px solid #ff6a00;
             border-radius: 5px;
             margin: 20px 0;
-            color: #ccc;
+            color: #555;
         }
-        .overflow-x {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+        body.dark-theme .note { background: #2a2a2a; color: #ccc; }
+        .overflow-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .price-service-table {
             width: 100%;
             border-collapse: collapse;
@@ -740,28 +747,24 @@
         .price-service-table th,
         .price-service-table td {
             padding: 12px 15px;
-            border: 1px solid #333;
+            border: 1px solid #ddd;
             text-align: left;
         }
-        .price-service-table th {
-            background: #1a1a1a;
-            color: #fff;
-        }
-        .price-service-table td {
-            color: #ccc;
-        }
-        .price-service-table tr:nth-child(even) {
-            background: #0a0a0a;
-        }
+        body.dark-theme .price-service-table th,
+        body.dark-theme .price-service-table td { border-color: #333; }
+        .price-service-table th { background: #000000; color: #fff; }
+        .price-service-table tr:nth-child(even) { background: #f8f8f8; }
+        body.dark-theme .price-service-table tr:nth-child(even) { background: #222; }
+        body.dark-theme .price-service-table td { color: #ccc; }
 
-        /* ----- РЕМОНТ (repair) ----- */
+        /* ----- РЕМОНТ (С ГАЛЕРЕЕЙ) ----- */
         .repair {
             padding: 60px 0;
-            background: #0a0a0a;
+            background: #f5f5f5;
         }
-        .repair .section__title {
-            color: #fff;
-        }
+        body.dark-theme .repair { background: #1a1a1a; }
+        .repair .section__title { color: #333; }
+        body.dark-theme .repair .section__title { color: #fff; }
         .repair__tabs {
             gap: 10px;
             margin-bottom: 30px;
@@ -770,35 +773,29 @@
         }
         .repair__tabs a {
             padding: 10px 25px;
-            background: #1a1a1a;
+            background: #fff;
             border-radius: 30px;
             text-decoration: none;
-            color: #ccc;
+            color: #333;
             font-weight: 600;
             transition: 0.3s;
             font-size: 14px;
         }
-        .repair__tabs a.active {
-            background: #ff6a00;
-            color: #fff;
-        }
-        .repair__tabs a:active {
-            transform: scale(0.96);
-        }
-        .repair__item {
-            display: none;
-        }
+        body.dark-theme .repair__tabs a { background: #2a2a2a; color: #ccc; }
+        .repair__tabs a.active { background: #ff6a00; color: #fff; }
+        .repair__item { display: none; }
         .repair__item.active {
             display: block;
             animation: fadeSlideIn 0.5s ease;
         }
         .repair__content {
-            background: #111;
+            background: #fff;
             border-radius: 15px;
             padding: 30px;
             gap: 30px;
-            color: #ccc;
+            color: #333;
         }
+        body.dark-theme .repair__content { background: #2a2a2a; color: #ccc; }
         .repair__images {
             flex: 0 0 45%;
         }
@@ -806,33 +803,39 @@
         .repair__thumbnail img {
             width: 100%;
             border-radius: 10px;
+            aspect-ratio: 16/10;
+            object-fit: cover;
         }
         .repair__thumbnails {
             display: flex;
             gap: 10px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
         .repair__thumbnail {
-            flex: 1;
+            flex: 0 0 calc(33.333% - 7px);
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
             border-radius: 10px;
             transition: 0.3s;
+            overflow: hidden;
+            aspect-ratio: 16/10;
         }
-        .repair__thumbnail:hover {
-            border-color: #ff6a00;
+        .repair__thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        .repair__info {
-            flex: 1;
-        }
+        .repair__thumbnail:hover { border-color: #ff6a00; }
+        .repair__thumbnail.active { border-color: #ff6a00; }
+        .repair__info { flex: 1; }
         .repair__title {
             font-size: 24px;
             margin-bottom: 15px;
-            color: #fff;
+            color: #333;
         }
-        .repair__title span {
-            color: #ff6a00;
-        }
+        body.dark-theme .repair__title { color: #fff; }
+        .repair__title span { color: #ff6a00; }
         .repair__list ul {
             list-style: none;
             padding: 0;
@@ -844,24 +847,12 @@
             padding-left: 20px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23ff6a00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
             background-size: 12px;
-            color: #ccc;
+            color: #555;
         }
-        .repair__more {
-            color: #ff6a00;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .regular-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: #ff6a00;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .repair__btn {
-            justify-content: center;
-            margin-top: 30px;
-        }
+        body.dark-theme .repair__list ul li { color: #ccc; }
+        .repair__more { color: #ff6a00; cursor: pointer; text-decoration: none; }
+        .regular-link { display: inline-block; margin-top: 15px; color: #ff6a00; font-weight: 600; text-decoration: none; }
+        .repair__btn { justify-content: center; margin-top: 30px; }
         .repair__btn a {
             display: inline-flex;
             align-items: center;
@@ -874,18 +865,15 @@
             font-weight: 700;
         }
 
-        /* ----- ЭТАПЫ (steps) ----- */
+        /* ----- ЭТАПЫ ----- */
         .steps {
             padding: 60px 0;
-            background: #000;
+            background: #fff;
         }
-        .steps .section__title {
-            color: #fff;
-        }
-        .steps__items {
-            gap: 20px;
-            justify-content: center;
-        }
+        body.dark-theme .steps { background: #1a1a1a; }
+        .steps .section__title { color: #333; }
+        body.dark-theme .steps .section__title { color: #fff; }
+        .steps__items { gap: 20px; justify-content: center; }
         .step {
             flex: 0 0 150px;
             text-align: center;
@@ -903,40 +891,25 @@
             justify-content: center;
             transition: transform 0.3s;
         }
-        .step:hover .step__icon {
-            transform: scale(1.05);
-        }
-        .step__icon img {
-            height: 35px;
-            width: auto;
-            filter: brightness(0) invert(0);
-        }
-        .step__number {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ff6a00;
-        }
-        .step__title {
-            font-weight: 700;
-            margin: 10px 0;
-            color: #fff;
-        }
-        .step p {
-            font-size: 13px;
-            color: #888;
-        }
+        .step:hover .step__icon { transform: scale(1.05); }
+        .step__icon img { height: 35px; width: auto; filter: brightness(0) invert(0); }
+        .step__number { font-size: 24px; font-weight: 700; color: #ff6a00; }
+        .step__title { font-weight: 700; margin: 10px 0; color: #333; }
+        body.dark-theme .step__title { color: #fff; }
+        .step p { font-size: 13px; color: #888; }
 
-        /* ----- ПРИМЕРЫ РАБОТ (works) ----- */
+        /* ----- ПРИМЕРЫ РАБОТ ----- */
         .works {
             padding: 60px 0;
-            background: #0a0a0a;
+            background: #f5f5f5;
         }
-        .works .section__title {
-            color: #fff;
-        }
+        body.dark-theme .works { background: #1a1a1a; }
+        .works .section__title { color: #333; }
+        body.dark-theme .works .section__title { color: #fff; }
         .works__slider-wrapper {
             position: relative;
             overflow: hidden;
+            padding-bottom: 50px;
         }
         .works__slider {
             display: flex;
@@ -948,64 +921,35 @@
             flex: 0 0 calc(33.333% - 20px);
             min-width: 280px;
             max-width: 350px;
-            background: #111;
+            background: #fff;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .work:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-        }
-        .work__img {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-        }
-        .work__img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .work:hover .work__img img {
-            transform: scale(1.03);
-        }
+        body.dark-theme .work { background: #2a2a2a; box-shadow: 0 2px 15px rgba(0,0,0,0.3); }
+        .work:hover { transform: translateY(-5px); box-shadow: 0 5px 25px rgba(0,0,0,0.15); }
+        .work__img { width: 100%; height: 220px; overflow: hidden; }
+        .work__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .work:hover .work__img img { transform: scale(1.03); }
         .work__info {
             padding: 20px;
             flex: 1;
             display: flex;
             flex-direction: column;
-            color: #ccc;
+            color: #555;
         }
-        .work__title {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        .work__items {
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .work__item {
-            gap: 8px;
-            flex: 0 0 auto;
-        }
-        .work__item img {
-            height: 24px;
-            width: auto;
-        }
-        .work__item-title {
-            font-size: 11px;
-            color: #888;
-        }
-        .work__item p {
-            color: #ccc;
-        }
+        body.dark-theme .work__info { color: #ccc; }
+        .work__title { font-size: 18px; margin-bottom: 10px; color: #333; }
+        body.dark-theme .work__title { color: #fff; }
+        .work__items { gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .work__item { gap: 8px; flex: 0 0 auto; }
+        .work__item img { height: 24px; width: auto; }
+        .work__item-title { font-size: 11px; color: #888; }
+        .work__item p { color: #555; }
+        body.dark-theme .work__item p { color: #ccc; }
         .work__images {
             display: flex;
             gap: 8px;
@@ -1020,24 +964,18 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .work__images div:hover {
-            transform: scale(1.05);
-        }
-        .work__images div img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .work__btn {
-            margin-top: auto;
-        }
-        .arrow {
+        .work__images div:hover { transform: scale(1.05); }
+        .work__images div img { width: 100%; height: 100%; object-fit: cover; }
+        .work__btn { margin-top: auto; }
+
+        .works .arrow {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: 0;
+            top: auto;
+            transform: translateY(0);
             width: 40px;
             height: 40px;
-            background: #fff;
+            background: #ff6a00;
             border-radius: 50%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             cursor: pointer;
@@ -1048,19 +986,14 @@
             font-size: 20px;
             font-weight: 700;
             user-select: none;
-            color: #333;
-            transition: 0.3s;
-        }
-        .arrow:hover {
-            background: #ff6a00;
             color: #fff;
+            transition: 0.3s;
+            border: none;
         }
-        .arrow_prev {
-            left: 5px;
-        }
-        .arrow_next {
-            right: 5px;
-        }
+        .works .arrow:hover { background: #e55d00; transform: scale(1.05); }
+        .works .arrow_prev { left: calc(50% - 50px); }
+        .works .arrow_next { right: calc(50% - 50px); }
+
         .dots {
             justify-content: center;
             gap: 8px;
@@ -1070,36 +1003,24 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #333;
+            background: #ddd;
             cursor: pointer;
             transition: 0.3s;
         }
-        .dots span:hover {
-            background: #ff6a00;
-        }
-        .dots span.active {
-            background: #ff6a00;
-        }
+        body.dark-theme .dots span { background: #444; }
+        .dots span:hover { background: #ff6a00; }
+        .dots span.active { background: #ff6a00; }
 
-        /* ----- СМЕТА (estimate) ----- */
+        /* ----- СМЕТА ----- */
         .estimate {
             padding: 60px 0;
-            background: #000;
+            background: #000000;
             color: #fff;
         }
-        .estimate__content {
-            gap: 40px;
-        }
-        .estimate__info {
-            flex: 1;
-        }
-        .estimate__description {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
-        .estimate__form {
-            gap: 15px;
-        }
+        .estimate__content { gap: 40px; }
+        .estimate__info { flex: 1; }
+        .estimate__description { font-size: 18px; margin-bottom: 25px; }
+        .estimate__form { gap: 15px; }
         .estimate__form input {
             flex: 1;
             padding: 12px 15px;
@@ -1111,27 +1032,19 @@
             background: #1a1a1a;
             color: #fff;
         }
-        .estimate__form input::placeholder {
-            color: #666;
-        }
-        .estimate__form .btn_3 {
-            padding: 12px 35px;
-        }
-        .estimate__img {
-            flex: 0 0 300px;
-        }
-        .estimate__img img {
-            width: 100%;
-        }
+        .estimate__form input::placeholder { color: #666; }
+        .estimate__form .btn_3 { padding: 12px 35px; }
+        .estimate__img { flex: 0 0 300px; }
+        .estimate__img img { width: 100%; }
 
-        /* ----- ЦЕНЫ (price) ----- */
+        /* ----- ЦЕНЫ ----- */
         .price {
             padding: 60px 0;
-            background: #0a0a0a;
+            background: #fff;
         }
-        .price .section__title {
-            color: #fff;
-        }
+        body.dark-theme .price { background: #1a1a1a; }
+        .price .section__title { color: #333; }
+        body.dark-theme .price .section__title { color: #fff; }
         .price__tabs {
             gap: 10px;
             margin-bottom: 30px;
@@ -1140,71 +1053,46 @@
         }
         .price__tabs a {
             padding: 10px 25px;
-            background: #1a1a1a;
+            background: #f0f0f0;
             border-radius: 30px;
             text-decoration: none;
-            color: #ccc;
+            color: #333;
             font-weight: 600;
             transition: 0.3s;
         }
-        .price__tabs a.active {
-            background: #ff6a00;
-            color: #fff;
-        }
-        .price__block {
-            display: none;
-        }
+        body.dark-theme .price__tabs a { background: #2a2a2a; color: #ccc; }
+        .price__tabs a.active { background: #ff6a00; color: #fff; }
+        .price__block { display: none; }
         .price__block.active {
             display: block;
             animation: fadeSlideIn 0.5s ease;
         }
-        .price__items {
-            gap: 20px;
-        }
+        .price__items { gap: 20px; }
         .price__item {
             flex: 0 0 calc(33.333% - 14px);
-            background: #111;
+            background: #f8f8f8;
             padding: 20px;
             border-radius: 10px;
             transition: 0.3s;
-            color: #ccc;
+            color: #333;
         }
-        .price__item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
+        body.dark-theme .price__item { background: #2a2a2a; color: #ccc; }
+        .price__item:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
         .price__icon {
             width: 50px;
             height: 50px;
-            background: #1a1a1a;
+            background: #fff;
             border-radius: 50%;
             justify-content: center;
             margin-bottom: 15px;
         }
-        .price__icon img {
-            height: 25px;
-            width: auto;
-        }
-        .price__title {
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .price__value {
-            color: #ff6a00;
-            font-weight: 700;
-            font-size: 18px;
-            margin: 8px 0;
-        }
-        .price__item p {
-            font-size: 13px;
-            color: #888;
-        }
-        .price__btn {
-            justify-content: center;
-            margin-top: 20px;
-        }
+        body.dark-theme .price__icon { background: #1a1a1a; }
+        .price__icon img { height: 25px; width: auto; }
+        .price__title { font-weight: 700; color: #333; text-decoration: none; font-size: 16px; }
+        body.dark-theme .price__title { color: #fff; }
+        .price__value { color: #ff6a00; font-weight: 700; font-size: 18px; margin: 8px 0; }
+        .price__item p { font-size: 13px; color: #888; }
+        .price__btn { justify-content: center; margin-top: 20px; }
         .price__btn a {
             display: inline-flex;
             align-items: center;
@@ -1213,23 +1101,15 @@
             text-decoration: none;
             font-weight: 600;
         }
-        .price__btn a img {
-            height: 20px;
-            width: auto;
-        }
+        .price__btn a img { height: 20px; width: auto; }
 
-        /* ----- ДОКУМЕНТЫ (docs) ----- */
+        /* ----- ДОКУМЕНТЫ ----- */
         .docs {
             padding: 60px 0;
-            background: #000;
+            background: #000000;
         }
-        .docs .section__title {
-            color: #fff;
-        }
-        .docs__items {
-            gap: 30px;
-            justify-content: center;
-        }
+        .docs .section__title { color: #fff; }
+        .docs__items { gap: 30px; justify-content: center; }
         .doc {
             flex: 0 0 300px;
             background: rgba(255,255,255,0.05);
@@ -1239,78 +1119,70 @@
             color: #fff;
             transition: 0.3s;
         }
-        .doc:hover {
-            background: rgba(255,255,255,0.08);
-        }
+        .doc:hover { background: rgba(255,255,255,0.1); }
         .doc__icon {
             width: 50px;
             height: 50px;
             background: #ff6a00;
             border-radius: 10px;
             flex-shrink: 0;
-        }
-        .doc__info a {
-            color: #ffcc00;
-            text-decoration: none;
-        }
-
-        /* ----- ОПЛАТА (payment) ----- */
-        .payment {
-            padding: 60px 0;
-            background: #0a0a0a;
-        }
-        .payment .section__title {
-            color: #fff;
-        }
-        .payment__items {
-            gap: 20px;
+            display: flex;
+            align-items: center;
             justify-content: center;
         }
+        .doc__icon svg {
+            width: 28px;
+            height: 28px;
+            fill: none;
+            stroke: #000000;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .doc__info a { color: #ffcc00; text-decoration: none; }
+
+        /* ----- ОПЛАТА ----- */
+        .payment {
+            padding: 60px 0;
+            background: #fff;
+        }
+        body.dark-theme .payment { background: #1a1a1a; }
+        .payment .section__title { color: #333; }
+        body.dark-theme .payment .section__title { color: #fff; }
+        .payment__items { gap: 20px; justify-content: center; }
         .payment__item {
             flex: 0 0 200px;
-            background: #111;
+            background: #f8f8f8;
             padding: 20px;
             border-radius: 10px;
             gap: 15px;
             transition: 0.3s;
-            color: #ccc;
+            color: #333;
         }
-        .payment__item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 3px 15px rgba(0,0,0,0.3);
-        }
+        body.dark-theme .payment__item { background: #2a2a2a; color: #ccc; }
+        .payment__item:hover { transform: translateY(-3px); box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
         .payment__icon {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #1a1a1a;
+            background: #fff;
             justify-content: center;
         }
-        .payment__icon img {
-            height: 25px;
-            width: auto;
-        }
-        .payment__info div {
-            font-weight: 700;
-            color: #fff;
-        }
-        .payment__info p {
-            font-size: 13px;
-            color: #888;
-        }
+        body.dark-theme .payment__icon { background: #1a1a1a; }
+        .payment__icon img { height: 25px; width: auto; }
+        .payment__info div { font-weight: 700; color: #333; }
+        body.dark-theme .payment__info div { color: #fff; }
+        .payment__info p { font-size: 13px; color: #888; }
 
-        /* ----- АКЦИИ (offers) ----- */
+        /* ----- АКЦИИ ----- */
         .offers {
             padding: 60px 0;
-            background: #0a0a0a;
+            background: #f5f5f5;
         }
-        .offers .section__title {
-            color: #fff;
-        }
-        .jolly-slider-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        body.dark-theme .offers { background: #1a1a1a; }
+        .offers .section__title { color: #333; }
+        body.dark-theme .offers .section__title { color: #fff; }
+        .jolly-slider-wrapper { max-width: 900px; margin: 0 auto; }
         .jolly-slider {
             display: flex;
             gap: 15px;
@@ -1322,25 +1194,20 @@
             min-width: 160px;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             transition: 0.3s;
         }
-        .jolly-slider > div:hover {
-            transform: scale(1.02);
-        }
-        .jolly-slider img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-        }
+        body.dark-theme .jolly-slider > div { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .jolly-slider > div:hover { transform: scale(1.02); }
+        .jolly-slider img { width: 100%; height: 180px; object-fit: cover; display: block; }
         .jolly-slider-extra-wrapper {
-            background: #111;
+            background: #1a1a1a;
             color: #fff;
             padding: 30px;
             border-radius: 10px;
             margin-top: 20px;
         }
+        body.dark-theme .jolly-slider-extra-wrapper { background: #2a2a2a; }
         .jolly-slide-controls {
             display: flex;
             gap: 10px;
@@ -1349,28 +1216,27 @@
         }
         .jolly-slide-control {
             padding: 8px 16px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.1);
             border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
             transition: 0.3s;
         }
-        .jolly-slide-control.active {
-            background: #ff6a00;
+        .jolly-slide-control.active { background: #ff6a00; }
+        .jolly-slide-control:hover { background: rgba(255,255,255,0.2); }
+        .jolly-slider-extra {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(10px);
         }
-        .jolly-slide-control:hover {
-            background: rgba(255,255,255,0.1);
+        .jolly-slider-extra.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
-        .jolly-caption {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffcc00;
-        }
-        .jolly-text {
-            font-size: 14px;
-            color: #ddd;
-            margin-top: 5px;
-        }
+        .jolly-caption { font-size: 24px; font-weight: 700; color: #ffcc00; }
+        .jolly-text { font-size: 14px; color: #ddd; margin-top: 5px; }
         .jolly-button {
             display: inline-block;
             padding: 10px 25px;
@@ -1383,74 +1249,46 @@
             font-size: 14px;
             transition: 0.3s;
         }
-        .jolly-button:hover {
-            background: #e55d00;
-        }
+        .jolly-button:hover { background: #e55d00; }
 
-        /* ----- ОТЗЫВЫ (testimonials) ----- */
+        /* ----- ОТЗЫВЫ ----- */
         .testimonials {
             padding: 60px 0;
-            background: #000;
+            background: #fff;
         }
-        .testimonials .section__title {
-            color: #fff;
-        }
-        .testimonials__content {
-            gap: 30px;
-        }
+        body.dark-theme .testimonials { background: #1a1a1a; }
+        .testimonials .section__title { color: #333; }
+        body.dark-theme .testimonials .section__title { color: #fff; }
+        .testimonials__content { gap: 30px; }
         .testimonials__col {
             flex: 1;
-            background: #111;
+            background: #f8f8f8;
             padding: 20px;
             border-radius: 10px;
             flex-direction: column;
             transition: 0.3s;
-            color: #ccc;
+            color: #333;
         }
-        .testimonials__col:hover {
-            box-shadow: 0 3px 20px rgba(0,0,0,0.3);
-        }
-        .testimonials__top {
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .testimonials__service img {
-            height: 30px;
-            width: auto;
-        }
-        .testimonials__title {
-            font-weight: 700;
-            color: #fff;
-        }
-        .testimonials__rating {
-            gap: 2px;
-            color: #ffcc00;
-        }
-        .testimonials__rating p {
-            color: #fff;
-            font-weight: 700;
-        }
+        body.dark-theme .testimonials__col { background: #2a2a2a; color: #ccc; }
+        .testimonials__col:hover { box-shadow: 0 3px 20px rgba(0,0,0,0.05); }
+        .testimonials__top { gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .testimonials__service img { height: 30px; width: auto; }
+        .testimonials__title { font-weight: 700; color: #333; }
+        body.dark-theme .testimonials__title { color: #fff; }
+        .testimonials__rating { gap: 2px; color: #ffcc00; }
+        .testimonials__rating p { color: #333; font-weight: 700; }
+        body.dark-theme .testimonials__rating p { color: #fff; }
         .testimonial {
             padding: 15px 0;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #eee;
         }
-        .testimonial:last-child {
-            border-bottom: none;
-        }
-        .testimonial__name {
-            font-weight: 700;
-            color: #fff;
-        }
-        .testimonial__date {
-            font-size: 12px;
-            color: #666;
-        }
-        .testimonial__text {
-            font-size: 14px;
-            color: #ccc;
-            margin-top: 5px;
-        }
+        body.dark-theme .testimonial { border-bottom-color: #333; }
+        .testimonial:last-child { border-bottom: none; }
+        .testimonial__name { font-weight: 700; color: #333; }
+        body.dark-theme .testimonial__name { color: #fff; }
+        .testimonial__date { font-size: 12px; color: #888; }
+        .testimonial__text { font-size: 14px; color: #555; margin-top: 5px; }
+        body.dark-theme .testimonial__text { color: #ccc; }
         .testimonials__more {
             margin-top: auto;
             align-self: center;
@@ -1458,32 +1296,31 @@
             color: #ff6a00;
             border: 2px solid #ff6a00;
         }
-        .testimonials__more:hover {
-            background: #ff6a00;
-            color: #fff;
-        }
+        .testimonials__more:hover { background: #ff6a00; color: #fff; }
 
-        /* ----- ВОПРОСЫ (faq) ----- */
+        /* ----- ВОПРОСЫ ----- */
         .faq {
             padding: 60px 0;
-            background: #0a0a0a;
+            background: #fff;
         }
-        .faq .section__title {
-            color: #fff;
-        }
+        body.dark-theme .faq { background: #1a1a1a; }
+        .faq .section__title { color: #333; }
+        body.dark-theme .faq .section__title { color: #fff; }
         .faq__item {
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #eee;
             padding: 15px 0;
         }
+        body.dark-theme .faq__item { border-bottom-color: #333; }
         .faq__question {
             font-weight: 700;
             cursor: pointer;
             font-size: 18px;
-            color: #fff;
+            color: #333;
             transition: 0.3s;
             position: relative;
             padding-right: 40px;
         }
+        body.dark-theme .faq__question { color: #fff; }
         .faq__question::after {
             content: '+';
             position: absolute;
@@ -1494,152 +1331,110 @@
             color: #ff6a00;
             transition: 0.3s;
         }
-        .faq__question.active::after {
-            content: '-';
-        }
-        .faq__question:hover {
-            color: #ff6a00;
-        }
+        .faq__question.active::after { content: '-'; }
+        .faq__question:hover { color: #ff6a00; }
         .faq__answer {
             display: none;
             padding-top: 10px;
-            color: #ccc;
+            color: #666;
             animation: fadeSlideIn 0.3s ease;
         }
-        .faq__answer.show {
-            display: block;
-        }
+        body.dark-theme .faq__answer { color: #ccc; }
+        .faq__answer.show { display: block; }
 
-        /* ----- КАТЕГОРИИ (categories) ----- */
+        /* ----- КАТЕГОРИИ ----- */
         .categories {
             padding: 60px 0;
-            background: #000;
+            background: #fff;
         }
-        .categories .section__title {
-            color: #fff;
-        }
-        .categories__items {
-            gap: 20px;
-        }
+        body.dark-theme .categories { background: #1a1a1a; }
+        .categories .section__title { color: #333; }
+        body.dark-theme .categories .section__title { color: #fff; }
+        .categories__items { gap: 20px; }
         .category {
             flex: 0 0 calc(33.333% - 14px);
-            background: #111;
+            background: #f8f8f8;
             border-radius: 10px;
             overflow: hidden;
             transition: 0.3s;
-            color: #ccc;
+            color: #333;
         }
-        .category:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 3px 20px rgba(0,0,0,0.3);
-        }
-        .category__card {
-            padding: 20px;
-            text-align: center;
-        }
-        .category__img {
-            height: 150px;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-        .category__img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.3s;
-        }
-        .category:hover .category__img img {
-            transform: scale(1.05);
-        }
-        .category__card-title {
-            font-weight: 700;
-            margin-top: 10px;
-            color: #fff;
-        }
-        .category__info {
-            padding: 20px;
-        }
-        .category__info-title {
-            font-weight: 700;
-            font-size: 18px;
-            color: #fff;
-        }
-        .category__info p {
-            font-size: 13px;
-            color: #888;
-            margin: 10px 0;
-        }
-        .category__info-btn .btn {
-            padding: 8px 20px;
-            font-size: 14px;
-        }
+        body.dark-theme .category { background: #2a2a2a; color: #ccc; }
+        .category:hover { transform: translateY(-3px); box-shadow: 0 3px 20px rgba(0,0,0,0.08); }
+        .category__card { padding: 20px; text-align: center; }
+        .category__img { height: 150px; overflow: hidden; border-radius: 10px; }
+        .category__img img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .category:hover .category__img img { transform: scale(1.05); }
+        .category__card-title { font-weight: 700; margin-top: 10px; color: #333; }
+        body.dark-theme .category__card-title { color: #fff; }
+        .category__info { padding: 20px; }
+        .category__info-title { font-weight: 700; font-size: 18px; color: #333; }
+        body.dark-theme .category__info-title { color: #fff; }
+        .category__info p { font-size: 13px; color: #888; margin: 10px 0; }
+        .category__info-btn .btn { padding: 8px 20px; font-size: 14px; }
 
-        /* ----- СКЛАД (stock) ----- */
+        /* ----- СКЛАД ----- */
         .stock {
             padding: 60px 0;
-            background: #0a0a0a;
+            background: #f5f5f5;
         }
-        .stock .section__title {
-            color: #fff;
-        }
-        .stock__content {
-            gap: 40px;
-        }
-        .stock__info {
-            flex: 1;
-        }
-        .stock__info p {
-            color: #ccc;
-        }
-        .stock__sliders {
-            flex: 0 0 45%;
-        }
+        body.dark-theme .stock { background: #1a1a1a; }
+        .stock .section__title { color: #333; }
+        body.dark-theme .stock .section__title { color: #fff; }
+        .stock__content { gap: 40px; }
+        .stock__info { flex: 1; }
+        .stock__info p { color: #555; }
+        body.dark-theme .stock__info p { color: #ccc; }
+        .stock__sliders { flex: 0 0 45%; }
         .stock__slider img,
         .stock__thumbnail img {
             width: 100%;
             border-radius: 10px;
+            aspect-ratio: 16/10;
+            object-fit: cover;
         }
         .stock__thumbnails {
             display: flex;
             gap: 10px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
         .stock__thumbnail {
-            flex: 1;
+            flex: 0 0 calc(25% - 7px);
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
             border-radius: 10px;
             transition: 0.3s;
+            overflow: hidden;
+            aspect-ratio: 16/10;
         }
-        .stock__thumbnail:hover {
-            border-color: #ff6a00;
+        .stock__thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
+        .stock__thumbnail:hover { border-color: #ff6a00; }
+        .stock__thumbnail.active { border-color: #ff6a00; }
 
-        /* ----- ОФИСЫ (offices) ----- */
+        /* ----- ОФИСЫ ----- */
         .offices {
             padding: 60px 0;
-            background: #0a0a0a;
+            background: #f5f5f5;
         }
-        .offices .section__title {
-            color: #fff;
-        }
-        .offices__map {
-            height: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
+        body.dark-theme .offices { background: #1a1a1a; }
+        .offices .section__title { color: #333; }
+        body.dark-theme .offices .section__title { color: #fff; }
+        .offices__map { height: 300px; border-radius: 10px; overflow: hidden; }
         .cities {
             margin-top: 30px;
-            background: #111;
+            background: #fff;
             padding: 20px;
             border-radius: 10px;
-            color: #ccc;
+            color: #333;
         }
-        .cities__title {
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #fff;
-        }
+        body.dark-theme .cities { background: #2a2a2a; color: #ccc; }
+        .cities__title { font-weight: 700; margin-bottom: 15px; color: #333; }
+        body.dark-theme .cities__title { color: #fff; }
         .cities__tabs {
             gap: 10px;
             flex-wrap: wrap;
@@ -1647,66 +1442,37 @@
         }
         .cities__tabs a {
             padding: 8px 18px;
-            background: #1a1a1a;
+            background: #f0f0f0;
             border-radius: 20px;
             text-decoration: none;
-            color: #ccc;
+            color: #333;
             font-size: 14px;
             transition: 0.3s;
         }
-        .cities__tabs a.active {
-            background: #ff6a00;
-            color: #fff;
-        }
-        .cities__tabs a:hover {
-            background: #333;
-        }
-        .cities__list {
-            display: none;
-        }
+        body.dark-theme .cities__tabs a { background: #333; color: #ccc; }
+        .cities__tabs a.active { background: #ff6a00; color: #fff; }
+        .cities__tabs a:hover { background: #ddd; }
+        .cities__list { display: none; }
         .cities__list.active {
             display: block;
             animation: fadeSlideIn 0.4s ease;
         }
-        .cities__list ul {
-            list-style: none;
-            gap: 10px;
-        }
-        .cities__list ul li {
-            flex: 0 0 120px;
-        }
-        .cities__list ul li a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        .cities__list ul li a:hover {
-            color: #ff6a00;
-        }
+        .cities__list ul { list-style: none; gap: 10px; }
+        .cities__list ul li { flex: 0 0 120px; }
+        .cities__list ul li a { color: #333; text-decoration: none; font-size: 13px; transition: 0.3s; }
+        body.dark-theme .cities__list ul li a { color: #ccc; }
+        .cities__list ul li a:hover { color: #ff6a00; }
 
-        /* ----- ЗАКАЗ (order) ----- */
+        /* ----- ЗАКАЗ ----- */
         .order {
             padding: 60px 0;
-            background: #000;
+            background: #000000;
             color: #fff;
         }
-        .order__block {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .order__description {
-            font-size: 20px;
-            margin-bottom: 25px;
-        }
-        .order__description span {
-            color: #ffcc00;
-        }
-        .order__form {
-            gap: 15px;
-            justify-content: center;
-        }
+        .order__block { max-width: 700px; margin: 0 auto; text-align: center; }
+        .order__description { font-size: 20px; margin-bottom: 25px; }
+        .order__description span { color: #ffcc00; }
+        .order__form { gap: 15px; justify-content: center; }
         .order__form input {
             flex: 1;
             padding: 12px 20px;
@@ -1717,19 +1483,11 @@
             background: #1a1a1a;
             color: #fff;
         }
-        .order__form input::placeholder {
-            color: #666;
-        }
-        .order__form .btn {
-            padding: 12px 35px;
-        }
-        .order__note {
-            font-size: 12px;
-            color: #666;
-            margin-top: 15px;
-        }
+        .order__form input::placeholder { color: #666; }
+        .order__form .btn { padding: 12px 35px; }
+        .order__note { font-size: 12px; color: #666; margin-top: 15px; }
 
-        /* ----- ПОДВАЛ (footer) ----- */
+        /* ----- ПОДВАЛ ----- */
         footer {
             background: #000;
             color: #888;
@@ -1740,98 +1498,42 @@
             padding-bottom: 30px;
             border-bottom: 1px solid #222;
         }
-        .footer__col {
-            flex: 1;
-        }
+        .footer__col { flex: 1; }
         .footer__col_1 {
             flex: 1.5;
             flex-direction: column;
             align-items: flex-start;
         }
-        .footer__col_1 .logo img {
-            height: 40px;
-        }
-        .footer__col_1 .logo__info b {
-            color: #fff;
-        }
-        .footer__col_1 .logo__info p {
-            color: #888;
-        }
-        .footer__text {
-            font-size: 13px;
-            color: #888;
-            margin-top: 15px;
-        }
-        .footer__menu {
-            list-style: none;
-        }
-        .footer__menu li {
-            margin-bottom: 8px;
-        }
-        .footer__menu a {
-            color: #888;
-            text-decoration: none;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-        .footer__menu a:hover {
-            color: #ff6a00;
-        }
+        .footer__col_1 .logo img { height: 40px; }
+        .footer__col_1 .logo__info b { color: #fff; }
+        .footer__col_1 .logo__info p { color: #888; }
+        .footer__text { font-size: 13px; color: #888; margin-top: 15px; }
+        .footer__menu { list-style: none; }
+        .footer__menu li { margin-bottom: 8px; }
+        .footer__menu a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .footer__menu a:hover { color: #ff6a00; }
         .footer__col_4 {
             flex-direction: column;
             align-items: flex-start;
         }
-        .footer__time {
-            font-size: 13px;
-            color: #888;
-        }
-        .footer__tel a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-        }
+        .footer__time { font-size: 13px; color: #888; }
+        .footer__tel a { color: #fff; text-decoration: none; font-size: 20px; font-weight: 700; }
         .footer__address,
-        .footer__email a {
-            color: #888;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .footer__socials {
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .footer__socials img {
-            height: 30px;
-            width: auto;
-        }
+        .footer__email a { color: #888; text-decoration: none; font-size: 14px; }
+        .footer__socials { gap: 15px; margin-top: 15px; }
+        .footer__socials img { height: 30px; width: auto; }
         .footer__bottom {
             padding: 20px 0;
             background: #000;
         }
-        .footer__bottom-content {
-            justify-content: space-between;
-        }
-        .footer__copy {
-            font-size: 13px;
-            color: #666;
-        }
-        .footer__copy span {
-            color: #fff;
-        }
-        .footer__links {
-            gap: 20px;
-        }
-        .footer__links a {
-            color: #666;
-            text-decoration: none;
-            font-size: 13px;
-        }
-        .footer__links a:hover {
-            color: #fff;
-        }
+        .footer__bottom-content { justify-content: space-between; }
+        .footer__copy { font-size: 13px; color: #666; }
+        .footer__copy span { color: #fff; }
+        .footer__links { gap: 20px; }
+        .footer__links a { color: #666; text-decoration: none; font-size: 13px; }
+        .footer__links a:hover { color: #fff; }
 
-        /* ----- МОДАЛЬНЫЕ ОКНА (modal) ----- */
+        /* ----- МОДАЛЬНОЕ ОКНО ----- */
         .modal {
             display: none;
             position: fixed;
@@ -1845,524 +1547,213 @@
             align-items: center;
             padding: 20px;
         }
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
         .modal-content {
-            background: #111;
+            background: #fff;
             padding: 30px;
             border-radius: 15px;
             max-width: 700px;
             width: 100%;
             max-height: 80vh;
             overflow-y: auto;
-            color: #fff;
+            color: #333;
             animation: fadeSlideIn 0.3s ease;
         }
-        .modal-header {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        .cities-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-        .city-column {
-            flex: 0 0 120px;
-        }
-        .city-column a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        .city-column a:hover {
-            color: #ff6a00;
-        }
+        body.dark-theme .modal-content { background: #2a2a2a; color: #e0e0e0; }
+        .modal-header { font-size: 20px; font-weight: 700; margin-bottom: 20px; color: #333; }
+        body.dark-theme .modal-header { color: #fff; }
+        .cities-row { display: flex; flex-wrap: wrap; gap: 5px; }
+        .city-column { flex: 0 0 120px; }
+        .city-column a { color: #333; text-decoration: none; font-size: 13px; transition: 0.3s; }
+        body.dark-theme .city-column a { color: #ccc; }
+        .city-column a:hover { color: #ff6a00; }
         .cities-search {
             width: 100%;
             padding: 10px 15px;
-            border: 1px solid #333;
+            border: 1px solid #ddd;
             border-radius: 30px;
             margin-bottom: 15px;
             font-size: 16px;
-            background: #222;
-            color: #fff;
+            background: #fff;
+            color: #333;
         }
-        .cities-search::placeholder {
-            color: #666;
-        }
-        .cities-search:focus {
-            outline: none;
-            border-color: #ff6a00;
-        }
+        body.dark-theme .cities-search { background: #333; border-color: #444; color: #fff; }
+        body.dark-theme .cities-search::placeholder { color: #888; }
+        .cities-search:focus { outline: none; border-color: #ff6a00; }
 
         /* ============================================
            МОБИЛЬНАЯ АДАПТАЦИЯ
            ============================================ */
 
-        /* Планшеты */
         @media (max-width: 992px) {
-            .main__title {
-                font-size: 36px;
-            }
-            .calculator-body {
-                flex: 1 1 100%;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            .main {
-                padding: 30px 0 40px;
-                min-height: auto;
-            }
-            .price__item {
-                flex: 0 0 calc(50% - 10px);
-            }
-            .category {
-                flex: 0 0 calc(50% - 10px);
-            }
-            .repair__images {
-                flex: 1 1 100%;
-            }
-            .work {
-                flex: 0 0 calc(50% - 15px);
-                max-width: 400px;
-            }
-            .stock__sliders {
-                flex: 1 1 100%;
-            }
-            .jolly-slider > div {
-                flex: 0 0 calc(50% - 15px);
-            }
-            .section__title {
-                font-size: 30px;
-            }
+            .main__title { font-size: 36px; }
+            .calculator-body { flex: 1 1 100%; max-width: 500px; margin: 0 auto; }
+            .main { padding: 30px 0 40px; min-height: auto; }
+            .price__item { flex: 0 0 calc(50% - 10px); }
+            .category { flex: 0 0 calc(50% - 10px); }
+            .repair__images { flex: 1 1 100%; }
+            .work { flex: 0 0 calc(50% - 15px); max-width: 400px; }
+            .stock__sliders { flex: 1 1 100%; }
+            .jolly-slider > div { flex: 0 0 calc(50% - 15px); }
+            .section__title { font-size: 30px; }
         }
 
-        /* Телефоны */
         @media (max-width: 768px) {
-            .header__contacts {
-                display: none !important;
-            }
-            .calc-link {
-                display: none !important;
-            }
-            .menu {
-                display: none !important;
-            }
-            .menu-mobile {
-                display: none;
-            }
-            .menu-mobile.active {
-                display: block;
-            }
+            .header__contacts { display: none !important; }
+            .calc-link { display: none !important; }
+            .menu { display: none !important; }
+            .menu-mobile { display: none; }
+            .menu-mobile.active { display: block; }
             
-            .main__title {
-                font-size: 26px;
-            }
-            .main__title small {
-                font-size: 17px;
-            }
-            .main__list li {
-                font-size: 13px;
-                padding: 6px 0;
-                padding-left: 28px;
-                background-size: 18px;
-            }
-            .calculator-body {
-                padding: 20px;
-                max-width: 100%;
-            }
-            .calculator-body .calc__price {
-                font-size: 24px;
-            }
-            .calculator-body .radio label {
-                font-size: 12px;
-                padding: 5px 12px;
-            }
-            .calculator-body .calc__input {
-                flex-direction: column;
-            }
-            .calculator-body .calc__input input {
-                width: 100%;
-            }
-            .calculator-body .calc__btn {
-                width: 100%;
-                text-align: center;
-            }
-            .calculator-body .area__number input {
-                width: 50px;
-                font-size: 16px;
-            }
+            .main__title { font-size: 26px; }
+            .main__title small { font-size: 17px; }
+            .main__list li { font-size: 13px; padding: 6px 0; padding-left: 28px; background-size: 18px; }
+            .calculator-body { padding: 20px; max-width: 100%; }
+            .calculator-body .calc__price { font-size: 24px; }
+            .calculator-body .radio label { font-size: 12px; padding: 5px 12px; }
+            .calculator-body .calc__input { flex-direction: column; }
+            .calculator-body .calc__input input { width: 100%; }
+            .calculator-body .calc__btn { width: 100%; text-align: center; }
+            .calculator-body .area__number input { width: 50px; font-size: 16px; }
             
-            .quiz__content {
-                flex-direction: column;
-            }
-            .quiz__img {
-                flex: 0 0 auto;
-            }
-            .discount {
-                flex: 0 0 auto;
-            }
-            .price__item {
-                flex: 0 0 100%;
-            }
-            .category {
-                flex: 0 0 100%;
-            }
-            .repair__list ul {
-                columns: 1;
-            }
-            .repair__tabs a {
-                font-size: 13px;
-                padding: 8px 15px;
-            }
-            .work {
-                flex: 0 0 100%;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            .works__slider {
-                justify-content: center;
-            }
-            .work__items {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            .testimonials__content {
-                flex-direction: column;
-            }
-            .estimate__content {
-                flex-direction: column;
-            }
-            .estimate__img {
-                flex: 0 0 auto;
-            }
-            .stock__content {
-                flex-direction: column;
-            }
-            .footer__content {
-                flex-direction: column;
-            }
-            .cities__list ul li {
-                flex: 0 0 100px;
-            }
-            .btns .flex a {
-                font-size: 11px;
-            }
-            .btns .flex img {
-                height: 16px;
-            }
-            .order__form {
-                flex-direction: column;
-            }
-            .order__form input {
-                min-width: 0;
-                width: 100%;
-            }
-            .estimate__form {
-                flex-direction: column;
-            }
-            .estimate__form input {
-                width: 100%;
-            }
-            .quiz__btns {
-                flex-direction: column;
-            }
-            .quiz__btns .btn {
-                width: 100%;
-                text-align: center;
-            }
-            .jolly-slider > div {
-                flex: 0 0 calc(50% - 10px);
-                min-width: 140px;
-            }
-            .jolly-slider img {
-                height: 140px;
-            }
-            .section__title {
-                font-size: 24px;
-            }
-            .container {
-                padding: 0 15px;
-            }
-            .logo img {
-                height: 40px;
-            }
-            .logo__info b {
-                font-size: 18px;
-            }
-            .logo__info p {
-                font-size: 10px;
-            }
-            .header .middle {
-                padding: 15px 0;
-            }
-            .arrow {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
-            }
-            .steps__items {
-                gap: 10px;
-            }
-            .step {
-                flex: 0 0 calc(50% - 10px);
-                padding: 15px;
-            }
-            .step__icon {
-                width: 60px;
-                height: 60px;
-            }
-            .step__icon img {
-                height: 28px;
-            }
-            .step__number {
-                font-size: 20px;
-            }
-            .step__title {
-                font-size: 14px;
-            }
-            .step p {
-                font-size: 12px;
-            }
-            .repair__content {
-                padding: 20px;
-            }
-            .repair__title {
-                font-size: 20px;
-            }
-            .price__item {
-                padding: 15px;
-            }
-            .price__icon {
-                width: 40px;
-                height: 40px;
-            }
-            .price__icon img {
-                height: 20px;
-            }
-            .price__title {
-                font-size: 14px;
-            }
-            .price__value {
-                font-size: 16px;
-            }
-            .doc {
-                flex: 0 0 100%;
-            }
-            .payment__item {
-                flex: 0 0 calc(50% - 10px);
-            }
-            .testimonials__col {
-                padding: 15px;
-            }
-            .testimonial__text {
-                font-size: 13px;
-            }
-            .cities__tabs a {
-                font-size: 13px;
-                padding: 6px 14px;
-            }
-            .city-column {
-                flex: 0 0 100px;
-            }
-            .navbar span {
-                width: 24px;
-                height: 2px;
-            }
-            .navbar {
-                padding: 4px 8px;
-            }
-            .menu-mobile {
-                padding: 70px 20px 20px;
-            }
-            .menu-mobile a {
-                font-size: 15px;
-                padding: 12px 18px;
-            }
+            .quiz__content { flex-direction: column; }
+            .quiz__img { flex: 0 0 auto; }
+            .discount { flex: 0 0 auto; }
+            .price__item { flex: 0 0 100%; }
+            .category { flex: 0 0 100%; }
+            .repair__list ul { columns: 1; }
+            .repair__tabs a { font-size: 13px; padding: 8px 15px; }
+            .work { flex: 0 0 100%; max-width: 400px; margin: 0 auto; }
+            .works__slider { justify-content: center; }
+            .work__items { flex-direction: row; flex-wrap: wrap; }
+            .works .arrow { width: 34px; height: 34px; font-size: 16px; }
+            .works .arrow_prev { left: calc(50% - 40px); }
+            .works .arrow_next { right: calc(50% - 40px); }
+            .testimonials__content { flex-direction: column; }
+            .estimate__content { flex-direction: column; }
+            .estimate__img { flex: 0 0 auto; }
+            .stock__content { flex-direction: column; }
+            .footer__content { flex-direction: column; }
+            .cities__list ul li { flex: 0 0 100px; }
+            .btns .flex a { font-size: 11px; }
+            .btns .flex img { height: 16px; }
+            .order__form { flex-direction: column; }
+            .order__form input { min-width: 0; width: 100%; }
+            .estimate__form { flex-direction: column; }
+            .estimate__form input { width: 100%; }
+            .quiz__btns { flex-direction: column; }
+            .quiz__btns .btn { width: 100%; text-align: center; }
+            .jolly-slider > div { flex: 0 0 calc(50% - 10px); min-width: 140px; }
+            .jolly-slider img { height: 140px; }
+            .section__title { font-size: 24px; }
+            .container { padding: 0 15px; }
+            .logo img { height: 40px; }
+            .logo__info b { font-size: 18px; }
+            .logo__info p { font-size: 10px; }
+            .steps__items { gap: 10px; }
+            .step { flex: 0 0 calc(50% - 10px); padding: 15px; }
+            .step__icon { width: 60px; height: 60px; }
+            .step__icon img { height: 28px; }
+            .step__number { font-size: 20px; }
+            .step__title { font-size: 14px; }
+            .step p { font-size: 12px; }
+            .repair__content { padding: 20px; }
+            .repair__title { font-size: 20px; }
+            .repair__thumbnail { flex: 0 0 calc(50% - 5px); }
+            .price__item { padding: 15px; }
+            .price__icon { width: 40px; height: 40px; }
+            .price__icon img { height: 20px; }
+            .price__title { font-size: 14px; }
+            .price__value { font-size: 16px; }
+            .doc { flex: 0 0 100%; }
+            .payment__item { flex: 0 0 calc(50% - 10px); }
+            .testimonials__col { padding: 15px; }
+            .testimonial__text { font-size: 13px; }
+            .cities__tabs a { font-size: 13px; padding: 6px 14px; }
+            .city-column { flex: 0 0 100px; }
+            .navbar span { width: 24px; height: 2px; }
+            .navbar { padding: 4px 8px; }
+            .menu-mobile { padding: 70px 20px 20px; }
+            .menu-mobile a { font-size: 15px; padding: 12px 18px; }
+            .theme-toggle { width: 40px; height: 22px; }
+            .theme-toggle .toggle-circle { width: 16px; height: 16px; }
+            .theme-toggle.active .toggle-circle { left: 21px; }
+            .theme-toggle-label { font-size: 10px; }
+            .top-right-controls { gap: 5px; }
+            .btns-toggle { width: 24px; height: 40px; font-size: 12px; }
         }
 
-        /* Маленькие телефоны */
         @media (max-width: 480px) {
-            .main__title {
-                font-size: 22px;
-            }
-            .main__title small {
-                font-size: 15px;
-            }
-            .main__list li {
-                font-size: 12px;
-                padding: 5px 0;
-                padding-left: 24px;
-                background-size: 16px;
-            }
-            .section__title {
-                font-size: 20px;
-            }
-            .container {
-                padding: 0 10px;
-            }
-            .btns .flex {
-                padding: 8px 12px;
-            }
-            .btns .flex a {
-                font-size: 10px;
-            }
-            .btns .flex img {
-                height: 14px;
-            }
-            .jolly-slider > div {
-                flex: 0 0 100%;
-                max-width: 280px;
-            }
-            .jolly-slider img {
-                height: 160px;
-            }
-            .calculator-body {
-                padding: 15px;
-            }
-            .calculator-body .calc__price {
-                font-size: 20px;
-            }
-            .calculator-body .calc__res {
-                padding: 10px;
-            }
-            .calculator-body .radio label {
-                font-size: 11px;
-                padding: 5px 10px;
-            }
-            .calculator-body .area__number input {
-                width: 45px;
-                font-size: 14px;
-            }
+            .main__title { font-size: 22px; }
+            .main__title small { font-size: 15px; }
+            .main__list li { font-size: 12px; padding: 5px 0; padding-left: 24px; background-size: 16px; }
+            .section__title { font-size: 20px; }
+            .container { padding: 0 10px; }
+            .btns .flex { padding: 8px 12px; }
+            .btns .flex a { font-size: 10px; }
+            .btns .flex img { height: 14px; }
+            .jolly-slider > div { flex: 0 0 100%; max-width: 280px; }
+            .jolly-slider img { height: 160px; }
+            .calculator-body { padding: 15px; }
+            .calculator-body .calc__price { font-size: 20px; }
+            .calculator-body .calc__res { padding: 10px; }
+            .calculator-body .radio label { font-size: 11px; padding: 5px 10px; }
+            .calculator-body .area__number input { width: 45px; font-size: 14px; }
             .calculator-body .area__number-minus,
-            .calculator-body .area__number-plus {
-                width: 28px;
-                height: 28px;
-                font-size: 16px;
-            }
-            .quiz__content {
-                padding: 20px;
-            }
-            .quiz__question {
-                font-size: 17px;
-            }
-            .discount {
-                padding: 15px;
-            }
-            .discount__size {
-                font-size: 22px;
-            }
-            .discount__full {
-                font-size: 17px;
-            }
-            .discount__img img {
-                height: 50px;
-            }
-            .step {
-                flex: 0 0 100%;
-                max-width: 280px;
-                margin: 0 auto;
-            }
-            .work {
-                max-width: 100%;
-            }
-            .work__title {
-                font-size: 16px;
-            }
-            .work__item {
-                font-size: 12px;
-            }
-            .work__images div {
-                flex: 0 0 50px;
-                height: 50px;
-            }
-            .payment__item {
-                flex: 0 0 100%;
-                max-width: 280px;
-                margin: 0 auto;
-            }
-            .price__item {
-                max-width: 350px;
-                margin: 0 auto;
-            }
-            .category {
-                max-width: 350px;
-                margin: 0 auto;
-            }
-            .doc {
-                max-width: 350px;
-                margin: 0 auto;
-            }
-            .order__description {
-                font-size: 17px;
-            }
-            .footer__tel a {
-                font-size: 17px;
-            }
-            .logo img {
-                height: 35px;
-            }
-            .logo__info b {
-                font-size: 16px;
-            }
-            .navbar span {
-                width: 22px;
-                height: 2px;
-            }
-            .navbar {
-                padding: 3px 6px;
-                gap: 4px;
-            }
-            .menu-mobile {
-                padding: 60px 15px 15px;
-            }
-            .menu-mobile a {
-                font-size: 14px;
-                padding: 11px 15px;
-            }
-            .menu-mobile .menu-title {
-                font-size: 11px;
-                padding: 18px 15px 6px;
-            }
+            .calculator-body .area__number-plus { width: 28px; height: 28px; font-size: 16px; }
+            .quiz__content { padding: 20px; }
+            .quiz .radio label { padding: 10px 14px 10px 42px; font-size: 14px; min-height: 42px; }
+            .quiz .radio label::before { width: 18px; height: 18px; left: 12px; }
+            .quiz .radio input:checked + label::after { left: 15px; font-size: 12px; }
+            .quiz__question { font-size: 17px; }
+            .discount { padding: 15px; }
+            .discount__size { font-size: 22px; }
+            .discount__full { font-size: 17px; }
+            .discount__img img { height: 50px; }
+            .step { flex: 0 0 100%; max-width: 280px; margin: 0 auto; }
+            .work { max-width: 100%; }
+            .work__title { font-size: 16px; }
+            .work__item { font-size: 12px; }
+            .work__images div { flex: 0 0 50px; height: 50px; }
+            .works .arrow { width: 30px; height: 30px; font-size: 14px; }
+            .works .arrow_prev { left: calc(50% - 35px); }
+            .works .arrow_next { right: calc(50% - 35px); }
+            .repair__thumbnail { flex: 0 0 100%; }
+            .stock__thumbnail { flex: 0 0 calc(50% - 5px); }
+            .payment__item { flex: 0 0 100%; max-width: 280px; margin: 0 auto; }
+            .price__item { max-width: 350px; margin: 0 auto; }
+            .category { max-width: 350px; margin: 0 auto; }
+            .doc { max-width: 350px; margin: 0 auto; }
+            .order__description { font-size: 17px; }
+            .footer__tel a { font-size: 17px; }
+            .logo img { height: 35px; }
+            .logo__info b { font-size: 16px; }
+            .navbar span { width: 22px; height: 2px; }
+            .navbar { padding: 3px 6px; gap: 4px; }
+            .menu-mobile { padding: 60px 15px 15px; }
+            .menu-mobile a { font-size: 14px; padding: 11px 15px; }
+            .menu-mobile .menu-title { font-size: 11px; padding: 18px 15px 6px; }
+            .theme-toggle { width: 36px; height: 20px; }
+            .theme-toggle .toggle-circle { width: 14px; height: 14px; top: 3px; left: 3px; }
+            .theme-toggle.active .toggle-circle { left: 19px; }
+            .theme-toggle-label { font-size: 9px; }
+            .top-right-controls { gap: 4px; }
+            .btns-toggle { width: 20px; height: 34px; font-size: 10px; }
         }
 
         @media (max-width: 360px) {
-            .main__title {
-                font-size: 19px;
-            }
-            .section__title {
-                font-size: 18px;
-            }
-            .container {
-                padding: 0 8px;
-            }
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-            .logo img {
-                height: 30px;
-            }
-            .logo__info b {
-                font-size: 14px;
-            }
-            .navbar span {
-                width: 20px;
-                height: 2px;
-            }
-            .navbar {
-                padding: 3px 5px;
-                gap: 3px;
-            }
-            .menu-mobile a {
-                font-size: 13px;
-                padding: 10px 14px;
-            }
+            .main__title { font-size: 19px; }
+            .section__title { font-size: 18px; }
+            .container { padding: 0 8px; }
+            .btn { padding: 10px 20px; font-size: 14px; }
+            .logo img { height: 30px; }
+            .logo__info b { font-size: 14px; }
+            .navbar span { width: 20px; height: 2px; }
+            .navbar { padding: 3px 5px; gap: 3px; }
+            .menu-mobile a { font-size: 13px; padding: 10px 14px; }
+            .theme-toggle { width: 32px; height: 18px; }
+            .theme-toggle .toggle-circle { width: 12px; height: 12px; top: 3px; left: 3px; }
+            .theme-toggle.active .toggle-circle { left: 17px; }
         }
     </style>
 </head>
@@ -2379,11 +1770,19 @@
                     <div class="top__city">
                         <a href="javascript:void(0)" class="top__city-title" id="cityBtn">г. Москва</a>
                     </div>
-                    <!-- БУРГЕР-МЕНЮ (три полосочки) -->
-                    <div class="navbar" id="navbarToggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div class="top-right-controls">
+                        <div class="theme-toggle-wrapper">
+                            <span class="theme-toggle-label light">☀️</span>
+                            <div class="theme-toggle" id="themeToggle">
+                                <div class="toggle-circle"></div>
+                            </div>
+                            <span class="theme-toggle-label dark">🌙</span>
+                        </div>
+                        <div class="navbar" id="navbarToggle">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2403,17 +1802,15 @@
         </div>
     </header>
 
-    <!-- МОБИЛЬНОЕ МЕНЮ (выпадающее) - ПОЛНАЯ ВЕРСИЯ -->
+    <!-- МОБИЛЬНОЕ МЕНЮ -->
     <div class="menu-mobile" id="menuMobile">
         <button class="close-menu" id="closeMenu">✕</button>
-        
         <div class="menu-title">Основное</div>
         <a href="javascript:void(0)">О компании</a>
         <a href="javascript:void(0)">Портфолио</a>
         <a href="javascript:void(0)">Цены</a>
         <a href="javascript:void(0)">Ремонтникам</a>
         <a href="javascript:void(0)">Контакты</a>
-        
         <div class="menu-title">Услуги</div>
         <a href="javascript:void(0)">Услуги ремонта</a>
         <a href="javascript:void(0)">Ремонт квартир</a>
@@ -2424,7 +1821,10 @@
     </div>
 
     <!-- БОКОВЫЕ КНОПКИ -->
-    <div class="btns">
+    <button class="btns-toggle" id="btnsToggle" aria-label="Скрыть/показать боковые кнопки">
+        <span class="toggle-arrow">◀</span>
+    </button>
+    <div class="btns" id="sideButtons">
         <div class="flex black">
             <a href="javascript:void(0)">Бесплатный замер</a>
             <img src="assets/btns-1.png" alt="">
@@ -2511,7 +1911,7 @@
         </div>
     </section>
 
-    <!-- QUIZ (ТЕСТ) -->
+    <!-- QUIZ -->
     <section class="quiz" id="quiz">
         <div class="container">
             <h2 class="section__title text-center fade-in">
@@ -2535,10 +1935,14 @@
                         <div class="quiz__info">
                             <label class="quiz__question">Где Вы планируете ремонт?</label>
                             <div class="radio">
-                                <input type="radio" name="q1" id="q1-0" value="Квартира"><label for="q1-0">Квартира</label>
-                                <input type="radio" name="q1" id="q1-1" value="Частный дом"><label for="q1-1">Частный дом</label>
-                                <input type="radio" name="q1" id="q1-2" value="Офис"><label for="q1-2">Офис</label>
-                                <input type="radio" name="q1" id="q1-3" value="Торговое помещение"><label for="q1-3">Торговое помещение</label>
+                                <input type="radio" name="q1" id="q1-0" value="Квартира">
+                                <label for="q1-0">Квартира</label>
+                                <input type="radio" name="q1" id="q1-1" value="Частный дом">
+                                <label for="q1-1">Частный дом</label>
+                                <input type="radio" name="q1" id="q1-2" value="Офис">
+                                <label for="q1-2">Офис</label>
+                                <input type="radio" name="q1" id="q1-3" value="Торговое помещение">
+                                <label for="q1-3">Торговое помещение</label>
                             </div>
                             <div class="quiz__btns flex">
                                 <a href="javascript:void(0)" data-step="2" class="btn quiz__next">Следующий шаг</a>
@@ -2581,9 +1985,12 @@
                         <div class="quiz__info">
                             <label class="quiz__question">Какой класс ремонта вас интересует?</label>
                             <div class="radio">
-                                <input type="radio" name="q3" id="q3-0" value="Косметический"><label for="q3-0">Косметический</label>
-                                <input type="radio" name="q3" id="q3-1" value="Капитальный"><label for="q3-1">Капитальный</label>
-                                <input type="radio" name="q3" id="q3-2" value="Дизайнерский"><label for="q3-2">Дизайнерский</label>
+                                <input type="radio" name="q3" id="q3-0" value="Косметический">
+                                <label for="q3-0">Косметический</label>
+                                <input type="radio" name="q3" id="q3-1" value="Капитальный">
+                                <label for="q3-1">Капитальный</label>
+                                <input type="radio" name="q3" id="q3-2" value="Дизайнерский">
+                                <label for="q3-2">Дизайнерский</label>
                             </div>
                             <div class="quiz__btns flex">
                                 <a href="javascript:void(0)" data-step="2" class="btn btn_2 quiz__prev">Предыдущий шаг</a>
@@ -2606,9 +2013,12 @@
                         <div class="quiz__info">
                             <label class="quiz__question">Необходима ли разработка дизайн-проекта?</label>
                             <div class="radio">
-                                <input type="radio" name="q4" id="q4-0" value="Да"><label for="q4-0">Да</label>
-                                <input type="radio" name="q4" id="q4-1" value="Нет"><label for="q4-1">Нет</label>
-                                <input type="radio" name="q4" id="q4-2" value="Не знаю"><label for="q4-2">Не знаю</label>
+                                <input type="radio" name="q4" id="q4-0" value="Да">
+                                <label for="q4-0">Да</label>
+                                <input type="radio" name="q4" id="q4-1" value="Нет">
+                                <label for="q4-1">Нет</label>
+                                <input type="radio" name="q4" id="q4-2" value="Не знаю">
+                                <label for="q4-2">Не знаю</label>
                             </div>
                             <div class="quiz__btns flex">
                                 <a href="javascript:void(0)" data-step="3" class="btn btn_2 quiz__prev">Предыдущий шаг</a>
@@ -2631,12 +2041,18 @@
                         <div class="quiz__info">
                             <label class="quiz__question">В какой бюджет Вы хотите уложиться?</label>
                             <div class="radio">
-                                <input type="radio" name="q5" id="q5-0" value="До 200 000 руб."><label for="q5-0">До 200 000 руб.</label>
-                                <input type="radio" name="q5" id="q5-1" value="200 000 - 300 000 руб."><label for="q5-1">200 000 - 300 000 руб.</label>
-                                <input type="radio" name="q5" id="q5-2" value="300 000 - 500 000 руб."><label for="q5-2">300 000 - 500 000 руб.</label>
-                                <input type="radio" name="q5" id="q5-3" value="500 000 - 750 000 руб."><label for="q5-3">500 000 - 750 000 руб.</label>
-                                <input type="radio" name="q5" id="q5-4" value="750 000 - 1 000 000 руб."><label for="q5-4">750 000 - 1 000 000 руб.</label>
-                                <input type="radio" name="q5" id="q5-5" value="До 3 000 000 руб."><label for="q5-5">До 3 000 000 руб.</label>
+                                <input type="radio" name="q5" id="q5-0" value="До 200 000 руб.">
+                                <label for="q5-0">До 200 000 руб.</label>
+                                <input type="radio" name="q5" id="q5-1" value="200 000 - 300 000 руб.">
+                                <label for="q5-1">200 000 - 300 000 руб.</label>
+                                <input type="radio" name="q5" id="q5-2" value="300 000 - 500 000 руб.">
+                                <label for="q5-2">300 000 - 500 000 руб.</label>
+                                <input type="radio" name="q5" id="q5-3" value="500 000 - 750 000 руб.">
+                                <label for="q5-3">500 000 - 750 000 руб.</label>
+                                <input type="radio" name="q5" id="q5-4" value="750 000 - 1 000 000 руб.">
+                                <label for="q5-4">750 000 - 1 000 000 руб.</label>
+                                <input type="radio" name="q5" id="q5-5" value="До 3 000 000 руб.">
+                                <label for="q5-5">До 3 000 000 руб.</label>
                             </div>
                             <div class="quiz__btns flex">
                                 <a href="javascript:void(0)" data-step="4" class="btn btn_2 quiz__prev">Предыдущий шаг</a>
@@ -2659,11 +2075,16 @@
                         <div class="quiz__info">
                             <label class="quiz__question">Когда Вы планируете ремонт?</label>
                             <div class="radio">
-                                <input type="radio" name="q6" id="q6-0" value="Как можно раньше"><label for="q6-0">Как можно раньше</label>
-                                <input type="radio" name="q6" id="q6-1" value="В течение 1-2 недель"><label for="q6-1">В течение 1-2 недель</label>
-                                <input type="radio" name="q6" id="q6-2" value="В этом месяце"><label for="q6-2">В этом месяце</label>
-                                <input type="radio" name="q6" id="q6-3" value="В этом году"><label for="q6-3">В этом году</label>
-                                <input type="radio" name="q6" id="q6-4" value="Пока не знаю"><label for="q6-4">Пока не знаю</label>
+                                <input type="radio" name="q6" id="q6-0" value="Как можно раньше">
+                                <label for="q6-0">Как можно раньше</label>
+                                <input type="radio" name="q6" id="q6-1" value="В течение 1-2 недель">
+                                <label for="q6-1">В течение 1-2 недель</label>
+                                <input type="radio" name="q6" id="q6-2" value="В этом месяце">
+                                <label for="q6-2">В этом месяце</label>
+                                <input type="radio" name="q6" id="q6-3" value="В этом году">
+                                <label for="q6-3">В этом году</label>
+                                <input type="radio" name="q6" id="q6-4" value="Пока не знаю">
+                                <label for="q6-4">Пока не знаю</label>
                             </div>
                             <div class="quiz__btns flex">
                                 <a href="javascript:void(0)" data-step="5" class="btn btn_2 quiz__prev">Предыдущий шаг</a>
@@ -2723,7 +2144,7 @@
         </div>
     </section>
 
-    <!-- ВАРИАНТЫ РЕМОНТА -->
+    <!-- ВАРИАНТЫ РЕМОНТА (С ГАЛЕРЕЕЙ) -->
     <section class="repair" id="repair">
         <div class="container">
             <h2 class="section__title text-center fade-in"><span>Варианты</span> ремонта помещения в Москве</h2>
@@ -2740,12 +2161,12 @@
                 <div class="repair__content flex">
                     <div class="repair__images">
                         <div class="repair__slider">
-                            <img src="assets/kapital_nyy_remont1.jpg" alt="Капитальный ремонт">
+                            <img src="assets/kapital_1.jpg" alt="Капитальный ремонт">
                         </div>
                         <div class="repair__thumbnails">
-                            <div class="repair__thumbnail"><img src="assets/kapital_nyy_remont1.jpg" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/kapital_nyy_remont2.jpg" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/kapital_nyy_remont3.jpg" alt=""></div>
+                            <div class="repair__thumbnail active"><img src="assets/kapital_1.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kapital_2.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kapital_3.jpg" alt=""></div>
                         </div>
                     </div>
                     <div class="repair__info">
@@ -2773,12 +2194,12 @@
                 <div class="repair__content flex">
                     <div class="repair__images">
                         <div class="repair__slider">
-                            <img src="assets/dizaynerskiy_remont1.JPG" alt="Евроремонт">
+                            <img src="assets/evro_1.jpg" alt="Евроремонт">
                         </div>
                         <div class="repair__thumbnails">
-                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont1.JPG" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont.jpg" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/kosmeticheskiy_remont3.jpg" alt=""></div>
+                            <div class="repair__thumbnail active"><img src="assets/evro_1.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/evro_2.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/evro_3.jpg" alt=""></div>
                         </div>
                     </div>
                     <div class="repair__info">
@@ -2805,12 +2226,12 @@
                 <div class="repair__content flex">
                     <div class="repair__images">
                         <div class="repair__slider">
-                            <img src="assets/dizaynerskiy_remont.jpg" alt="Дизайнерский ремонт">
+                            <img src="assets/dizain_1.jpg" alt="Дизайнерский ремонт">
                         </div>
                         <div class="repair__thumbnails">
-                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont.jpg" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont1.JPG" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/dizaynerskiy_remont.jpeg" alt=""></div>
+                            <div class="repair__thumbnail active"><img src="assets/dizain_1.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/dizain_2.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/dizain_3.jpg" alt=""></div>
                         </div>
                     </div>
                     <div class="repair__info">
@@ -2837,12 +2258,12 @@
                 <div class="repair__content flex">
                     <div class="repair__images">
                         <div class="repair__slider">
-                            <img src="assets/kosmeticheskiy_remont.jpg" alt="Косметический ремонт">
+                            <img src="assets/kosmet_1.jpg" alt="Косметический ремонт">
                         </div>
                         <div class="repair__thumbnails">
-                            <div class="repair__thumbnail"><img src="assets/kosmeticheskiy_remont.jpg" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/kosmeticheskiy_remont2.jpg" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/kosmeticheskiy_remont3.jpg" alt=""></div>
+                            <div class="repair__thumbnail active"><img src="assets/kosmet_1.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kosmet_2.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/kosmet_3.jpg" alt=""></div>
                         </div>
                     </div>
                     <div class="repair__info">
@@ -2868,12 +2289,13 @@
                 <div class="repair__content flex">
                     <div class="repair__images">
                         <div class="repair__slider">
-                            <img src="assets/chernovoy_remont.jpg" alt="Черновой ремонт">
+                            <img src="assets/chern_1.jpg" alt="Черновой ремонт">
                         </div>
                         <div class="repair__thumbnails">
-                            <div class="repair__thumbnail"><img src="assets/chernovoy_remont.jpg" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/Chernovoy_remont_2.jpg" alt=""></div>
-                            <div class="repair__thumbnail"><img src="assets/Chernovoy_remont_3.jpg" alt=""></div>
+                            <div class="repair__thumbnail active"><img src="assets/chern_1.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/chern_2.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/chern_3.jpg" alt=""></div>
+                            <div class="repair__thumbnail"><img src="assets/chern_4.jpg" alt=""></div>
                         </div>
                     </div>
                     <div class="repair__info">
@@ -2960,13 +2382,10 @@
         <div class="container">
             <h2 class="section__title text-center fade-in"><span>Примеры</span> ремонтов квартир в Москве</h2>
             <div class="works__slider-wrapper">
-                <div class="arrow arrow_prev works__arrow_prev">‹</div>
-                <div class="arrow arrow_next works__arrow_next">›</div>
                 <div class="works__slider flex">
-                    <!-- Работа 1 -->
                     <div class="work fade-in-scale">
                         <div class="work__img">
-                            <img src="assets/Izobrazhenie_WhatsApp_2025_10_20_v_15.57.43_1f9aeadc.jpg" alt="Ремонт магазина">
+                            <img src="assets/work_magazin.jpg" alt="Ремонт магазина">
                         </div>
                         <div class="work__info">
                             <h4 class="work__title">Ремонт магазина</h4>
@@ -2979,13 +2398,6 @@
                                     </div>
                                 </div>
                                 <div class="work__item flex">
-                                    <img src="assets/work-3.png" alt="">
-                                    <div class="work__item-info">
-                                        <div class="work__item-title">Срок</div>
-                                        <p>3 недели</p>
-                                    </div>
-                                </div>
-                                <div class="work__item flex">
                                     <img src="assets/work-4.png" alt="">
                                     <div class="work__item-info">
                                         <div class="work__item-title">Площадь</div>
@@ -2994,19 +2406,18 @@
                                 </div>
                             </div>
                             <div class="work__images flex">
-                                <div><img src="assets/Izobrazhenie_WhatsApp_2025_10_20_v_15.57.43_1f9aeadc.jpg" alt=""></div>
-                                <div><img src="assets/Izobrazhenie_WhatsApp_2025_10_20_v_15.53.49_fc1257b5.jpg" alt=""></div>
-                                <div><img src="assets/Izobrazhenie_WhatsApp_2025_10_20_v_15.57.43_99a6897f.jpg" alt=""></div>
+                                <div><img src="assets/work_magazin.jpg" alt=""></div>
+                                <div><img src="assets/work_magazin_2.jpg" alt=""></div>
+                                <div><img src="assets/work_magazin_3.jpg" alt=""></div>
                             </div>
                             <div class="work__btn flex">
                                 <a href="javascript:void(0)" class="btn">Подробнее о проекте</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Работа 2 -->
                     <div class="work fade-in-scale">
                         <div class="work__img">
-                            <img src="assets/ob.jpg" alt="Бюджетный ремонт санузла">
+                            <img src="assets/work_sanuzel.jpg" alt="Бюджетный ремонт санузла">
                         </div>
                         <div class="work__info">
                             <h4 class="work__title">Бюджетный ремонт совмещенного санузла</h4>
@@ -3027,19 +2438,18 @@
                                 </div>
                             </div>
                             <div class="work__images flex">
-                                <div><img src="assets/ob.jpg" alt=""></div>
-                                <div><img src="assets/photo_2023_02_28_20_31_25.jpg" alt=""></div>
-                                <div><img src="assets/photo_2023_02_28_20_31_23.jpg" alt=""></div>
+                                <div><img src="assets/work_sanuzel.jpg" alt=""></div>
+                                <div><img src="assets/work_sanuzel_2.jpg" alt=""></div>
+                                <div><img src="assets/work_sanuzel_3.jpg" alt=""></div>
                             </div>
                             <div class="work__btn flex">
                                 <a href="javascript:void(0)" class="btn">Подробнее о проекте</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Работа 3 -->
                     <div class="work fade-in-scale">
                         <div class="work__img">
-                            <img src="assets/94164f1699c141d261262ab4.jpg" alt="Ремонт двухкомнатной квартиры">
+                            <img src="assets/work_2komnat.jpg" alt="Ремонт двухкомнатной квартиры">
                         </div>
                         <div class="work__info">
                             <h4 class="work__title">Ремонт двухкомнатной квартиры</h4>
@@ -3060,9 +2470,9 @@
                                 </div>
                             </div>
                             <div class="work__images flex">
-                                <div><img src="assets/94164f1699c141d261262ab4.jpg" alt=""></div>
-                                <div><img src="assets/7b684050a596a2047895d491.jpg" alt=""></div>
-                                <div><img src="assets/69344b49a47ff5c7f5685cb5.jpg" alt=""></div>
+                                <div><img src="assets/work_2komnat.jpg" alt=""></div>
+                                <div><img src="assets/work_2komnat_2.jpg" alt=""></div>
+                                <div><img src="assets/work_2komnat_3.jpg" alt=""></div>
                             </div>
                             <div class="work__btn flex">
                                 <a href="javascript:void(0)" class="btn">Подробнее о проекте</a>
@@ -3203,21 +2613,48 @@
             <h2 class="section__title white text-center fade-in"><span>Документы</span> на ремонт квартиры в Москве</h2>
             <div class="docs__items flex">
                 <div class="doc flex fade-in-scale">
-                    <div class="doc__icon"></div>
+                    <div class="doc__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <line x1="10" y1="9" x2="8" y2="9"/>
+                        </svg>
+                    </div>
                     <div class="doc__info">
                         <div>Матрица стоимостей ремонта квартир</div>
                         <a href="javascript:void(0)">Посмотреть PDF</a>
                     </div>
                 </div>
                 <div class="doc flex fade-in-scale">
-                    <div class="doc__icon"></div>
+                    <div class="doc__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <line x1="10" y1="9" x2="8" y2="9"/>
+                            <line x1="12" y1="21" x2="12" y2="15"/>
+                            <polyline points="9 18 12 15 15 18"/>
+                        </svg>
+                    </div>
                     <div class="doc__info">
                         <div>Образец договора подряда</div>
                         <a href="javascript:void(0)">Посмотреть PDF</a>
                     </div>
                 </div>
                 <div class="doc flex fade-in-scale">
-                    <div class="doc__icon"></div>
+                    <div class="doc__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <rect x="9" y="11" width="6" height="2"/>
+                            <circle cx="12" cy="15" r="3"/>
+                        </svg>
+                    </div>
                     <div class="doc__info">
                         <div>Пример сметы на ремонт</div>
                         <a href="javascript:void(0)">Посмотреть PDF</a>
@@ -3273,19 +2710,19 @@
                     <div class="jolly-slider-extra-body">
                         <div class="jolly-slider-extra active" data-index="0">
                             <div class="jolly-caption">Скидка 5%</div>
-                            <div class="jolly-text">Скидка 5% нашим уважаемым и самым дорогим людям!</div>
+                            <div class="jolly-text"><strong>Скидка 5%</strong> нашим уважаемым и самым дорогим людям!</div>
                         </div>
                         <div class="jolly-slider-extra" data-index="1">
                             <div class="jolly-caption">Скидка 7%</div>
-                            <div class="jolly-text">Скидка 7% крупным объектам: для объектов площадью 100+ м²</div>
+                            <div class="jolly-text"><strong>Скидка 7%</strong> крупным объектам: для объектов площадью 100+ м²</div>
                         </div>
                         <div class="jolly-slider-extra" data-index="2">
                             <div class="jolly-caption">Скидка 4%</div>
-                            <div class="jolly-text">Скидка 4% всем молодым семьям (не более 1 года в браке)</div>
+                            <div class="jolly-text"><strong>Скидка 4%</strong> всем молодым семьям (не более 1 года в браке)</div>
                         </div>
                         <div class="jolly-slider-extra" data-index="3">
                             <div class="jolly-caption">Скидка 4%</div>
-                            <div class="jolly-text">Скидка 4% тем, кто недавно переехал (не более года)</div>
+                            <div class="jolly-text"><strong>Скидка 4%</strong> тем, кто недавно переехал (не более года)</div>
                         </div>
                     </div>
                     <div class="jolly-slider-extra-footer">
@@ -3301,7 +2738,6 @@
         <div class="container">
             <h2 class="section__title text-center fade-in">Отзывы наших клиентов <span>в интернете</span></h2>
             <div class="testimonials__content flex">
-                <!-- Google -->
                 <div class="testimonials__col flex fade-in">
                     <div class="testimonials__items">
                         <div class="testimonials__top flex">
@@ -3328,8 +2764,6 @@
                         <a href="javascript:void(0)" class="testimonials__more btn">Показать ещё</a>
                     </div>
                 </div>
-
-                <!-- Yandex -->
                 <div class="testimonials__col flex fade-in">
                     <div class="testimonials__items">
                         <div class="testimonials__top flex">
@@ -3356,8 +2790,6 @@
                         <a href="javascript:void(0)" class="testimonials__more btn">Показать ещё</a>
                     </div>
                 </div>
-
-                <!-- Yell -->
                 <div class="testimonials__col flex fade-in">
                     <div class="testimonials__items">
                         <div class="testimonials__top flex">
@@ -3606,13 +3038,13 @@
                 </div>
                 <div class="stock__sliders fade-in-right">
                     <div class="stock__slider">
-                        <img src="assets/stroitel_nye_materialy2.jpg" alt="Склад">
+                        <img src="assets/sklad_1.jpg" alt="Склад строительных материалов">
                     </div>
                     <div class="stock__thumbnails">
-                        <div><img src="assets/stroitel_nye_materialy2.jpg" alt=""></div>
-                        <div><img src="assets/sklad_stroymaterialov.jpg" alt=""></div>
-                        <div><img src="assets/sklad_stroymaterialov1.jpg" alt=""></div>
-                        <div><img src="assets/stroymaterialy_na_sklade.jpg" alt=""></div>
+                        <div class="stock__thumbnail active"><img src="assets/sklad_1.jpg" alt=""></div>
+                        <div class="stock__thumbnail"><img src="assets/sklad_2.jpg" alt=""></div>
+                        <div class="stock__thumbnail"><img src="assets/sklad_3.jpg" alt=""></div>
+                        <div class="stock__thumbnail"><img src="assets/sklad_4.jpg" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -3743,7 +3175,7 @@
         </div>
     </section>
 
-    <!-- ЗАКАЗ (скидка) -->
+    <!-- ЗАКАЗ -->
     <section class="order" id="order">
         <div class="container">
             <div class="order__block">
@@ -3820,7 +3252,7 @@
         </div>
     </footer>
 
-    <!-- МОДАЛЬНОЕ ОКНО (города) -->
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal" id="cityModal">
         <div class="modal-content">
             <div class="modal-header">Выберите свой город из списка</div>
@@ -3843,27 +3275,37 @@
     ============================================ -->
     <script>
         // ============================================
-        // 0. АНИМАЦИИ ПРИ СКРОЛЛЕ (Intersection Observer)
+        // 0. ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ
+        // ============================================
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-theme');
+            themeToggle.classList.add('active');
+        }
+        themeToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+        });
+
+        // ============================================
+        // 1. АНИМАЦИИ ПРИ СКРОЛЛЕ
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
             const animateElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-scale');
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
             animateElements.forEach(el => observer.observe(el));
         });
 
         // ============================================
-        // 1. КАЛЬКУЛЯТОР
+        // 2. КАЛЬКУЛЯТОР
         // ============================================
         const range = document.getElementById('calcRange');
         const valueInput = document.getElementById('calcValue');
@@ -3881,7 +3323,6 @@
             valueInput.value = this.value;
             updateCalc();
         });
-
         valueInput.addEventListener('input', function() {
             let val = parseInt(this.value) || 10;
             if (val < 10) val = 10;
@@ -3890,11 +3331,9 @@
             range.value = val;
             updateCalc();
         });
-
         document.querySelectorAll('input[name="aptType"], input[name="renovType"]').forEach(el => {
             el.addEventListener('change', updateCalc);
         });
-
         document.getElementById('minusBtn').addEventListener('click', function() {
             let val = parseInt(valueInput.value) || 84;
             if (val > 10) val--;
@@ -3902,7 +3341,6 @@
             range.value = val;
             updateCalc();
         });
-
         document.getElementById('plusBtn').addEventListener('click', function() {
             let val = parseInt(valueInput.value) || 84;
             if (val < 200) val++;
@@ -3912,7 +3350,7 @@
         });
 
         // ============================================
-        // 2. QUIZ (пошаговый тест)
+        // 3. QUIZ
         // ============================================
         const quizSteps = document.querySelectorAll('.quiz__item');
         const stepIndicators = document.querySelectorAll('.quiz__steps p');
@@ -3925,7 +3363,6 @@
                 showQuizStep(nextStep);
             });
         });
-
         document.querySelectorAll('.quiz__prev').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -3942,25 +3379,26 @@
                 el.classList.toggle('active', index < step);
             });
             stepLines.forEach((el, index) => {
-                if (index < step - 1) {
-                    el.style.background = '#ff6a00';
-                } else {
-                    el.style.background = '#222';
-                }
+                el.style.background = index < step - 1 ? '#ff6a00' : '#ddd';
             });
         }
 
         // ============================================
-        // 3. ВКЛАДКИ (ремонт, цены)
+        // 4. ВКЛАДКИ
         // ============================================
         document.querySelectorAll('.repair__tabs a').forEach(tab => {
             tab.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelectorAll('.repair__tabs a').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                const target = this.dataset.tab;
                 document.querySelectorAll('.repair__item').forEach(item => item.classList.remove('active'));
-                document.getElementById(target).classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+                // Активируем первую миниатюру
+                const firstThumb = document.querySelector('.repair__item.active .repair__thumbnail.active');
+                if (firstThumb) {
+                    const slider = firstThumb.closest('.repair__images').querySelector('.repair__slider img');
+                    slider.src = firstThumb.querySelector('img').src;
+                }
             });
         });
 
@@ -3969,14 +3407,41 @@
                 e.preventDefault();
                 document.querySelectorAll('.price__tabs a').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                const target = this.dataset.tab;
                 document.querySelectorAll('.price__block').forEach(block => block.classList.remove('active'));
-                document.getElementById(target).classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
             });
         });
 
         // ============================================
-        // 4. АКЦИИ (слайдер)
+        // 5. ГАЛЕРЕЯ РЕМОНТА (переключение миниатюр)
+        // ============================================
+        document.querySelectorAll('.repair__thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const parent = this.closest('.repair__images');
+                const slider = parent.querySelector('.repair__slider img');
+                const newSrc = this.querySelector('img').src;
+                slider.src = newSrc;
+                parent.querySelectorAll('.repair__thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // ============================================
+        // 6. ГАЛЕРЕЯ СКЛАДА (переключение миниатюр)
+        // ============================================
+        document.querySelectorAll('.stock__thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const parent = this.closest('.stock__sliders');
+                const slider = parent.querySelector('.stock__slider img');
+                const newSrc = this.querySelector('img').src;
+                slider.src = newSrc;
+                parent.querySelectorAll('.stock__thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // ============================================
+        // 7. АКЦИИ (плавное появление)
         // ============================================
         const slides = document.querySelectorAll('.jolly-slider-extra');
         const controls = document.querySelectorAll('.jolly-slide-control');
@@ -3991,24 +3456,18 @@
             });
         });
 
-        // Показываем первый слайд
-        document.querySelectorAll('.jolly-slider > div').forEach((div, i) => {
-            div.style.display = i === 0 ? 'block' : 'none';
-        });
-
         // ============================================
-        // 5. FAQ (аккордеон)
+        // 8. FAQ
         // ============================================
         document.querySelectorAll('.faq__question').forEach(q => {
             q.addEventListener('click', function() {
                 this.classList.toggle('active');
-                const answer = this.nextElementSibling;
-                answer.classList.toggle('show');
+                this.nextElementSibling.classList.toggle('show');
             });
         });
 
         // ============================================
-        // 6. БУРГЕР-МЕНЮ
+        // 9. БУРГЕР-МЕНЮ
         // ============================================
         const navbarToggle = document.getElementById('navbarToggle');
         const menuMobile = document.getElementById('menuMobile');
@@ -4026,7 +3485,6 @@
             document.body.style.overflow = '';
         });
 
-        // Закрываем меню при клике на ссылку
         menuMobile.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function() {
                 navbarToggle.classList.remove('active');
@@ -4036,7 +3494,20 @@
         });
 
         // ============================================
-        // 7. МОДАЛЬНОЕ ОКНО (города)
+        // 10. БОКОВЫЕ КНОПКИ (скрытие/показ)
+        // ============================================
+        const btnsToggle = document.getElementById('btnsToggle');
+        const sideButtons = document.getElementById('sideButtons');
+        let btnsHidden = false;
+
+        btnsToggle.addEventListener('click', function() {
+            btnsHidden = !btnsHidden;
+            sideButtons.classList.toggle('hidden-btns', btnsHidden);
+            this.classList.toggle('hidden-toggle', btnsHidden);
+        });
+
+        // ============================================
+        // 11. МОДАЛЬНОЕ ОКНО (города)
         // ============================================
         document.getElementById('cityBtn').addEventListener('click', function(e) {
             e.preventDefault();
@@ -4052,7 +3523,7 @@
         });
 
         // ============================================
-        // 8. ФИЛЬТР ГОРОДОВ
+        // 12. ФИЛЬТР ГОРОДОВ
         // ============================================
         const citySearch = document.querySelector('.cities-search');
         const cityColumns = document.querySelectorAll('.city-column');
@@ -4060,27 +3531,25 @@
         citySearch.addEventListener('input', function() {
             const filter = this.value.toLowerCase();
             cityColumns.forEach(col => {
-                const text = col.textContent.toLowerCase();
-                col.style.display = text.includes(filter) ? '' : 'none';
+                col.style.display = col.textContent.toLowerCase().includes(filter) ? '' : 'none';
             });
         });
 
         // ============================================
-        // 9. ВКЛАДКИ ГОРОДОВ
+        // 13. ВКЛАДКИ ГОРОДОВ
         // ============================================
         document.querySelectorAll('.cities__tabs a').forEach(tab => {
             tab.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelectorAll('.cities__tabs a').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                const target = this.dataset.city;
                 document.querySelectorAll('.cities__list').forEach(list => list.classList.remove('active'));
-                document.getElementById(target).classList.add('active');
+                document.getElementById(this.dataset.city).classList.add('active');
             });
         });
 
         // ============================================
-        // 10. ГАЛЕРЕЯ РАБОТ (слайдер)
+        // 14. ГАЛЕРЕЯ РАБОТ (слайдер)
         // ============================================
         let currentWork = 0;
         const works = document.querySelectorAll('.work');
@@ -4099,59 +3568,25 @@
             currentWork = (currentWork - 1 + works.length) % works.length;
             showWork(currentWork);
         });
-
         document.querySelector('.works__arrow_next').addEventListener('click', function() {
             currentWork = (currentWork + 1) % works.length;
             showWork(currentWork);
         });
-
         dots.forEach((dot, index) => {
             dot.addEventListener('click', function() {
                 currentWork = index;
                 showWork(currentWork);
             });
         });
-
         showWork(0);
 
         // ============================================
-        // 11. СКЛАД (thumbnails)
-        // ============================================
-        const stockMain = document.querySelector('.stock__slider img');
-        const stockThumbs = document.querySelectorAll('.stock__thumbnail img');
-
-        stockThumbs.forEach((thumb, index) => {
-            thumb.parentElement.addEventListener('click', function() {
-                stockMain.src = thumb.src;
-                stockThumbs.forEach(t => t.parentElement.style.borderColor = 'transparent');
-                this.style.borderColor = '#ff6a00';
-            });
-        });
-
-        // ============================================
-        // 12. РЕМОНТ (thumbnails)
-        // ============================================
-        document.querySelectorAll('.repair__item.active .repair__thumbnail').forEach((thumb, index) => {
-            thumb.addEventListener('click', function() {
-                const slider = this.closest('.repair__images').querySelector('.repair__slider img');
-                slider.src = this.querySelector('img').src;
-                this.parentElement.querySelectorAll('.repair__thumbnail').forEach(t => t.style.borderColor = 'transparent');
-                this.style.borderColor = '#ff6a00';
-            });
-        });
-
-        // ============================================
-        // 13. ОТКЛЮЧЕНИЕ ВСЕХ КНОПОК
+        // 15. ОТКЛЮЧЕНИЕ КНОПОК И ФОРМ
         // ============================================
         document.querySelectorAll('a[href="javascript:void(0)"]').forEach(el => {
-            el.addEventListener('click', function(e) {
-                e.preventDefault();
-            });
+            el.addEventListener('click', function(e) { e.preventDefault(); });
         });
 
-        // ============================================
-        // 14. ОТПРАВКА ФОРМ (заглушка)
-        // ============================================
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -4160,27 +3595,11 @@
             });
         });
 
-        // ============================================
-        // 15. ПЛАВНАЯ ПРОКРУТКА (якоря)
-        // ============================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId && targetId !== '#') {
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        e.preventDefault();
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        });
-
         console.log('✅ Сайт полностью загружен и готов к работе!');
         console.log('📱 Адаптивный дизайн включён');
         console.log('✨ Плавные анимации активны');
         console.log('📋 Все пункты меню отображаются');
+        console.log('🖼️ Галереи с миниатюрами работают');
     </script>
-
 </body>
 </html>
