@@ -9,7 +9,6 @@
            ВСЕ СТИЛИ (ПОЛНАЯ ВЕРСИЯ)
            ============================================ */
 
-        /* ----- ОБЩИЕ СТИЛИ ----- */
         * {
             margin: 0;
             padding: 0;
@@ -331,7 +330,7 @@
         .header__contacts { display: none !important; }
         .calc-link { display: none !important; }
 
-        /* ----- ГЛАВНЫЙ БАННЕР ----- */
+        /* ----- ГЛАВНЫЙ БАННЕР (СВЕТЛЕЕ) ----- */
         .main {
             position: relative;
             padding: 40px 0 60px;
@@ -340,7 +339,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            background: #000000;
+            background: #0a0a0a;
         }
         .main::before {
             content: '';
@@ -349,7 +348,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.92) 100%),
+            background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.65) 100%),
                         url('assets/main-bg.jpg') center/cover no-repeat;
             z-index: 0;
         }
@@ -1141,7 +1140,7 @@
         }
         .doc__info a { color: #ffcc00; text-decoration: none; }
 
-        /* ----- ОПЛАТА ----- */
+        /* ----- ОПЛАТА (ИСТОЧНИКИ ФИНАНСИРОВАНИЯ) ----- */
         .payment {
             padding: 60px 0;
             background: #fff;
@@ -1152,27 +1151,58 @@
         .payment__items { gap: 20px; justify-content: center; }
         .payment__item {
             flex: 0 0 200px;
-            background: #f8f8f8;
+            background: #000000;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             gap: 15px;
             transition: 0.3s;
-            color: #333;
+            color: #ff6a00;
+            border: 2px solid #ff6a00;
         }
-        body.dark-theme .payment__item { background: #2a2a2a; color: #ccc; }
-        .payment__item:hover { transform: translateY(-3px); box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
+        body.dark-theme .payment__item {
+            background: #1a1a1a;
+            border-color: #ff6a00;
+        }
+        .payment__item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(255,106,0,0.2);
+            background: #1a1a1a;
+        }
+        body.dark-theme .payment__item:hover {
+            background: #2a2a2a;
+        }
         .payment__icon {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #fff;
+            background: #ff6a00;
             justify-content: center;
+            flex-shrink: 0;
         }
-        body.dark-theme .payment__icon { background: #1a1a1a; }
-        .payment__icon img { height: 25px; width: auto; }
-        .payment__info div { font-weight: 700; color: #333; }
-        body.dark-theme .payment__info div { color: #fff; }
-        .payment__info p { font-size: 13px; color: #888; }
+        body.dark-theme .payment__icon {
+            background: #ff6a00;
+        }
+        .payment__icon svg {
+            width: 26px;
+            height: 26px;
+            fill: none;
+            stroke: #000000;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        body.dark-theme .payment__icon svg {
+            stroke: #000000;
+        }
+        .payment__info div {
+            font-weight: 700;
+            color: #ff6a00;
+            font-size: 15px;
+        }
+        .payment__info p {
+            font-size: 13px;
+            color: #ffaa44;
+        }
 
         /* ----- АКЦИИ ----- */
         .offers {
@@ -1373,7 +1403,7 @@
         .category__info p { font-size: 13px; color: #888; margin: 10px 0; }
         .category__info-btn .btn { padding: 8px 20px; font-size: 14px; }
 
-        /* ----- СКЛАД ----- */
+        /* ----- СКЛАД (с подсветкой миниатюр) ----- */
         .stock {
             padding: 60px 0;
             background: #f5f5f5;
@@ -1413,8 +1443,14 @@
             height: 100%;
             object-fit: cover;
         }
-        .stock__thumbnail:hover { border-color: #ff6a00; }
-        .stock__thumbnail.active { border-color: #ff6a00; }
+        .stock__thumbnail:hover {
+            border-color: #ff6a00;
+            transform: scale(1.03);
+        }
+        .stock__thumbnail.active {
+            border-color: #ff6a00;
+            box-shadow: 0 0 15px rgba(255,106,0,0.3);
+        }
 
         /* ----- ОФИСЫ ----- */
         .offices {
@@ -2676,26 +2712,68 @@
         </div>
     </section>
 
-    <!-- ОПЛАТА -->
+    <!-- ОПЛАТА (ИСТОЧНИКИ ФИНАНСИРОВАНИЯ) -->
     <section class="payment" id="payment">
         <div class="container">
             <h2 class="section__title text-center fade-in"><span>Источники финансирования</span> ремонта в Москве</h2>
             <div class="payment__items flex">
                 <div class="payment__item flex fade-in-scale">
-                    <div class="payment__icon flex"><img src="assets/payment-1.png" alt=""></div>
-                    <div class="payment__info"><div>Наличный расчёт</div><p>на месте</p></div>
+                    <div class="payment__icon flex">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v12"/>
+                            <path d="M8 8c2-2 4-2 6 0s4 2 6 0"/>
+                            <path d="M8 16c2 2 4 2 6 0s4-2 6 0"/>
+                        </svg>
+                    </div>
+                    <div class="payment__info">
+                        <div>Наличный расчёт</div>
+                        <p>на месте</p>
+                    </div>
                 </div>
                 <div class="payment__item flex fade-in-scale">
-                    <div class="payment__icon flex"><img src="assets/payment-2.png" alt=""></div>
-                    <div class="payment__info"><div>Рассрочка</div><p>на 3, 6, 9 месяцев</p></div>
+                    <div class="payment__icon flex">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <rect x="2" y="6" width="20" height="14" rx="2"/>
+                            <line x1="12" y1="6" x2="12" y2="20"/>
+                            <line x1="8" y1="10" x2="8" y2="16"/>
+                            <line x1="16" y1="10" x2="16" y2="16"/>
+                            <text x="6" y="15" font-size="8" fill="#000" stroke="none">3</text>
+                            <text x="10" y="15" font-size="8" fill="#000" stroke="none">6</text>
+                            <text x="14" y="15" font-size="8" fill="#000" stroke="none">9</text>
+                        </svg>
+                    </div>
+                    <div class="payment__info">
+                        <div>Рассрочка</div>
+                        <p>на 3, 6, 9 месяцев</p>
+                    </div>
                 </div>
                 <div class="payment__item flex fade-in-scale">
-                    <div class="payment__icon flex"><img src="assets/payment-3.png" alt=""></div>
-                    <div class="payment__info"><div>Кредит на ремонт</div><p>до 2-х лет</p></div>
+                    <div class="payment__icon flex">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                            <text x="9" y="11" font-size="6" fill="#000" stroke="none">%</text>
+                        </svg>
+                    </div>
+                    <div class="payment__info">
+                        <div>Кредит на ремонт</div>
+                        <p>до 2-х лет</p>
+                    </div>
                 </div>
                 <div class="payment__item flex fade-in-scale">
-                    <div class="payment__icon flex"><img src="assets/payment-4.png" alt=""></div>
-                    <div class="payment__info"><div>Безналичный расчёт</div><p>на наш счёт</p></div>
+                    <div class="payment__icon flex">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <rect x="2" y="6" width="20" height="14" rx="2"/>
+                            <line x1="6" y1="10" x2="18" y2="10"/>
+                            <line x1="6" y1="14" x2="14" y2="14"/>
+                            <rect x="16" y="12" width="4" height="4" rx="1"/>
+                        </svg>
+                    </div>
+                    <div class="payment__info">
+                        <div>Безналичный расчёт</div>
+                        <p>на наш счёт</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3405,7 +3483,6 @@
                 this.classList.add('active');
                 document.querySelectorAll('.repair__item').forEach(item => item.classList.remove('active'));
                 document.getElementById(this.dataset.tab).classList.add('active');
-                // Активируем первую миниатюру
                 const firstThumb = document.querySelector('.repair__item.active .repair__thumbnail.active');
                 if (firstThumb) {
                     const slider = firstThumb.closest('.repair__images').querySelector('.repair__slider img');
@@ -3425,7 +3502,7 @@
         });
 
         // ============================================
-        // 5. ГАЛЕРЕЯ РЕМОНТА (переключение миниатюр)
+        // 5. ГАЛЕРЕЯ РЕМОНТА
         // ============================================
         document.querySelectorAll('.repair__thumbnail').forEach(thumb => {
             thumb.addEventListener('click', function() {
@@ -3439,7 +3516,7 @@
         });
 
         // ============================================
-        // 6. ГАЛЕРЕЯ СКЛАДА (переключение миниатюр)
+        // 6. ГАЛЕРЕЯ СКЛАДА
         // ============================================
         document.querySelectorAll('.stock__thumbnail').forEach(thumb => {
             thumb.addEventListener('click', function() {
@@ -3453,7 +3530,7 @@
         });
 
         // ============================================
-        // 7. АКЦИИ (плавное появление)
+        // 7. АКЦИИ
         // ============================================
         const slides = document.querySelectorAll('.jolly-slider-extra');
         const controls = document.querySelectorAll('.jolly-slide-control');
@@ -3506,7 +3583,7 @@
         });
 
         // ============================================
-        // 10. БОКОВЫЕ КНОПКИ (скрытие/показ)
+        // 10. БОКОВЫЕ КНОПКИ
         // ============================================
         const btnsToggle = document.getElementById('btnsToggle');
         const sideButtons = document.getElementById('sideButtons');
@@ -3519,7 +3596,7 @@
         });
 
         // ============================================
-        // 11. МОДАЛЬНОЕ ОКНО (города)
+        // 11. МОДАЛЬНОЕ ОКНО
         // ============================================
         document.getElementById('cityBtn').addEventListener('click', function(e) {
             e.preventDefault();
@@ -3561,7 +3638,7 @@
         });
 
         // ============================================
-        // 14. ГАЛЕРЕЯ РАБОТ (слайдер)
+        // 14. ГАЛЕРЕЯ РАБОТ
         // ============================================
         let currentWork = 0;
         const works = document.querySelectorAll('.work');
