@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Название страницы | Ремонт квартир в Москве под ключ</title>
+    <meta name="description" content="Описание страницы для SEO">
+
+    <!-- ПОДКЛЮЧАЕМ ВНЕШНИЙ CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ============================================
+    ШАПКА (общая для всех страниц)
+    ============================================ -->
+    <header>
+        <div class="top">
+            <div class="container">
+                <div class="top__content flex">
+                    <div class="top__city">
+                        <a href="javascript:void(0)" class="top__city-title" id="cityBtn">г. Москва</a>
+                    </div>
+
+                    <!-- ГОРИЗОНТАЛЬНОЕ МЕНЮ (ДЛЯ ПК) -->
+                    <ul class="top__menu flex">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="page-template.html">О компании</a></li>
+                        <li><a href="page-template.html">Портфолио</a></li>
+                        <li><a href="page-template.html">Цены</a></li>
+                        <li><a href="page-template.html">Ремонтникам</a></li>
+                        <li><a href="page-template.html">Контакты</a></li>
+                    </ul>
+
+                    <!-- КНОПКА "ЗАКАЗАТЬ ЗВОНОК" -->
+                    <a href="javascript:void(0)" class="btn" data-fancybox data-src="#order">Заказать звонок</a>
+
+                    <!-- БУРГЕР-МЕНЮ (ТОЛЬКО ДЛЯ ТЕЛЕФОНА) -->
+                    <div class="navbar" id="navbarToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="middle">
+            <div class="container">
+                <div class="middle__content flex">
+                    <a href="index.html" class="logo flex">
+                        <img src="assets/logo.png" alt="Логотип">
+                        <span class="logo__info">
+                            <b><span>Под</span> ключ</b>
+                            <p>Ремонт без нервов и переплат</p>
+                        </span>
+                    </a>
+
+                    <!-- КОНТАКТЫ (ДЛЯ ПК) -->
+                    <div class="header__contacts flex">
+                        <div class="header__contacts-item">
+                            <p>Время работы с 9:00 до 18:00 в пн-пт</p>
+                            <a href="tel:+79208950955" class="header__tel">+7(920)895-09-55</a>
+                        </div>
+                        <div class="header__contacts-item universal">
+                            <p><a href="mailto:msk@vse-podklyuch.ru">msk@vse-podklyuch.ru</a></p>
+                            <a href="tel:+79060726622" class="header__tel">+7(906)072-66-22</a>
+                        </div>
+                    </div>
+
+                    <!-- КАЛЬКУЛЯТОР (ДЛЯ ПК) -->
+                    <a href="index.html#quiz" class="calc-link flex">
+                        <img src="assets/calc.png" alt="Калькулятор">
+                        <span>Калькулятор <br>ремонта</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГОРИЗОНТАЛЬНОЕ МЕНЮ 2-ГО УРОВНЯ (ДЛЯ ПК) -->
+        <div class="menu-wrapper">
+            <div class="container">
+                <ul class="menu flex">
+                    <li class="menu__item">
+                        <a class="menu__link" href="page-template.html">Услуги ремонта</a>
+                        <ul class="submenu">
+                            <li><a href="page-template.html">Демонтажные работы</a></li>
+                            <li><a href="page-template.html">Малярные работы</a></li>
+                            <li><a href="page-template.html">Монтаж гипсокартона</a></li>
+                            <li><a href="page-template.html">Натяжные потолки</a></li>
+                            <li><a href="page-template.html">Поклейка обоев</a></li>
+                            <li><a href="page-template.html">Сантехнические работы</a></li>
+                            <li><a href="page-template.html">Укладка плитки</a></li>
+                            <li><a href="page-template.html">Электромонтаж</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu__item">
+                        <a class="menu__link" href="page-template.html">Ремонт квартир</a>
+                        <ul class="submenu">
+                            <li><a href="page-template.html">Ремонт студии</a></li>
+                            <li><a href="page-template.html">1-комнатная</a></li>
+                            <li><a href="page-template.html">2-комнатная</a></li>
+                            <li><a href="page-template.html">3-комнатная</a></li>
+                            <li><a href="page-template.html">Хрущёвка</a></li>
+                            <li><a href="page-template.html">Сталинка</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu__item">
+                        <a class="menu__link" href="page-template.html">Ремонт комнат</a>
+                        <ul class="submenu">
+                            <li><a href="page-template.html">Ванная</a></li>
+                            <li><a href="page-template.html">Туалет</a></li>
+                            <li><a href="page-template.html">Кухня</a></li>
+                            <li><a href="page-template.html">Спальня</a></li>
+                            <li><a href="page-template.html">Детская</a></li>
+                            <li><a href="page-template.html">Балкон</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu__item">
+                        <a class="menu__link" href="page-template.html">Виды ремонта</a>
+                        <ul class="submenu">
+                            <li><a href="page-template.html">Капитальный</a></li>
+                            <li><a href="page-template.html">Евроремонт</a></li>
+                            <li><a href="page-template.html">Дизайнерский</a></li>
+                            <li><a href="page-template.html">Косметический</a></li>
+                            <li><a href="page-template.html">Черновой</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu__item">
+                        <a class="menu__link" href="page-template.html">Ремонт помещений</a>
+                        <ul class="submenu">
+                            <li><a href="page-template.html">Дом, коттедж</a></li>
+                            <li><a href="page-template.html">Офис</a></li>
+                            <li><a href="page-template.html">Магазин</a></li>
+                            <li><a href="page-template.html">Новостройка</a></li>
+                            <li><a href="page-template.html">Ресторан, кафе</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu__item">
+                        <a class="menu__link" href="page-template.html">Дизайн интерьеров</a>
+                        <ul class="submenu">
+                            <li><a href="page-template.html">Дизайн квартиры</a></li>
+                            <li><a href="page-template.html">Дизайн кухни</a></li>
+                            <li><a href="page-template.html">Дизайн ванной</a></li>
+                            <li><a href="page-template.html">Дизайн офиса</a></li>
+                            <li><a href="page-template.html">Стиль лофт</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================
+    МОБИЛЬНОЕ МЕНЮ (ВЫПАДАЮЩЕЕ)
+    ============================================ -->
+    <div class="menu-mobile" id="menuMobile">
+        <button class="close-menu" id="closeMenu">✕</button>
+        <div class="menu-title">Основное</div>
+        <a href="index.html">Главная</a>
+        <a href="page-template.html">О компании</a>
+        <a href="page-template.html">Портфолио</a>
+        <a href="page-template.html">Цены</a>
+        <a href="page-template.html">Ремонтникам</a>
+        <a href="page-template.html">Контакты</a>
+        <div class="menu-title">Услуги</div>
+        <a href="page-template.html">Услуги ремонта</a>
+        <a href="page-template.html">Ремонт квартир</a>
+        <a href="page-template.html">Ремонт комнат</a>
+        <a href="page-template.html">Виды ремонта</a>
+        <a href="page-template.html">Ремонт помещений</a>
+        <a href="page-template.html">Дизайн интерьеров</a>
+    </div>
+
+    <!-- ============================================
+    ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ
+    ============================================ -->
+    <main class="page-content">
+
+        <!-- ХЛЕБНЫЕ КРОШКИ -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="breadcrumbs__list">
+                    <a href="index.html">Главная</a>
+                    <span class="breadcrumbs__separator">/</span>
+                    <span class="breadcrumbs__current">Название страницы</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЗАГОЛОВОК СТРАНИЦЫ -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-header__title">Название страницы</h1>
+                <p class="page-header__subtitle">Краткое описание страницы для посетителей</p>
+            </div>
+        </section>
+
+        <!-- УНИКАЛЬНЫЙ КОНТЕНТ СТРАНИЦЫ -->
+        <section class="page-section">
+            <div class="container">
+
+                <!-- ==========================================
+                СЮДА ВСТАВЛЯЕТЕ УНИКАЛЬНЫЙ КОНТЕНТ СТРАНИЦЫ
+                ========================================== -->
+
+                <div class="page-section__content">
+                    <h2>Заголовок блока</h2>
+                    <p>Текст вашего блока. Здесь может быть любое содержимое: текст, изображения, таблицы, списки, формы и т.д.</p>
+
+                    <ul>
+                        <li>Пример пункта списка 1</li>
+                        <li>Пример пункта списка 2</li>
+                        <li>Пример пункта списка 3</li>
+                    </ul>
+
+                    <p>Ещё один абзац текста для примера.</p>
+
+                    <!-- Пример изображения -->
+                    <img src="assets/logo.png" alt="Пример изображения" style="max-width: 100%; height: auto;">
+
+                    <!-- Пример кнопки -->
+                    <a href="javascript:void(0)" class="btn">Пример кнопки</a>
+                </div>
+
+                <!-- ==========================================
+                КОНЕЦ УНИКАЛЬНОГО КОНТЕНТА
+                ========================================== -->
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================
+    ПОДВАЛ (общий для всех страниц)
+    ============================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer__content flex">
+                <div class="footer__col footer__col_1 flex">
+                    <a href="index.html" class="logo">
+                        <img src="assets/logo.png" alt="Логотип">
+                        <span class="logo__info">
+                            <b><span>Под</span> ключ</b>
+                            <p>Ремонт без нервов и переплат</p>
+                        </span>
+                    </a>
+                    <p class="footer__text">Информация по ценам на строительно-отделочные работы, указанная на данном сайте, не является публичной офертой.</p>
+                </div>
+                <div class="footer__col footer__col_2">
+                    <ul class="footer__menu">
+                        <li><a href="page-template.html">Услуги ремонта</a></li>
+                        <li><a href="page-template.html">Ремонт квартир</a></li>
+                        <li><a href="page-template.html">Ремонт комнат</a></li>
+                        <li><a href="page-template.html">Виды ремонта</a></li>
+                        <li><a href="page-template.html">Ремонт помещений</a></li>
+                        <li><a href="page-template.html">Дизайн интерьеров</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col footer__col_3">
+                    <ul class="footer__menu">
+                        <li><a href="page-template.html">О компании</a></li>
+                        <li><a href="page-template.html">Портфолио</a></li>
+                        <li><a href="page-template.html">Цены</a></li>
+                        <li><a href="page-template.html">Ремонтникам</a></li>
+                        <li><a href="page-template.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col footer__col_4 flex">
+                    <div class="footer__contacts">
+                        <div class="footer__time">Время работы с 9:00 до 18:00 в пн-пт</div>
+                        <div class="footer__tel">
+                            <a href="tel:+79208950955">+7(920)895-09-55</a><br>
+                            <a href="tel:+79060726622">+7(906)072-66-22</a>
+                        </div>
+                        <div class="footer__address">Москва, улица Привольная, д. 61к1</div>
+                        <div class="footer__email"><a href="mailto:msk@vse-podklyuch.ru">msk@vse-podklyuch.ru</a></div>
+                    </div>
+                    <div class="footer__socials flex">
+                        <a href="javascript:void(0)"><img src="assets/vk.png" alt="VK"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <div class="footer__bottom-content flex">
+                    <p class="footer__copy">© 2016-2026, <span>“Ремонт квартир в Москве под ключ”</span></p>
+                    <div class="footer__links flex">
+                        <a href="page-template.html">Политика конфиденциальности</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+    МОДАЛЬНОЕ ОКНО (города)
+    ============================================ -->
+    <div class="modal" id="cityModal">
+        <div class="modal-content">
+            <div class="modal-header">Выберите свой город из списка</div>
+            <input class="cities-search" type="text" placeholder="Фильтр...">
+            <div class="cities-row">
+                <div class="city-column"><a href="javascript:void(0)">Москва</a></div>
+                <div class="city-column"><a href="javascript:void(0)">Санкт-Петербург</a></div>
+                <div class="city-column"><a href="javascript:void(0)">Екатеринбург</a></div>
+                <div class="city-column"><a href="javascript:void(0)">Новосибирск</a></div>
+                <div class="city-column"><a href="javascript:void(0)">Казань</a></div>
+                <div class="city-column"><a href="javascript:void(0)">Краснодар</a></div>
+                <div class="city-column"><a href="javascript:void(0)">Ростов-на-Дону</a></div>
+                <div class="city-column"><a href="javascript:void(0)">Нижний Новгород</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+    ПОДКЛЮЧАЕМ ВНЕШНИЙ JS
+    ============================================ -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
