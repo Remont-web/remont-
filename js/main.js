@@ -26,46 +26,60 @@ const valueInput = document.getElementById('calcValue');
 const resultSpan = document.getElementById('calcResult');
 
 function updateCalc() {
+    if (!range || !valueInput || !resultSpan) return;
+    const aptTypeEl = document.querySelector('input[name="aptType"]:checked');
+    const renovTypeEl = document.querySelector('input[name="renovType"]:checked');
+    if (!aptTypeEl || !renovTypeEl) return;
+
     const area = parseInt(valueInput.value) || 84;
-    const aptType = parseFloat(document.querySelector('input[name="aptType"]:checked').value);
-    const renovType = parseFloat(document.querySelector('input[name="renovType"]:checked').value);
+    const aptType = parseFloat(aptTypeEl.value);
+    const renovType = parseFloat(renovTypeEl.value);
     const total = Math.round(area * renovType * aptType);
     resultSpan.textContent = total.toLocaleString('ru-RU');
 }
 
-range.addEventListener('input', function() {
-    valueInput.value = this.value;
-    updateCalc();
-});
+if (range && valueInput && resultSpan) {
+    range.addEventListener('input', function() {
+        valueInput.value = this.value;
+        updateCalc();
+    });
 
-valueInput.addEventListener('input', function() {
-    let val = parseInt(this.value) || 10;
-    if (val < 10) val = 10;
-    if (val > 200) val = 200;
-    this.value = val;
-    range.value = val;
-    updateCalc();
-});
+    valueInput.addEventListener('input', function() {
+        let val = parseInt(this.value) || 10;
+        if (val < 10) val = 10;
+        if (val > 200) val = 200;
+        this.value = val;
+        range.value = val;
+        updateCalc();
+    });
 
-document.querySelectorAll('input[name="aptType"], input[name="renovType"]').forEach(el => {
-    el.addEventListener('change', updateCalc);
-});
+    document.querySelectorAll('input[name="aptType"], input[name="renovType"]').forEach(el => {
+        el.addEventListener('change', updateCalc);
+    });
 
-document.getElementById('minusBtn').addEventListener('click', function() {
-    let val = parseInt(valueInput.value) || 84;
-    if (val > 10) val--;
-    valueInput.value = val;
-    range.value = val;
-    updateCalc();
-});
+    const minusBtn = document.getElementById('minusBtn');
+    const plusBtn = document.getElementById('plusBtn');
 
-document.getElementById('plusBtn').addEventListener('click', function() {
-    let val = parseInt(valueInput.value) || 84;
-    if (val < 200) val++;
-    valueInput.value = val;
-    range.value = val;
-    updateCalc();
-});
+    if (minusBtn) {
+        minusBtn.addEventListener('click', function() {
+            let val = parseInt(valueInput.value) || 84;
+            if (val > 10) val--;
+            valueInput.value = val;
+            range.value = val;
+            updateCalc();
+        });
+    }
+
+    if (plusBtn) {
+        plusBtn.addEventListener('click', function() {
+            let val = parseInt(valueInput.value) || 84;
+            if (val < 200) val++;
+            valueInput.value = val;
+            range.value = val;
+            updateCalc();
+        });
+    }
+}
 
 // ============================================
 // 3. QUIZ (пошаговый тест)
@@ -116,13 +130,13 @@ document.querySelectorAll('.repair__tabs a').forEach(tab => {
         this.classList.add('active');
         const target = this.dataset.tab;
         document.querySelectorAll('.repair__item').forEach(item => item.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
+        const targetEl = document.getElementById(target);
+        if (targetEl) targetEl.classList.add('active');
 
-        // Активируем первую миниатюру
         const firstThumb = document.querySelector('.repair__item.active .repair__thumbnail.active');
         if (firstThumb) {
             const slider = firstThumb.closest('.repair__images').querySelector('.repair__slider img');
-            slider.src = firstThumb.querySelector('img').src;
+            if (slider) slider.src = firstThumb.querySelector('img').src;
         }
     });
 });
@@ -134,7 +148,8 @@ document.querySelectorAll('.price__tabs a').forEach(tab => {
         this.classList.add('active');
         const target = this.dataset.tab;
         document.querySelectorAll('.price__block').forEach(block => block.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
+        const targetEl = document.getElementById(target);
+        if (targetEl) targetEl.classList.add('active');
     });
 });
 
@@ -178,7 +193,7 @@ controls.forEach(control => {
         this.classList.add('active');
         const index = parseInt(this.dataset.index);
         slides.forEach(s => s.classList.remove('active'));
-        slides[index].classList.add('active');
+        if (slides[index]) slides[index].classList.add('active');
     });
 });
 
@@ -189,50 +204,66 @@ document.querySelectorAll('.faq__question').forEach(q => {
     q.addEventListener('click', function() {
         this.classList.toggle('active');
         const answer = this.nextElementSibling;
-        answer.classList.toggle('show');
+        if (answer) answer.classList.toggle('show');
     });
 });
 
 // ============================================
-// 9. БУРГЕР-МЕНЮ (НОВОЕ)
+// 9. БУРГЕР-МЕНЮ (главное)
 // ============================================
-const navbarToggle = document.getElementById('navbarToggle');
-const menuMobile = document.getElementById('menuMobile');
-const closeMenu = document.getElementById('closeMenu');
+(function() {
+    const navbarToggle = document.getElementById('navbarToggle');
+    const menuMobile = document.getElementById('menuMobile');
+    const closeMenu = document.getElementById('closeMenu');
 
-if (navbarToggle && menuMobile && closeMenu) {
+    if (!navbarToggle || !menuMobile) return;
+
+    function openMenu() {
+        menuMobile.classList.add('active');
+        navbarToggle.classList.add('active');
+        document.body.classList.add('menu-open');
+    }
+
+    function closeMenuFunc() {
+        menuMobile.classList.remove('active');
+        navbarToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+
     // Открытие меню
     navbarToggle.addEventListener('click', function(e) {
         e.stopPropagation();
-        this.classList.toggle('active');
-        menuMobile.classList.toggle('active');
+        if (menuMobile.classList.contains('active')) {
+            closeMenuFunc();
+        } else {
+            openMenu();
+        }
     });
 
     // Закрытие по крестику
-    closeMenu.addEventListener('click', function(e) {
-        e.stopPropagation();
-        navbarToggle.classList.remove('active');
-        menuMobile.classList.remove('active');
-    });
+    if (closeMenu) {
+        closeMenu.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMenuFunc();
+        });
+    }
 
     // Закрытие при клике на ссылку
     menuMobile.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function() {
-            navbarToggle.classList.remove('active');
-            menuMobile.classList.remove('active');
+            closeMenuFunc();
         });
     });
 
-    // Закрытие при клике вне меню
-    document.addEventListener('click', function(e) {
-        if (menuMobile.classList.contains('active') &&
-            !menuMobile.contains(e.target) &&
-            !navbarToggle.contains(e.target)) {
-            navbarToggle.classList.remove('active');
-            menuMobile.classList.remove('active');
+    // Закрытие по Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menuMobile.classList.contains('active')) {
+            closeMenuFunc();
         }
     });
-}
+})();
+
 // ============================================
 // 10. БОКОВЫЕ КНОПКИ (скрытие/показ)
 // ============================================
@@ -295,7 +326,8 @@ document.querySelectorAll('.cities__tabs a').forEach(tab => {
         this.classList.add('active');
         const target = this.dataset.city;
         document.querySelectorAll('.cities__list').forEach(list => list.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
+        const targetEl = document.getElementById(target);
+        if (targetEl) targetEl.classList.add('active');
     });
 });
 
@@ -318,7 +350,7 @@ function showWork(index) {
 const arrowPrev = document.querySelector('.works__arrow_prev');
 const arrowNext = document.querySelector('.works__arrow_next');
 
-if (arrowPrev && arrowNext) {
+if (arrowPrev && arrowNext && works.length) {
     arrowPrev.addEventListener('click', function() {
         currentWork = (currentWork - 1 + works.length) % works.length;
         showWork(currentWork);
@@ -337,7 +369,7 @@ dots.forEach((dot, index) => {
     });
 });
 
-showWork(0);
+if (works.length) showWork(0);
 
 // ============================================
 // 15. ОТКЛЮЧЕНИЕ ВСЕХ КНОПОК
