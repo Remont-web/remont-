@@ -393,25 +393,42 @@ body.menu-open {
 }
 
 /* ============================================
-   ВСТРОЕННОЕ МЕНЮ-ПОЛОСА (между калькулятором и квизом)
+   ВСТРОЕННОЕ МЕНЮ-ПОЛОСА (кнопки-пилюли)
+   (между калькулятором и блоком "Узнай стоимость")
    ============================================ */
 .menu-inline {
     background: #f8f8f8;
     border-top: 3px solid #ff6a00;
     border-bottom: 3px solid #ff6a00;
-    padding: 0;
-    position: relative;
-    z-index: 10;
+    padding: 30px 0 35px;
 }
 
-.menu-inline .menu-inline__title {
+.menu-inline__title {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     color: #888;
     text-transform: uppercase;
     letter-spacing: 2px;
-    padding: 20px 15px 10px;
+    margin-bottom: 20px;
+}
+
+.menu-inline__group {
+    margin-bottom: 20px;
+}
+
+.menu-inline__group:last-child {
+    margin-bottom: 0;
+}
+
+.menu-inline__group-title {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ff6a00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
 }
 
 .menu-inline__list {
@@ -419,72 +436,41 @@ body.menu-open {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0;
+    gap: 12px;
     padding: 0;
     margin: 0;
 }
 
 .menu-inline__list > li {
-    position: relative;
+    margin: 0;
 }
 
-.menu-inline__link {
-    display: block;
-    padding: 18px 22px;
+/* Кнопка-пилюля */
+.menu-inline__btn {
+    display: inline-block;
+    padding: 12px 26px;
+    background: #ffffff;
     color: #333;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 15px;
-    transition: 0.3s;
-    border-bottom: 3px solid transparent;
+    border: 2px solid #ff6a00;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-align: center;
     white-space: nowrap;
+    cursor: pointer;
 }
 
-.menu-inline__link:hover {
+.menu-inline__btn:hover {
     background: #ff6a00;
     color: #fff;
-    border-bottom-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 106, 0, 0.35);
 }
 
-/* Активный пункт (по желанию — можно подсветить) */
-.menu-inline__link.active {
-    color: #ff6a00;
-    border-bottom-color: #ff6a00;
-}
-
-/* Подменю для встроенного меню */
-.menu-inline__submenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    min-width: 240px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    list-style: none;
-    z-index: 100;
-    border-top: 3px solid #ff6a00;
-    padding: 5px 0;
-}
-
-.menu-inline__list > li:hover .menu-inline__submenu {
-    display: block;
-}
-
-.menu-inline__submenu li a {
-    display: block;
-    padding: 10px 20px;
-    color: #333;
-    text-decoration: none;
-    font-size: 13px;
-    border-bottom: 1px solid #f0f0f0;
-    transition: 0.3s;
-}
-
-.menu-inline__submenu li a:hover {
-    background: #ff6a00;
-    color: #fff;
-    padding-left: 26px;
+.menu-inline__btn:active {
+    transform: translateY(0) scale(0.98);
 }
 
 /* ----- БОКОВЫЕ КНОПКИ (btns) ----- */
@@ -2289,28 +2275,25 @@ footer {
         display: flex !important;
     }
 
-    /* Встроенное меню на телефоне */
-    .menu-inline__list {
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding: 0 5px;
+    /* Встроенное меню-кнопки на телефоне */
+    .menu-inline {
+        padding: 20px 0 25px;
     }
-    .menu-inline__list > li {
-        flex: 0 0 auto;
-    }
-    .menu-inline__link {
-        padding: 14px 16px;
-        font-size: 13px;
-    }
-    .menu-inline .menu-inline__title {
+    .menu-inline__title {
         font-size: 11px;
-        padding: 15px 15px 5px;
+        margin-bottom: 14px;
     }
-    /* На телефоне подменю открываем по тапу — пока отключим hover */
-    .menu-inline__list > li:hover .menu-inline__submenu {
-        display: none;
+    .menu-inline__group-title {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+    .menu-inline__list {
+        gap: 8px;
+        padding: 0 10px;
+    }
+    .menu-inline__btn {
+        padding: 10px 18px;
+        font-size: 13px;
     }
 
     .main__title {
@@ -2733,6 +2716,18 @@ footer {
         height: 34px;
         font-size: 10px;
     }
+
+    /* Кнопки встроенного меню на маленьких экранах */
+    .menu-inline {
+        padding: 18px 0 22px;
+    }
+    .menu-inline__btn {
+        padding: 9px 16px;
+        font-size: 12px;
+    }
+    .menu-inline__list {
+        gap: 7px;
+    }
 }
 
 @media (max-width: 360px) {
@@ -2766,5 +2761,9 @@ footer {
     .menu-mobile a {
         font-size: 13px;
         padding: 10px 14px;
+    }
+    .menu-inline__btn {
+        padding: 8px 14px;
+        font-size: 11px;
     }
 }
