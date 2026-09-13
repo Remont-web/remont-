@@ -194,7 +194,7 @@ document.querySelectorAll('.faq__question').forEach(q => {
 });
 
 // ============================================
-// 9. БУРГЕР-МЕНЮ (ИСПРАВЛЕННОЕ)
+// 9. БУРГЕР-МЕНЮ (НОВОЕ)
 // ============================================
 const navbarToggle = document.getElementById('navbarToggle');
 const menuMobile = document.getElementById('menuMobile');
@@ -206,7 +206,6 @@ if (navbarToggle && menuMobile && closeMenu) {
         e.stopPropagation();
         this.classList.toggle('active');
         menuMobile.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
     });
 
     // Закрытие по крестику
@@ -214,7 +213,6 @@ if (navbarToggle && menuMobile && closeMenu) {
         e.stopPropagation();
         navbarToggle.classList.remove('active');
         menuMobile.classList.remove('active');
-        document.body.classList.remove('menu-open');
     });
 
     // Закрытие при клике на ссылку
@@ -222,20 +220,19 @@ if (navbarToggle && menuMobile && closeMenu) {
         link.addEventListener('click', function() {
             navbarToggle.classList.remove('active');
             menuMobile.classList.remove('active');
-            document.body.classList.remove('menu-open');
         });
     });
 
-    // Закрытие при клике вне меню (на фон)
-    menuMobile.addEventListener('click', function(e) {
-        if (e.target === this) {
+    // Закрытие при клике вне меню
+    document.addEventListener('click', function(e) {
+        if (menuMobile.classList.contains('active') &&
+            !menuMobile.contains(e.target) &&
+            !navbarToggle.contains(e.target)) {
             navbarToggle.classList.remove('active');
             menuMobile.classList.remove('active');
-            document.body.classList.remove('menu-open');
         }
     });
 }
-
 // ============================================
 // 10. БОКОВЫЕ КНОПКИ (скрытие/показ)
 // ============================================
