@@ -8,9 +8,7 @@
 </head>
 <body>
 
-    <!-- ============================================
-    ШАПКА
-    ============================================ -->
+    <!-- ШАПКА -->
     <header>
         <div class="top">
             <div class="container">
@@ -106,11 +104,11 @@
     </div>
 
     <!-- ============================================
-    ГЛАВНЫЙ БАННЕР + КАЛЬКУЛЯТОР
+    ГЛАВНЫЙ БАННЕР
     ============================================ -->
     <section class="main">
 
-        <!-- МЕНЮ-КНОПКИ НА САМОМ ВЕРХУ ФОТО (только ПК) -->
+        <!-- МЕНЮ-КНОПКИ НА ВЕРХУ ФОТО (только ПК) -->
         <div class="menu-inline">
             <div class="container">
                 <ul class="menu-inline__list">
@@ -148,6 +146,7 @@
                     </ul>
                 </div>
 
+                <!-- Калькулятор (на ПК внутри баннера) -->
                 <form class="calc calculator-body fade-in" id="calculatorForm">
                     <div class="calc__item">
                         <div class="calc__title">Площадь помещения, м²</div>
@@ -199,6 +198,62 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </section>
+
+    <!-- Калькулятор отдельным блоком (только на мобильных) -->
+    <section class="calc-mobile-wrapper">
+        <div class="container">
+            <form class="calc calculator-body" id="calculatorFormMobile">
+                <div class="calc__item">
+                    <div class="calc__title">Площадь помещения, м²</div>
+                    <div class="area flex">
+                        <div class="area__input">
+                            <input type="range" id="calcRangeMobile" min="10" max="200" value="84" step="1">
+                        </div>
+                        <div class="area__number">
+                            <div class="area__number-minus" id="minusBtnMobile">−</div>
+                            <input id="calcValueMobile" type="number" value="84" min="10" max="200" step="1">
+                            <div class="area__number-plus" id="plusBtnMobile">+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc__item">
+                    <div class="calc__title">Тип квартиры</div>
+                    <div class="radio flex">
+                        <input type="radio" name="aptTypeM" id="apt1M" value="1" checked>
+                        <label for="apt1M">Новостройка</label>
+                        <input type="radio" name="aptTypeM" id="apt2M" value="1.3">
+                        <label for="apt2M">Вторичка</label>
+                    </div>
+                </div>
+                <div class="calc__item">
+                    <div class="calc__title">Вид ремонта</div>
+                    <div class="radio flex">
+                        <input type="radio" name="renovTypeM" id="ren1M" value="4990" checked>
+                        <label for="ren1M">Косметический</label>
+                        <input type="radio" name="renovTypeM" id="ren2M" value="6990">
+                        <label for="ren2M">Капитальный</label>
+                        <input type="radio" name="renovTypeM" id="ren3M" value="8990">
+                        <label for="ren3M">Дизайнерский</label>
+                        <input type="radio" name="renovTypeM" id="ren4M" value="3000">
+                        <label for="ren4M">Черновой</label>
+                        <input type="radio" name="renovTypeM" id="ren5M" value="8990">
+                        <label for="ren5M">Евроремонт</label>
+                    </div>
+                </div>
+                <div class="calc__res">
+                    <div class="calc__res-title">Примерная стоимость (без учета материалов)</div>
+                    <div class="calc__price"><span id="calcResultMobile">272 891</span> руб.</div>
+                </div>
+                <div class="calc__input flex">
+                    <input type="tel" placeholder="Ваш телефон" required>
+                    <button type="submit" class="calc__btn">Отправить</button>
+                </div>
+                <div class="calc__note">
+                    * Нажимая на кнопку, вы соглашаетесь с <a href="javascript:void(0)">политикой конфиденциальности</a>
+                </div>
+            </form>
         </div>
     </section>
 
