@@ -1,5 +1,5 @@
 // ============================================
-// 1. АНИМАЦИИ ПРИ СКРОЛЛЕ
+// 1. АНИМАЦИИ ПРИ СКРОЛЛЕ (Intersection Observer)
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
     const animateElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-scale');
@@ -37,7 +37,9 @@ if (range && valueInput && resultSpan) {
         let val = parseInt(this.value) || 10;
         if (val < 10) val = 10;
         if (val > 200) val = 200;
-        this.value = val; range.value = val; updateCalc();
+        this.value = val;
+        range.value = val;
+        updateCalc();
     });
     document.querySelectorAll('input[name="aptType"], input[name="renovType"]').forEach(el => {
         el.addEventListener('change', updateCalc);
@@ -47,12 +49,16 @@ if (range && valueInput && resultSpan) {
     if (minusBtn) minusBtn.addEventListener('click', function() {
         let val = parseInt(valueInput.value) || 84;
         if (val > 10) val--;
-        valueInput.value = val; range.value = val; updateCalc();
+        valueInput.value = val;
+        range.value = val;
+        updateCalc();
     });
     if (plusBtn) plusBtn.addEventListener('click', function() {
         let val = parseInt(valueInput.value) || 84;
         if (val < 200) val++;
-        valueInput.value = val; range.value = val; updateCalc();
+        valueInput.value = val;
+        range.value = val;
+        updateCalc();
     });
     updateCalc();
 }
@@ -111,7 +117,7 @@ document.querySelectorAll('.price__tabs a').forEach(tab => {
 });
 
 // ============================================
-// 5. ГАЛЕРЕЯ РЕМОНТА
+// 5. ГАЛЕРЕЯ РЕМОНТА (переключение миниатюр)
 // ============================================
 document.querySelectorAll('.repair__thumbnail').forEach(thumb => {
     thumb.addEventListener('click', function() {
@@ -124,7 +130,7 @@ document.querySelectorAll('.repair__thumbnail').forEach(thumb => {
 });
 
 // ============================================
-// 6. ГАЛЕРЕЯ СКЛАДА
+// 6. ГАЛЕРЕЯ СКЛАДА (переключение миниатюр)
 // ============================================
 document.querySelectorAll('.stock__thumbnail').forEach(thumb => {
     thumb.addEventListener('click', function() {
@@ -137,7 +143,7 @@ document.querySelectorAll('.stock__thumbnail').forEach(thumb => {
 });
 
 // ============================================
-// 7. АКЦИИ
+// 7. АКЦИИ (переключение)
 // ============================================
 const slides = document.querySelectorAll('.jolly-slider-extra');
 const controls = document.querySelectorAll('.jolly-slide-control');
@@ -152,7 +158,7 @@ controls.forEach(control => {
 });
 
 // ============================================
-// 8. FAQ
+// 8. FAQ (аккордеон)
 // ============================================
 document.querySelectorAll('.faq__question').forEach(q => {
     q.addEventListener('click', function() {
@@ -188,11 +194,13 @@ document.querySelectorAll('.faq__question').forEach(q => {
         else openMenu();
     });
 
-    if (closeMenu) closeMenu.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeMenuFunc();
-    });
+    if (closeMenu) {
+        closeMenu.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMenuFunc();
+        });
+    }
 
     menuMobile.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeMenuFunc);
@@ -266,7 +274,7 @@ document.querySelectorAll('.cities__tabs a').forEach(tab => {
 });
 
 // ============================================
-// 14. ГАЛЕРЕЯ РАБОТ
+// 14. ГАЛЕРЕЯ РАБОТ (слайдер)
 // ============================================
 let currentWork = 0;
 const works = document.querySelectorAll('.work');
@@ -296,7 +304,7 @@ dots.forEach((dot, index) => {
 if (works.length) showWork(0);
 
 // ============================================
-// 15. ОТКЛЮЧЕНИЕ ВСЕХ КНОПОК
+// 15. ОТКЛЮЧЕНИЕ ПУСТЫХ ССЫЛОК
 // ============================================
 document.querySelectorAll('a[href="javascript:void(0)"]').forEach(el => {
     el.addEventListener('click', function(e) { e.preventDefault(); });
@@ -314,7 +322,7 @@ document.querySelectorAll('form').forEach(form => {
 });
 
 // ============================================
-// 17. ПЛАВНАЯ ПРОКРУТКА
+// 17. ПЛАВНАЯ ПРОКРУТКА (якоря)
 // ============================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
