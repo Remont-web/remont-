@@ -1,5 +1,5 @@
 // ============================================
-// 1. АНИМАЦИИ ПРИ СКРОЛЛЕ (Intersection Observer)
+// 1. АНИМАЦИИ ПРИ СКРОЛЛЕ
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
     const animateElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-scale');
@@ -49,22 +49,18 @@ if (range && valueInput && resultSpan) {
     if (minusBtn) minusBtn.addEventListener('click', function() {
         let val = parseInt(valueInput.value) || 84;
         if (val > 10) val--;
-        valueInput.value = val;
-        range.value = val;
-        updateCalc();
+        valueInput.value = val; range.value = val; updateCalc();
     });
     if (plusBtn) plusBtn.addEventListener('click', function() {
         let val = parseInt(valueInput.value) || 84;
         if (val < 200) val++;
-        valueInput.value = val;
-        range.value = val;
-        updateCalc();
+        valueInput.value = val; range.value = val; updateCalc();
     });
     updateCalc();
 }
 
 // ============================================
-// 3. QUIZ (пошаговый тест)
+// 3. QUIZ
 // ============================================
 const quizSteps = document.querySelectorAll('.quiz__item');
 const stepIndicators = document.querySelectorAll('.quiz__steps p');
@@ -91,7 +87,7 @@ function showQuizStep(step) {
 }
 
 // ============================================
-// 4. ВКЛАДКИ (ремонт, цены)
+// 4. ВКЛАДКИ
 // ============================================
 document.querySelectorAll('.repair__tabs a').forEach(tab => {
     tab.addEventListener('click', function(e) {
@@ -117,7 +113,7 @@ document.querySelectorAll('.price__tabs a').forEach(tab => {
 });
 
 // ============================================
-// 5. ГАЛЕРЕЯ РЕМОНТА (переключение миниатюр)
+// 5. ГАЛЕРЕЯ РЕМОНТА
 // ============================================
 document.querySelectorAll('.repair__thumbnail').forEach(thumb => {
     thumb.addEventListener('click', function() {
@@ -130,7 +126,7 @@ document.querySelectorAll('.repair__thumbnail').forEach(thumb => {
 });
 
 // ============================================
-// 6. ГАЛЕРЕЯ СКЛАДА (переключение миниатюр)
+// 6. ГАЛЕРЕЯ СКЛАДА
 // ============================================
 document.querySelectorAll('.stock__thumbnail').forEach(thumb => {
     thumb.addEventListener('click', function() {
@@ -143,7 +139,7 @@ document.querySelectorAll('.stock__thumbnail').forEach(thumb => {
 });
 
 // ============================================
-// 7. АКЦИИ (переключение)
+// 7. АКЦИИ
 // ============================================
 const slides = document.querySelectorAll('.jolly-slider-extra');
 const controls = document.querySelectorAll('.jolly-slide-control');
@@ -158,7 +154,7 @@ controls.forEach(control => {
 });
 
 // ============================================
-// 8. FAQ (аккордеон)
+// 8. FAQ
 // ============================================
 document.querySelectorAll('.faq__question').forEach(q => {
     q.addEventListener('click', function() {
@@ -194,13 +190,11 @@ document.querySelectorAll('.faq__question').forEach(q => {
         else openMenu();
     });
 
-    if (closeMenu) {
-        closeMenu.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeMenuFunc();
-        });
-    }
+    if (closeMenu) closeMenu.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeMenuFunc();
+    });
 
     menuMobile.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeMenuFunc);
@@ -226,7 +220,7 @@ if (btnsToggle && sideButtons) {
 }
 
 // ============================================
-// 11. МОДАЛЬНОЕ ОКНО (города)
+// 11. МОДАЛЬНОЕ ОКНО
 // ============================================
 const cityBtn = document.getElementById('cityBtn');
 const cityModal = document.getElementById('cityModal');
@@ -259,22 +253,7 @@ if (citySearch) {
 }
 
 // ============================================
-// 13. ВКЛАДКИ ГОРОДОВ
-// ============================================
-document.querySelectorAll('.cities__tabs a').forEach(tab => {
-    tab.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelectorAll('.cities__tabs a').forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        const target = this.dataset.city;
-        document.querySelectorAll('.cities__list').forEach(list => list.classList.remove('active'));
-        const targetEl = document.getElementById(target);
-        if (targetEl) targetEl.classList.add('active');
-    });
-});
-
-// ============================================
-// 14. ГАЛЕРЕЯ РАБОТ (слайдер)
+// 13. ГАЛЕРЕЯ РАБОТ
 // ============================================
 let currentWork = 0;
 const works = document.querySelectorAll('.work');
@@ -304,14 +283,14 @@ dots.forEach((dot, index) => {
 if (works.length) showWork(0);
 
 // ============================================
-// 15. ОТКЛЮЧЕНИЕ ПУСТЫХ ССЫЛОК
+// 14. ОТКЛЮЧЕНИЕ ПУСТЫХ ССЫЛОК
 // ============================================
 document.querySelectorAll('a[href="javascript:void(0)"]').forEach(el => {
     el.addEventListener('click', function(e) { e.preventDefault(); });
 });
 
 // ============================================
-// 16. ОТПРАВКА ФОРМ (заглушка)
+// 15. ОТПРАВКА ФОРМ
 // ============================================
 document.querySelectorAll('form').forEach(form => {
     form.addEventListener('submit', function(e) {
@@ -322,7 +301,7 @@ document.querySelectorAll('form').forEach(form => {
 });
 
 // ============================================
-// 17. ПЛАВНАЯ ПРОКРУТКА (якоря)
+// 16. ПЛАВНАЯ ПРОКРУТКА
 // ============================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
