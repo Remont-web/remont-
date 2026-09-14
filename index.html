@@ -8,7 +8,9 @@
 </head>
 <body>
 
-    <!-- ШАПКА -->
+    <!-- ============================================
+    ШАПКА
+    ============================================ -->
     <header>
         <div class="top">
             <div class="container">
@@ -16,6 +18,8 @@
                     <div class="top__city">
                         <a href="javascript:void(0)" class="top__city-title" id="cityBtn">г. Москва</a>
                     </div>
+
+                    <!-- Горизонтальное меню (ПК) -->
                     <ul class="top__menu flex">
                         <li><a href="javascript:void(0)">О компании</a></li>
                         <li><a href="javascript:void(0)">Портфолио</a></li>
@@ -23,7 +27,9 @@
                         <li><a href="javascript:void(0)">Ремонтникам</a></li>
                         <li><a href="javascript:void(0)">Контакты</a></li>
                     </ul>
-                    <a href="javascript:void(0)" class="btn">Заказать звонок</a>
+
+                    <a href="javascript:void(0)" class="btn top__btn">Заказать звонок</a>
+
                     <div class="navbar" id="navbarToggle">
                         <span></span><span></span><span></span>
                     </div>
@@ -41,6 +47,8 @@
                             <p>Ремонт без нервов и переплат</p>
                         </span>
                     </a>
+
+                    <!-- Контакты (ПК) -->
                     <div class="header__contacts flex">
                         <div class="header__contacts-item">
                             <p>Время работы с 9:00 до 18:00 в пн-пт</p>
@@ -51,16 +59,26 @@
                             <a href="tel:+79060726622" class="header__tel">+7(906)072-66-22</a>
                         </div>
                     </div>
+
+                    <!-- Контакты для мобильной версии -->
+                    <div class="header__contacts-mobile flex">
+                        <a href="tel:+79208950955" class="header__tel-m">+7(920)895-09-55</a>
+                        <a href="tel:+79060726622" class="header__tel-m">+7(906)072-66-22</a>
+                    </div>
+
+                    <!-- Иконка калькулятора справа -->
                     <a href="javascript:void(0)" class="calc-link flex">
                         <img src="assets/calc.png" alt="Калькулятор">
-                        <span>Калькулятор <br>ремонта</span>
+                        <span class="calc-link__text">Калькулятор <br>ремонта</span>
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- МОБИЛЬНОЕ МЕНЮ (бургер) -->
+    <!-- ============================================
+    МОБИЛЬНОЕ МЕНЮ
+    ============================================ -->
     <div class="menu-mobile" id="menuMobile">
         <button class="close-menu" id="closeMenu" aria-label="Закрыть меню">✕</button>
         <div class="menu-title">Основное</div>
@@ -78,7 +96,9 @@
         <a href="javascript:void(0)">Дизайн интерьеров</a>
     </div>
 
-    <!-- БОКОВЫЕ КНОПКИ -->
+    <!-- ============================================
+    БОКОВЫЕ КНОПКИ
+    ============================================ -->
     <button class="btns-toggle" id="btnsToggle" aria-label="Скрыть/показать боковые кнопки">
         <span class="toggle-arrow">◀</span>
     </button>
@@ -93,8 +113,30 @@
         </div>
     </div>
 
-    <!-- ГЛАВНЫЙ БАННЕР + КАЛЬКУЛЯТОР -->
+    <!-- ============================================
+    ГЛАВНЫЙ БАННЕР + КАЛЬКУЛЯТОР
+    ============================================ -->
     <section class="main">
+
+        <!-- МЕНЮ-КНОПКИ НА ВЕРХНЕЙ ГРАНИ ФОТО (только ПК) -->
+        <div class="menu-inline">
+            <div class="container">
+                <ul class="menu-inline__list">
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">О компании</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Портфолио</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Цены</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонтникам</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Контакты</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Услуги ремонта</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт квартир</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт комнат</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Виды ремонта</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт помещений</a></li>
+                    <li><a href="javascript:void(0)" class="menu-inline__btn">Дизайн интерьеров</a></li>
+                </ul>
+            </div>
+        </div>
+
         <div class="container">
             <div class="main__content flex">
                 <div class="main__info fade-in">
@@ -165,28 +207,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-    ВСТРОЕННОЕ МЕНЮ-КНОПКИ
-    (сразу после калькулятора, только для ПК)
-    ============================================ -->
-    <section class="menu-inline">
-        <div class="container">
-            <ul class="menu-inline__list">
-                <li><a href="javascript:void(0)" class="menu-inline__btn">О компании</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Портфолио</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Цены</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонтникам</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Контакты</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Услуги ремонта</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт квартир</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт комнат</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Виды ремонта</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт помещений</a></li>
-                <li><a href="javascript:void(0)" class="menu-inline__btn">Дизайн интерьеров</a></li>
-            </ul>
         </div>
     </section>
 
@@ -478,7 +498,7 @@
                     </div>
                     <div class="repair__info">
                         <h3 class="repair__title">Дизайнерский ремонт <span>от 8 990 руб./кв. м</span></h3>
-                        <p>Дизайнерский ремонт — это когда интерьер становится авторской работой. Не просто поклеить обои и расставить мебель, а создать цельный образ.</p>
+                        <p>Дизайнерский ремонт — это когда интерьер становится авторской работой.</p>
                         <p>Работаем с пространством, а не против него. Ваши привычки, вкусы, образ жизни — всё это превращается в концепцию.</p>
                         <div class="repair__list">
                             <div class="repair__list-title">Что входит в стоимость ремонта:</div>
@@ -507,7 +527,7 @@
                     </div>
                     <div class="repair__info">
                         <h3 class="repair__title">Косметический ремонт <span>от 4 990 руб./кв. м</span></h3>
-                        <p>Косметический ремонт — это обновление без лишних сложностей. Покраска стен и потолков, укладка пола, замена дверей и окон.</p>
+                        <p>Косметический ремонт — это обновление без лишних сложностей.</p>
                         <div class="repair__list">
                             <div class="repair__list-title">Что входит в стоимость ремонта:</div>
                             <ul>
@@ -537,7 +557,7 @@
                     <div class="repair__info">
                         <h3 class="repair__title">Черновой ремонт <span>От 3 000 руб./кв. м</span></h3>
                         <p>Черновой ремонт — это база. Без него любая отделка со временем пойдет трещинами.</p>
-                        <p>Работаем по технологии, а не «на глаз». Каждый этап — от демонтажа до монтажа ГКЛ — выполняется с соблюдением нормативов.</p>
+                        <p>Работаем по технологии, а не «на глаз».</p>
                         <div class="repair__list">
                             <div class="repair__list-title">Что входит в стоимость ремонта:</div>
                             <ul>
@@ -719,7 +739,7 @@
             <div class="estimate__content flex">
                 <div class="estimate__info">
                     <h2 class="section__title white mb-20 fade-in">Как сэкономить на ремонте в Москве?</h2>
-                    <p class="estimate__description fade-in">Получите подробную смету и точную стоимость. В 90% случаев нам удается подобрать лучшее строительное решение с наименьшей ценой.</p>
+                    <p class="estimate__description fade-in">Получите подробную смету и точную стоимость.</p>
                     <form class="estimate__form flex fade-in">
                         <input type="text" placeholder="Как Вас зовут?" required>
                         <input type="tel" placeholder="Ваш телефон" required>
@@ -1078,26 +1098,6 @@
                 <li>Контроль — этим занимается наш прораб.</li>
             </ul>
             <div class="note fade-in">Гарантия 3 года на все работы.</div>
-            <h2 class="section__title mb-20 fade-in">Справочная информация: <span>типовые расценки</span></h2>
-            <div class="overflow-x fade-in">
-                <table class="price-service-table">
-                    <thead>
-                        <tr>
-                            <th>Тип квартиры</th>
-                            <th>Черновой</th>
-                            <th>Косметический</th>
-                            <th>Капитальный</th>
-                            <th>Дизайнерский</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Студия (20-30 кв.м)</td><td>100-150 тыс.</td><td>160-240 тыс.</td><td>240-360 тыс.</td><td>400-600 тыс.</td></tr>
-                        <tr><td>1-комнатная (30-45 кв.м)</td><td>144-216 тыс.</td><td>234-351 тыс.</td><td>345-517 тыс.</td><td>570-855 тыс.</td></tr>
-                        <tr><td>2-комнатная (45-60 кв.м)</td><td>202-270 тыс.</td><td>337-450 тыс.</td><td>495-660 тыс.</td><td>825-1100 тыс.</td></tr>
-                        <tr><td>3-комнатная (60-80 кв.м)</td><td>258-344 тыс.</td><td>438-584 тыс.</td><td>648-864 тыс.</td><td>1080-1440 тыс.</td></tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </section>
 
@@ -1228,103 +1228,6 @@
             <div class="offices__maps fade-in">
                 <div class="offices__map" style="height:300px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;border-radius:10px;font-size:18px;color:#888;border:1px solid #333;">
                     📍 Карта: Москва, улица Привольная, д. 61к1
-                </div>
-            </div>
-            <div class="cities fade-in">
-                <div class="cities__title">Наши представители есть в городах:</div>
-                <div class="cities__tabs flex">
-                    <a href="javascript:void(0)" class="active" data-city="cfo">ЦФО</a>
-                    <a href="javascript:void(0)" data-city="szfo">СЗФО</a>
-                    <a href="javascript:void(0)" data-city="ufo">ЮФО</a>
-                    <a href="javascript:void(0)" data-city="pfo">ПФО</a>
-                    <a href="javascript:void(0)" data-city="urfo">УрФО</a>
-                    <a href="javascript:void(0)" data-city="sfo">СФО</a>
-                    <a href="javascript:void(0)" data-city="dfo">ДФО</a>
-                </div>
-                <div class="cities__lists">
-                    <div class="cities__list active" id="cfo">
-                        <ul class="flex">
-                            <li><a href="javascript:void(0)">Белгород</a></li>
-                            <li><a href="javascript:void(0)">Брянск</a></li>
-                            <li><a href="javascript:void(0)">Владимир</a></li>
-                            <li><a href="javascript:void(0)">Воронеж</a></li>
-                            <li><a href="javascript:void(0)">Иваново</a></li>
-                            <li><a href="javascript:void(0)">Калуга</a></li>
-                            <li><a href="javascript:void(0)">Курск</a></li>
-                            <li><a href="javascript:void(0)">Липецк</a></li>
-                            <li><a href="javascript:void(0)">Орёл</a></li>
-                            <li><a href="javascript:void(0)">Рязань</a></li>
-                            <li><a href="javascript:void(0)">Смоленск</a></li>
-                            <li><a href="javascript:void(0)">Тамбов</a></li>
-                            <li><a href="javascript:void(0)">Тверь</a></li>
-                            <li><a href="javascript:void(0)">Тула</a></li>
-                            <li><a href="javascript:void(0)">Ярославль</a></li>
-                        </ul>
-                    </div>
-                    <div class="cities__list" id="szfo">
-                        <ul class="flex">
-                            <li><a href="javascript:void(0)">Архангельск</a></li>
-                            <li><a href="javascript:void(0)">Великий Новгород</a></li>
-                            <li><a href="javascript:void(0)">Вологда</a></li>
-                            <li><a href="javascript:void(0)">Калининград</a></li>
-                            <li><a href="javascript:void(0)">Мурманск</a></li>
-                            <li><a href="javascript:void(0)">Петрозаводск</a></li>
-                            <li><a href="javascript:void(0)">Псков</a></li>
-                            <li><a href="javascript:void(0)">Санкт-Петербург</a></li>
-                        </ul>
-                    </div>
-                    <div class="cities__list" id="ufo">
-                        <ul class="flex">
-                            <li><a href="javascript:void(0)">Астрахань</a></li>
-                            <li><a href="javascript:void(0)">Волгоград</a></li>
-                            <li><a href="javascript:void(0)">Краснодар</a></li>
-                            <li><a href="javascript:void(0)">Новороссийск</a></li>
-                            <li><a href="javascript:void(0)">Ростов-на-Дону</a></li>
-                            <li><a href="javascript:void(0)">Сочи</a></li>
-                        </ul>
-                    </div>
-                    <div class="cities__list" id="pfo">
-                        <ul class="flex">
-                            <li><a href="javascript:void(0)">Ижевск</a></li>
-                            <li><a href="javascript:void(0)">Казань</a></li>
-                            <li><a href="javascript:void(0)">Киров</a></li>
-                            <li><a href="javascript:void(0)">Нижний Новгород</a></li>
-                            <li><a href="javascript:void(0)">Оренбург</a></li>
-                            <li><a href="javascript:void(0)">Пенза</a></li>
-                            <li><a href="javascript:void(0)">Пермь</a></li>
-                            <li><a href="javascript:void(0)">Самара</a></li>
-                            <li><a href="javascript:void(0)">Саратов</a></li>
-                            <li><a href="javascript:void(0)">Уфа</a></li>
-                        </ul>
-                    </div>
-                    <div class="cities__list" id="urfo">
-                        <ul class="flex">
-                            <li><a href="javascript:void(0)">Екатеринбург</a></li>
-                            <li><a href="javascript:void(0)">Курган</a></li>
-                            <li><a href="javascript:void(0)">Магнитогорск</a></li>
-                            <li><a href="javascript:void(0)">Сургут</a></li>
-                            <li><a href="javascript:void(0)">Тюмень</a></li>
-                            <li><a href="javascript:void(0)">Челябинск</a></li>
-                        </ul>
-                    </div>
-                    <div class="cities__list" id="sfo">
-                        <ul class="flex">
-                            <li><a href="javascript:void(0)">Барнаул</a></li>
-                            <li><a href="javascript:void(0)">Иркутск</a></li>
-                            <li><a href="javascript:void(0)">Кемерово</a></li>
-                            <li><a href="javascript:void(0)">Красноярск</a></li>
-                            <li><a href="javascript:void(0)">Новосибирск</a></li>
-                            <li><a href="javascript:void(0)">Омск</a></li>
-                            <li><a href="javascript:void(0)">Томск</a></li>
-                        </ul>
-                    </div>
-                    <div class="cities__list" id="dfo">
-                        <ul class="flex">
-                            <li><a href="javascript:void(0)">Владивосток</a></li>
-                            <li><a href="javascript:void(0)">Хабаровск</a></li>
-                            <li><a href="javascript:void(0)">Якутск</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
