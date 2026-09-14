@@ -8,9 +8,7 @@
 </head>
 <body>
 
-    <!-- ============================================
-    ШАПКА
-    ============================================ -->
+    <!-- ШАПКА -->
     <header>
         <div class="top">
             <div class="container">
@@ -18,7 +16,6 @@
                     <div class="top__city">
                         <a href="javascript:void(0)" class="top__city-title" id="cityBtn">г. Москва</a>
                     </div>
-
                     <ul class="top__menu flex">
                         <li><a href="javascript:void(0)">О компании</a></li>
                         <li><a href="javascript:void(0)">Портфолио</a></li>
@@ -26,13 +23,9 @@
                         <li><a href="javascript:void(0)">Ремонтникам</a></li>
                         <li><a href="javascript:void(0)">Контакты</a></li>
                     </ul>
-
                     <a href="javascript:void(0)" class="btn">Заказать звонок</a>
-
                     <div class="navbar" id="navbarToggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span></span><span></span><span></span>
                     </div>
                 </div>
             </div>
@@ -48,7 +41,6 @@
                             <p>Ремонт без нервов и переплат</p>
                         </span>
                     </a>
-
                     <div class="header__contacts flex">
                         <div class="header__contacts-item">
                             <p>Время работы с 9:00 до 18:00 в пн-пт</p>
@@ -59,7 +51,6 @@
                             <a href="tel:+79060726622" class="header__tel">+7(906)072-66-22</a>
                         </div>
                     </div>
-
                     <a href="javascript:void(0)" class="calc-link flex">
                         <img src="assets/calc.png" alt="Калькулятор">
                         <span>Калькулятор <br>ремонта</span>
@@ -69,9 +60,7 @@
         </div>
     </header>
 
-    <!-- ============================================
-    МОБИЛЬНОЕ МЕНЮ (ВЫПАДАЮЩЕЕ)
-    ============================================ -->
+    <!-- МОБИЛЬНОЕ МЕНЮ (бургер) -->
     <div class="menu-mobile" id="menuMobile">
         <button class="close-menu" id="closeMenu" aria-label="Закрыть меню">✕</button>
         <div class="menu-title">Основное</div>
@@ -89,9 +78,7 @@
         <a href="javascript:void(0)">Дизайн интерьеров</a>
     </div>
 
-    <!-- ============================================
-    БОКОВЫЕ КНОПКИ
-    ============================================ -->
+    <!-- БОКОВЫЕ КНОПКИ -->
     <button class="btns-toggle" id="btnsToggle" aria-label="Скрыть/показать боковые кнопки">
         <span class="toggle-arrow">◀</span>
     </button>
@@ -106,9 +93,7 @@
         </div>
     </div>
 
-    <!-- ============================================
-    ГЛАВНЫЙ БАННЕР + КАЛЬКУЛЯТОР
-    ============================================ -->
+    <!-- ГЛАВНЫЙ БАННЕР + КАЛЬКУЛЯТОР -->
     <section class="main">
         <div class="container">
             <div class="main__content flex">
@@ -185,40 +170,27 @@
 
     <!-- ============================================
     ВСТРОЕННОЕ МЕНЮ-КНОПКИ
-    (те же пункты, что и в бургер-меню)
+    (сразу после калькулятора, только для ПК)
     ============================================ -->
     <section class="menu-inline">
         <div class="container">
-            <div class="menu-inline__title">Разделы сайта</div>
-
-            <div class="menu-inline__group">
-                <div class="menu-inline__group-title">Основное</div>
-                <ul class="menu-inline__list">
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">О компании</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Портфолио</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Цены</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонтникам</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Контакты</a></li>
-                </ul>
-            </div>
-
-            <div class="menu-inline__group">
-                <div class="menu-inline__group-title">Услуги</div>
-                <ul class="menu-inline__list">
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Услуги ремонта</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт квартир</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт комнат</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Виды ремонта</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт помещений</a></li>
-                    <li><a href="javascript:void(0)" class="menu-inline__btn">Дизайн интерьеров</a></li>
-                </ul>
-            </div>
+            <ul class="menu-inline__list">
+                <li><a href="javascript:void(0)" class="menu-inline__btn">О компании</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Портфолио</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Цены</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонтникам</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Контакты</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Услуги ремонта</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт квартир</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт комнат</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Виды ремонта</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Ремонт помещений</a></li>
+                <li><a href="javascript:void(0)" class="menu-inline__btn">Дизайн интерьеров</a></li>
+            </ul>
         </div>
     </section>
 
-    <!-- ============================================
-    QUIZ (ТЕСТ)
-    ============================================ -->
+    <!-- QUIZ -->
     <section class="quiz" id="quiz">
         <div class="container">
             <h2 class="section__title text-center fade-in">
@@ -407,9 +379,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ИНФО БЛОК
-    ============================================ -->
+    <!-- ИНФО -->
     <section class="info">
         <div class="container">
             <h2 class="section__title text-center fade-in">Как сделать ремонт и <span>сберечь свои нервы с деньгами</span> в 2026!</h2>
@@ -421,13 +391,11 @@
                 <li>Сколько времени уйдёт на контроль и согласование каждого этапа?</li>
                 <li>Как сделать ремонт современным и функциональным?</li>
             </ul>
-            <p class="fade-in">Эти вопросы возникают у всех, кто затевает ремонт. Но есть способ избежать лишних переживаний — доверить работу профессионалам. В дальнейших разделах разберём, как наша компания помогает клиентам сэкономить нервы и бюджет, делая ремонт под ключ.</p>
+            <p class="fade-in">Эти вопросы возникают у всех, кто затевает ремонт. Но есть способ избежать лишних переживаний — доверить работу профессионалам.</p>
         </div>
     </section>
 
-    <!-- ============================================
-    ВАРИАНТЫ РЕМОНТА
-    ============================================ -->
+    <!-- ВАРИАНТЫ РЕМОНТА -->
     <section class="repair" id="repair">
         <div class="container">
             <h2 class="section__title text-center fade-in"><span>Варианты</span> ремонта помещения в Москве</h2>
@@ -442,7 +410,7 @@
             <div class="repair__item active fade-in" id="repair-1">
                 <div class="repair__content flex">
                     <div class="repair__images">
-                        <div class="repair__slider"><img src="assets/kapital_1.jpg" alt="Капитальный ремонт"></div>
+                        <div class="repair__slider"><img src="assets/kapital_1.jpg" alt=""></div>
                         <div class="repair__thumbnails">
                             <div class="repair__thumbnail active"><img src="assets/kapital_1.jpg" alt=""></div>
                             <div class="repair__thumbnail"><img src="assets/kapital_2.jpg" alt=""></div>
@@ -451,8 +419,8 @@
                     </div>
                     <div class="repair__info">
                         <h3 class="repair__title">Капитальный ремонт <span>от 6 990 руб./кв. м</span></h3>
-                        <p>Капитальный ремонт — полная перезагрузка пространства. Не косметика, а фундаментальные изменения: от демонтажа старых коммуникаций до чистовой отделки. Дорого, долго, но результат — принципиально новое жильё с нуля.</p>
-                        <p>Работаем с основой: меняем проводку, трубы, перекрытия. Перепланировка, новые окна, двери, полы — всё по современным стандартам. Не просто «свежий вид», а повышение функциональности и энергоэффективности. Без компромиссов.</p>
+                        <p>Капитальный ремонт — полная перезагрузка пространства. Не косметика, а фундаментальные изменения: от демонтажа старых коммуникаций до чистовой отделки.</p>
+                        <p>Работаем с основой: меняем проводку, трубы, перекрытия. Перепланировка, новые окна, двери, полы — всё по современным стандартам.</p>
                         <div class="repair__list">
                             <div class="repair__list-title">Что входит в стоимость ремонта:</div>
                             <ul>
@@ -472,7 +440,7 @@
             <div class="repair__item" id="repair-2">
                 <div class="repair__content flex">
                     <div class="repair__images">
-                        <div class="repair__slider"><img src="assets/evro_1.jpg" alt="Евроремонт"></div>
+                        <div class="repair__slider"><img src="assets/evro_1.jpg" alt=""></div>
                         <div class="repair__thumbnails">
                             <div class="repair__thumbnail active"><img src="assets/evro_1.jpg" alt=""></div>
                             <div class="repair__thumbnail"><img src="assets/evro_2.jpg" alt=""></div>
@@ -481,8 +449,8 @@
                     </div>
                     <div class="repair__info">
                         <h3 class="repair__title">Евроремонт <span>от 8 990 руб./кв. м</span></h3>
-                        <p>Евроремонт — не просто термин, а стандарт работы. Здесь каждая деталь имеет значение: от ровности стен до точности подбора материалов. Не косметика, а системный подход к пространству.</p>
-                        <p>Используем только проверенные материалы — никакого "аналога под видом оригинала". Технологии, которые действительно работают, а не маркетинговые обещания.</p>
+                        <p>Евроремонт — не просто термин, а стандарт работы. Здесь каждая деталь имеет значение.</p>
+                        <p>Используем только проверенные материалы — никакого "аналога под видом оригинала".</p>
                         <div class="repair__list">
                             <div class="repair__list-title">Что входит в стоимость ремонта:</div>
                             <ul>
@@ -501,7 +469,7 @@
             <div class="repair__item" id="repair-3">
                 <div class="repair__content flex">
                     <div class="repair__images">
-                        <div class="repair__slider"><img src="assets/dizain_1.jpg" alt="Дизайнерский ремонт"></div>
+                        <div class="repair__slider"><img src="assets/dizain_1.jpg" alt=""></div>
                         <div class="repair__thumbnails">
                             <div class="repair__thumbnail active"><img src="assets/dizain_1.jpg" alt=""></div>
                             <div class="repair__thumbnail"><img src="assets/dizain_2.jpg" alt=""></div>
@@ -530,7 +498,7 @@
             <div class="repair__item" id="repair-4">
                 <div class="repair__content flex">
                     <div class="repair__images">
-                        <div class="repair__slider"><img src="assets/kosmet_1.jpg" alt="Косметический ремонт"></div>
+                        <div class="repair__slider"><img src="assets/kosmet_1.jpg" alt=""></div>
                         <div class="repair__thumbnails">
                             <div class="repair__thumbnail active"><img src="assets/kosmet_1.jpg" alt=""></div>
                             <div class="repair__thumbnail"><img src="assets/kosmet_2.jpg" alt=""></div>
@@ -539,7 +507,7 @@
                     </div>
                     <div class="repair__info">
                         <h3 class="repair__title">Косметический ремонт <span>от 4 990 руб./кв. м</span></h3>
-                        <p>Косметический ремонт — это обновление без лишних сложностей. Покраска стен и потолков, укладка пола, замена дверей и окон — всё делаем аккуратно, без разрушений.</p>
+                        <p>Косметический ремонт — это обновление без лишних сложностей. Покраска стен и потолков, укладка пола, замена дверей и окон.</p>
                         <div class="repair__list">
                             <div class="repair__list-title">Что входит в стоимость ремонта:</div>
                             <ul>
@@ -558,7 +526,7 @@
             <div class="repair__item" id="repair-5">
                 <div class="repair__content flex">
                     <div class="repair__images">
-                        <div class="repair__slider"><img src="assets/chern_1.jpg" alt="Черновой ремонт"></div>
+                        <div class="repair__slider"><img src="assets/chern_1.jpg" alt=""></div>
                         <div class="repair__thumbnails">
                             <div class="repair__thumbnail active"><img src="assets/chern_1.jpg" alt=""></div>
                             <div class="repair__thumbnail"><img src="assets/chern_2.jpg" alt=""></div>
@@ -568,7 +536,7 @@
                     </div>
                     <div class="repair__info">
                         <h3 class="repair__title">Черновой ремонт <span>От 3 000 руб./кв. м</span></h3>
-                        <p>Черновой ремонт — это база. Без него любая отделка со временем пойдет трещинами. Мы делаем его основательно: сносим всё отжившее, прокладываем новые коммуникации, выводим плоскости в ноль.</p>
+                        <p>Черновой ремонт — это база. Без него любая отделка со временем пойдет трещинами.</p>
                         <p>Работаем по технологии, а не «на глаз». Каждый этап — от демонтажа до монтажа ГКЛ — выполняется с соблюдением нормативов.</p>
                         <div class="repair__list">
                             <div class="repair__list-title">Что входит в стоимость ремонта:</div>
@@ -594,9 +562,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ЭТАПЫ
-    ============================================ -->
+    <!-- ЭТАПЫ -->
     <section class="steps" id="steps">
         <div class="container">
             <h2 class="section__title text-center fade-in"><span>Все этапы</span> ремонта квартиры в Москве</h2>
@@ -617,7 +583,7 @@
                     <div class="step__icon flex"><img src="assets/step-3.png" alt=""></div>
                     <div class="step__number">3</div>
                     <div class="step__title">Подписываем договор</div>
-                    <p>У нас нет скрытых условий и непонятных терминов – все права и обязанности зафиксированы</p>
+                    <p>У нас нет скрытых условий и непонятных терминов</p>
                 </div>
                 <div class="step fade-in-scale step_4">
                     <div class="step__icon flex"><img src="assets/step-4.png" alt=""></div>
@@ -641,22 +607,20 @@
                     <div class="step__icon flex"><img src="assets/step-7.png" alt=""></div>
                     <div class="step__number">7</div>
                     <div class="step__title">Оплачиваете ремонт</div>
-                    <p>Стоимость не повышается в процессе выполнения работ – она точно известна еще до подписания договора</p>
+                    <p>Стоимость не повышается в процессе выполнения работ</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-    ПРИМЕРЫ РАБОТ
-    ============================================ -->
+    <!-- ПРИМЕРЫ РАБОТ -->
     <section class="works" id="works">
         <div class="container">
             <h2 class="section__title text-center fade-in"><span>Примеры</span> ремонтов квартир в Москве</h2>
             <div class="works__slider-wrapper">
                 <div class="works__slider flex">
                     <div class="work fade-in-scale">
-                        <div class="work__img"><img src="assets/work_magazin_1.jpg" alt="Ремонт магазина"></div>
+                        <div class="work__img"><img src="assets/work_magazin_1.jpg" alt=""></div>
                         <div class="work__info">
                             <h4 class="work__title">Ремонт магазина</h4>
                             <div class="work__items flex">
@@ -684,7 +648,7 @@
                         </div>
                     </div>
                     <div class="work fade-in-scale">
-                        <div class="work__img"><img src="assets/work_sanuzel_1.jpg" alt="Ремонт санузла"></div>
+                        <div class="work__img"><img src="assets/work_sanuzel_1.jpg" alt=""></div>
                         <div class="work__info">
                             <h4 class="work__title">Бюджетный ремонт совмещенного санузла</h4>
                             <div class="work__items flex">
@@ -712,7 +676,7 @@
                         </div>
                     </div>
                     <div class="work fade-in-scale">
-                        <div class="work__img"><img src="assets/work_2komnat_1.jpg" alt="Ремонт двухкомнатной квартиры"></div>
+                        <div class="work__img"><img src="assets/work_2komnat_1.jpg" alt=""></div>
                         <div class="work__info">
                             <h4 class="work__title">Ремонт двухкомнатной квартиры</h4>
                             <div class="work__items flex">
@@ -749,9 +713,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    СМЕТА
-    ============================================ -->
+    <!-- СМЕТА -->
     <section class="estimate" id="estimate">
         <div class="container">
             <div class="estimate__content flex">
@@ -766,15 +728,13 @@
                     </form>
                 </div>
                 <div class="estimate__img fade-in-right">
-                    <img src="assets/estimate-img.png" alt="Смета">
+                    <img src="assets/estimate-img.png" alt="">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-    ЦЕНЫ
-    ============================================ -->
+    <!-- ЦЕНЫ -->
     <section class="price" id="price">
         <div class="container">
             <h2 class="section__title text-center mb-20 fade-in"><span>Подробная смета</span> на ремонт помещения в Москве</h2>
@@ -871,16 +831,14 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ДОКУМЕНТЫ
-    ============================================ -->
+    <!-- ДОКУМЕНТЫ -->
     <section class="docs" id="docs">
         <div class="container">
             <h2 class="section__title white text-center fade-in"><span>Документы</span> на ремонт квартиры в Москве</h2>
             <div class="docs__items flex">
                 <div class="doc flex fade-in-scale">
                     <div class="doc__icon">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     </div>
                     <div class="doc__info">
                         <div>Матрица стоимостей ремонта квартир</div>
@@ -889,7 +847,7 @@
                 </div>
                 <div class="doc flex fade-in-scale">
                     <div class="doc__icon">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     </div>
                     <div class="doc__info">
                         <div>Образец договора подряда</div>
@@ -898,7 +856,7 @@
                 </div>
                 <div class="doc flex fade-in-scale">
                     <div class="doc__icon">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     </div>
                     <div class="doc__info">
                         <div>Пример сметы на ремонт</div>
@@ -909,9 +867,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ОПЛАТА
-    ============================================ -->
+    <!-- ОПЛАТА -->
     <section class="payment" id="payment">
         <div class="container">
             <h2 class="section__title text-center fade-in"><span>Источники финансирования</span> ремонта в Москве</h2>
@@ -956,18 +912,16 @@
         </div>
     </section>
 
-    <!-- ============================================
-    АКЦИИ
-    ============================================ -->
+    <!-- АКЦИИ -->
     <section class="offers" id="offers">
         <div class="container">
             <h2 class="section__title text-center fade-in"><span>Спецпредложения</span> на ремонт помещений в Москве</h2>
             <div class="jolly-slider-wrapper">
                 <div class="jolly-slider">
-                    <div><img src="assets/elders22.jpg" alt="Пенсионерам"></div>
-                    <div><img src="assets/large_remont_3_.jpg" alt="Крупным объектам"></div>
-                    <div><img src="assets/just_married22.jpg" alt="Молодоженам"></div>
-                    <div><img src="assets/move22.jpg" alt="Новоселам"></div>
+                    <div><img src="assets/elders22.jpg" alt=""></div>
+                    <div><img src="assets/large_remont_3_.jpg" alt=""></div>
+                    <div><img src="assets/just_married22.jpg" alt=""></div>
+                    <div><img src="assets/move22.jpg" alt=""></div>
                 </div>
                 <div class="jolly-slider-extra-wrapper">
                     <div class="jolly-slide-controls">
@@ -1002,9 +956,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ОТЗЫВЫ
-    ============================================ -->
+    <!-- ОТЗЫВЫ -->
     <section class="testimonials" id="testimonials">
         <div class="container">
             <h2 class="section__title text-center fade-in">Отзывы наших клиентов <span>в интернете</span></h2>
@@ -1012,7 +964,7 @@
                 <div class="testimonials__col flex fade-in">
                     <div class="testimonials__items">
                         <div class="testimonials__top flex">
-                            <div class="testimonials__service flex"><img src="assets/google.png" alt="Google"></div>
+                            <div class="testimonials__service flex"><img src="assets/google.png" alt=""></div>
                             <div class="testimonials__title">Отзывы в Google</div>
                             <div class="testimonials__rating flex"><p>4.7</p><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
                         </div>
@@ -1020,17 +972,15 @@
                             <div class="testimonial__info">
                                 <div class="testimonial__name">Серафим Васильев</div>
                                 <div class="testimonial__date">15 июня 2025</div>
-                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                             </div>
-                            <p class="testimonial__text">Делали отделку лоджии под ключ. Ребята подошли ответственно: сделали замеры, помогли с выбором материалов, рассчитали бюджет. Всё шло поэтапно, без задержек.</p>
+                            <p class="testimonial__text">Делали отделку лоджии под ключ. Ребята подошли ответственно: сделали замеры, помогли с выбором материалов, рассчитали бюджет.</p>
                         </div>
                         <div class="testimonial flex">
                             <div class="testimonial__info">
                                 <div class="testimonial__name">Рамис Швабросян</div>
                                 <div class="testimonial__date">2 июня 2025</div>
-                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
                             </div>
-                            <p class="testimonial__text">Круто организовали ремонт гостиной. Так красиво и уникально получилось. Реализовали все наши запросы, даже незначительные!</p>
+                            <p class="testimonial__text">Круто организовали ремонт гостиной. Так красиво и уникально получилось.</p>
                         </div>
                         <a href="javascript:void(0)" class="testimonials__more btn">Показать ещё</a>
                     </div>
@@ -1038,7 +988,7 @@
                 <div class="testimonials__col flex fade-in">
                     <div class="testimonials__items">
                         <div class="testimonials__top flex">
-                            <div class="testimonials__service flex"><img src="assets/yandex.png" alt="Yandex"></div>
+                            <div class="testimonials__service flex"><img src="assets/yandex.png" alt=""></div>
                             <div class="testimonials__title">Отзывы в Yandex</div>
                             <div class="testimonials__rating flex"><p>4.7</p><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
                         </div>
@@ -1046,7 +996,6 @@
                             <div class="testimonial__info">
                                 <div class="testimonial__name">Алексей Сисьмеков</div>
                                 <div class="testimonial__date">9 июня 2025</div>
-                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                             </div>
                             <p class="testimonial__text">Обратился к ним для монтажа реечного потолка на кухне. Приятно удивило, что сразу предложили несколько вариантов дизайна.</p>
                         </div>
@@ -1054,9 +1003,8 @@
                             <div class="testimonial__info">
                                 <div class="testimonial__name">Матвей Пнёв</div>
                                 <div class="testimonial__date">16 мая 2025</div>
-                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                             </div>
-                            <p class="testimonial__text">Остался очень доволен сотрудничеством с этой компанией. Обращался по вопросу ремонта своей студии — приятно удивил профессиональный подход.</p>
+                            <p class="testimonial__text">Остался очень доволен сотрудничеством. Приятно удивил профессиональный подход к делу.</p>
                         </div>
                         <a href="javascript:void(0)" class="testimonials__more btn">Показать ещё</a>
                     </div>
@@ -1064,7 +1012,7 @@
                 <div class="testimonials__col flex fade-in">
                     <div class="testimonials__items">
                         <div class="testimonials__top flex">
-                            <div class="testimonials__service flex"><img src="assets/yell.png" alt="Yell"></div>
+                            <div class="testimonials__service flex"><img src="assets/yell.png" alt=""></div>
                             <div class="testimonials__title">Отзывы на Yell.ru</div>
                             <div class="testimonials__rating flex"><p>4.7</p><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
                         </div>
@@ -1072,17 +1020,15 @@
                             <div class="testimonial__info">
                                 <div class="testimonial__name">Дмитрий Харченко</div>
                                 <div class="testimonial__date">5 июня 2025</div>
-                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                             </div>
-                            <p class="testimonial__text">Нам нужен был срочный, но качественный косметический ремонт в квартире перед сдачей в аренду. Работа была выполнена невероятно быстро.</p>
+                            <p class="testimonial__text">Нам нужен был срочный, но качественный косметический ремонт перед сдачей в аренду.</p>
                         </div>
                         <div class="testimonial flex">
                             <div class="testimonial__info">
                                 <div class="testimonial__name">Федя Соколов</div>
                                 <div class="testimonial__date">13 мая 2025</div>
-                                <div class="testimonial__rating flex"><span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span></div>
                             </div>
-                            <p class="testimonial__text">Наконец-то решились на ремонт в ванной, и Под Ключ справились на отлично! Нужно было полностью обновить помещение.</p>
+                            <p class="testimonial__text">Наконец-то решились на ремонт в ванной, и Под Ключ справились на отлично!</p>
                         </div>
                         <a href="javascript:void(0)" class="testimonials__more btn">Показать ещё</a>
                     </div>
@@ -1091,24 +1037,20 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ВОПРОСЫ
-    ============================================ -->
+    <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="container">
             <h2 class="section__title text-center fade-in">Часто задаваемые <span>вопросы</span></h2>
             <div class="faq__item fade-in">
                 <div class="faq__question">Как осуществляется закупка материалов?</div>
                 <div class="faq__answer">
-                    <p>Компания предлагает своим клиентам два варианта: закупить необходимые материалы самостоятельно или доверить эту задачу команде "ПОД КЛЮЧ".</p>
-                    <p>Мы предлагаем услугу комплексной закупки и доставки материалов со своего собственного склада.</p>
+                    <p>Компания предлагает два варианта: закупить материалы самостоятельно или доверить эту задачу команде "ПОД КЛЮЧ".</p>
                 </div>
             </div>
             <div class="faq__item fade-in">
                 <div class="faq__question">Как производится оплата за оказанные услуги?</div>
                 <div class="faq__answer">
-                    <p>Компания принимает любые формы оплаты: наличные, безналичные расчеты, электронные платежные системы. Порядок оплаты оговаривается в договоре.</p>
-                    <p>Компания <strong>не требует обязательных предоплат</strong> перед началом работ.</p>
+                    <p>Компания принимает любые формы оплаты: наличные, безналичные расчеты, электронные платежные системы.</p>
                 </div>
             </div>
             <div class="faq__item fade-in">
@@ -1120,25 +1062,23 @@
             <div class="faq__item fade-in">
                 <div class="faq__question">Должен ли я контролировать ход работ?</div>
                 <div class="faq__answer">
-                    <p>За каждым объектом закреплен <strong>опытный бригадир</strong>, который координирует работу всех бригад и контролирует качество работ.</p>
+                    <p>За каждым объектом закреплен <strong>опытный бригадир</strong>, который координирует работу всех бригад.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-    ИНФО БЛОК (о компании)
-    ============================================ -->
+    <!-- ИНФО БЛОК -->
     <section class="info" id="about">
         <div class="container">
             <h2 class="section__title mb-20 fade-in">Ремонт квартир в Москве: адекватные цены за м² без неожиданных переплат.</h2>
             <ul class="fade-in">
                 <li>Дизайн-проект — бесплатно при заказе комплексного ремонта.</li>
                 <li>Материалы со скидками от поставщиков.</li>
-                <li>Не надо тратить время на контроль — этим занимается наш прораб.</li>
+                <li>Контроль — этим занимается наш прораб.</li>
             </ul>
-            <div class="note fade-in">Гарантия 3 года на все работы. Если что-то потребует доработки — приедем и исправим.</div>
-            <h2 class="section__title mb-20 fade-in">Немного справочной информации: <span>типовые расценки</span></h2>
+            <div class="note fade-in">Гарантия 3 года на все работы.</div>
+            <h2 class="section__title mb-20 fade-in">Справочная информация: <span>типовые расценки</span></h2>
             <div class="overflow-x fade-in">
                 <table class="price-service-table">
                     <thead>
@@ -1158,20 +1098,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="note fade-in">Ремонт квартир и домов в Москве — без компромиссов.</div>
         </div>
     </section>
 
-    <!-- ============================================
-    КАТЕГОРИИ
-    ============================================ -->
+    <!-- КАТЕГОРИИ -->
     <section class="categories" id="categories">
         <div class="container">
             <h2 class="section__title text-center fade-in">Ремонт в Москве <span>по видам комнат</span></h2>
             <div class="categories__items flex">
                 <div class="category fade-in-scale">
                     <div class="category__card">
-                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919.jpeg" alt="Комнаты"></div>
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919.jpeg" alt=""></div>
                         <div class="category__card-title">Комнаты</div>
                     </div>
                     <div class="category__info">
@@ -1182,7 +1119,7 @@
                 </div>
                 <div class="category fade-in-scale">
                     <div class="category__card">
-                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919.jpg" alt="Кухни"></div>
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919.jpg" alt=""></div>
                         <div class="category__card-title">Кухни</div>
                     </div>
                     <div class="category__info">
@@ -1193,7 +1130,7 @@
                 </div>
                 <div class="category fade-in-scale">
                     <div class="category__card">
-                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(1).jpg" alt="Спальни"></div>
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(1).jpg" alt=""></div>
                         <div class="category__card-title">Спальни</div>
                     </div>
                     <div class="category__info">
@@ -1204,7 +1141,7 @@
                 </div>
                 <div class="category fade-in-scale">
                     <div class="category__card">
-                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(2).jpg" alt="Детская"></div>
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(2).jpg" alt=""></div>
                         <div class="category__card-title">Детская</div>
                     </div>
                     <div class="category__info">
@@ -1215,7 +1152,7 @@
                 </div>
                 <div class="category fade-in-scale">
                     <div class="category__card">
-                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(3).jpg" alt="Гостиная"></div>
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(3).jpg" alt=""></div>
                         <div class="category__card-title">Гостиная</div>
                     </div>
                     <div class="category__info">
@@ -1226,7 +1163,7 @@
                 </div>
                 <div class="category fade-in-scale">
                     <div class="category__card">
-                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(4).jpg" alt="Ванная"></div>
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(4).jpg" alt=""></div>
                         <div class="category__card-title">Ванная</div>
                     </div>
                     <div class="category__info">
@@ -1237,7 +1174,7 @@
                 </div>
                 <div class="category fade-in-scale">
                     <div class="category__card">
-                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(5).jpeg" alt="Санузлы"></div>
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(5).jpeg" alt=""></div>
                         <div class="category__card-title">Санузлы</div>
                     </div>
                     <div class="category__info">
@@ -1248,7 +1185,7 @@
                 </div>
                 <div class="category fade-in-scale">
                     <div class="category__card">
-                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(6).jpg" alt="Балконы"></div>
+                        <div class="category__img"><img src="assets/c9921530b348e7b932cd41d42abba919(6).jpg" alt=""></div>
                         <div class="category__card-title">Балконы</div>
                     </div>
                     <div class="category__info">
@@ -1261,20 +1198,18 @@
         </div>
     </section>
 
-    <!-- ============================================
-    СКЛАД
-    ============================================ -->
+    <!-- СКЛАД -->
     <section class="stock" id="stock">
         <div class="container">
             <h2 class="section__title fade-in">Собственный склад <span>строительных материалов в Москве</span></h2>
             <div class="stock__content flex">
                 <div class="stock__info fade-in">
-                    <p><b>ПОД КЛЮЧ</b> — одна из сильных компаний на рынке ремонта в Москве. Делаем быстро и без ошибок.</p>
+                    <p><b>ПОД КЛЮЧ</b> — одна из сильных компаний на рынке ремонта в Москве.</p>
                     <p><b>Закупки напрямую у поставщиков</b> — материалы обходятся дешевле.</p>
                     <p><b>В итоге:</b> меньше сроки, ниже цена, стабильный результат.</p>
                 </div>
                 <div class="stock__sliders fade-in-right">
-                    <div class="stock__slider"><img src="assets/sklad_1.jpg" alt="Склад"></div>
+                    <div class="stock__slider"><img src="assets/sklad_1.jpg" alt=""></div>
                     <div class="stock__thumbnails">
                         <div class="stock__thumbnail active"><img src="assets/sklad_1.jpg" alt=""></div>
                         <div class="stock__thumbnail"><img src="assets/sklad_2.jpg" alt=""></div>
@@ -1286,9 +1221,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ОФИСЫ
-    ============================================ -->
+    <!-- ОФИСЫ -->
     <section class="offices" id="offices">
         <div class="container">
             <h2 class="section__title mb-30 text-center fade-in">Наш <span>филиал в Москве</span></h2>
@@ -1397,9 +1330,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ЗАКАЗ
-    ============================================ -->
+    <!-- ЗАКАЗ -->
     <section class="order" id="order">
         <div class="container">
             <div class="order__block">
@@ -1415,9 +1346,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ПОДВАЛ
-    ============================================ -->
+    <!-- ПОДВАЛ -->
     <footer>
         <div class="container">
             <div class="footer__content flex">
@@ -1478,9 +1407,7 @@
         </div>
     </footer>
 
-    <!-- ============================================
-    МОДАЛЬНОЕ ОКНО
-    ============================================ -->
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal" id="cityModal">
         <div class="modal-content">
             <div class="modal-header">Выберите свой город из списка</div>
@@ -1499,6 +1426,5 @@
     </div>
 
     <script src="js/main.js"></script>
-
 </body>
 </html>
