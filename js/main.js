@@ -12,23 +12,23 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================
-// 2. КАЛЬКУЛЯТОР
+// 2. КАЛЬКУЛЯТОР (для десктопа)
 // ============================================
-const range = document.getElementById('calcRange');
-const valueInput = document.getElementById('calcValue');
-const resultSpan = document.getElementById('calcResult');
-
-function updateCalc() {
+(function() {
+    const range = document.getElementById('calcRange');
+    const valueInput = document.getElementById('calcValue');
+    const resultSpan = document.getElementById('calcResult');
     if (!range || !valueInput || !resultSpan) return;
-    const aptTypeEl = document.querySelector('input[name="aptType"]:checked');
-    const renovTypeEl = document.querySelector('input[name="renovType"]:checked');
-    if (!aptTypeEl || !renovTypeEl) return;
-    const area = parseInt(valueInput.value) || 84;
-    const total = Math.round(area * parseFloat(renovTypeEl.value) * parseFloat(aptTypeEl.value));
-    resultSpan.textContent = total.toLocaleString('ru-RU');
-}
 
-if (range && valueInput && resultSpan) {
+    function updateCalc() {
+        const aptTypeEl = document.querySelector('input[name="aptType"]:checked');
+        const renovTypeEl = document.querySelector('input[name="renovType"]:checked');
+        if (!aptTypeEl || !renovTypeEl) return;
+        const area = parseInt(valueInput.value) || 84;
+        const total = Math.round(area * parseFloat(renovTypeEl.value) * parseFloat(aptTypeEl.value));
+        resultSpan.textContent = total.toLocaleString('ru-RU');
+    }
+
     range.addEventListener('input', function() {
         valueInput.value = this.value;
         updateCalc();
@@ -57,10 +57,58 @@ if (range && valueInput && resultSpan) {
         valueInput.value = val; range.value = val; updateCalc();
     });
     updateCalc();
-}
+})();
 
 // ============================================
-// 3. QUIZ
+// 3. КАЛЬКУЛЯТОР (для мобильных)
+// ============================================
+(function() {
+    const range = document.getElementById('calcRangeMobile');
+    const valueInput = document.getElementById('calcValueMobile');
+    const resultSpan = document.getElementById('calcResultMobile');
+    if (!range || !valueInput || !resultSpan) return;
+
+    function updateCalc() {
+        const aptTypeEl = document.querySelector('input[name="aptTypeM"]:checked');
+        const renovTypeEl = document.querySelector('input[name="renovTypeM"]:checked');
+        if (!aptTypeEl || !renovTypeEl) return;
+        const area = parseInt(valueInput.value) || 84;
+        const total = Math.round(area * parseFloat(renovTypeEl.value) * parseFloat(aptTypeEl.value));
+        resultSpan.textContent = total.toLocaleString('ru-RU');
+    }
+
+    range.addEventListener('input', function() {
+        valueInput.value = this.value;
+        updateCalc();
+    });
+    valueInput.addEventListener('input', function() {
+        let val = parseInt(this.value) || 10;
+        if (val < 10) val = 10;
+        if (val > 200) val = 200;
+        this.value = val;
+        range.value = val;
+        updateCalc();
+    });
+    document.querySelectorAll('input[name="aptTypeM"], input[name="renovTypeM"]').forEach(el => {
+        el.addEventListener('change', updateCalc);
+    });
+    const minusBtn = document.getElementById('minusBtnMobile');
+    const plusBtn = document.getElementById('plusBtnMobile');
+    if (minusBtn) minusBtn.addEventListener('click', function() {
+        let val = parseInt(valueInput.value) || 84;
+        if (val > 10) val--;
+        valueInput.value = val; range.value = val; updateCalc();
+    });
+    if (plusBtn) plusBtn.addEventListener('click', function() {
+        let val = parseInt(valueInput.value) || 84;
+        if (val < 200) val++;
+        valueInput.value = val; range.value = val; updateCalc();
+    });
+    updateCalc();
+})();
+
+// ============================================
+// 4. QUIZ
 // ============================================
 const quizSteps = document.querySelectorAll('.quiz__item');
 const stepIndicators = document.querySelectorAll('.quiz__steps p');
@@ -87,7 +135,7 @@ function showQuizStep(step) {
 }
 
 // ============================================
-// 4. ВКЛАДКИ
+// 5. ВКЛАДКИ
 // ============================================
 document.querySelectorAll('.repair__tabs a').forEach(tab => {
     tab.addEventListener('click', function(e) {
@@ -113,7 +161,7 @@ document.querySelectorAll('.price__tabs a').forEach(tab => {
 });
 
 // ============================================
-// 5. ГАЛЕРЕЯ РЕМОНТА
+// 6. ГАЛЕРЕЯ РЕМОНТА
 // ============================================
 document.querySelectorAll('.repair__thumbnail').forEach(thumb => {
     thumb.addEventListener('click', function() {
@@ -126,7 +174,7 @@ document.querySelectorAll('.repair__thumbnail').forEach(thumb => {
 });
 
 // ============================================
-// 6. ГАЛЕРЕЯ СКЛАДА
+// 7. ГАЛЕРЕЯ СКЛАДА
 // ============================================
 document.querySelectorAll('.stock__thumbnail').forEach(thumb => {
     thumb.addEventListener('click', function() {
@@ -139,7 +187,7 @@ document.querySelectorAll('.stock__thumbnail').forEach(thumb => {
 });
 
 // ============================================
-// 7. АКЦИИ
+// 8. АКЦИИ
 // ============================================
 const slides = document.querySelectorAll('.jolly-slider-extra');
 const controls = document.querySelectorAll('.jolly-slide-control');
@@ -154,7 +202,7 @@ controls.forEach(control => {
 });
 
 // ============================================
-// 8. FAQ
+// 9. FAQ
 // ============================================
 document.querySelectorAll('.faq__question').forEach(q => {
     q.addEventListener('click', function() {
@@ -165,7 +213,7 @@ document.querySelectorAll('.faq__question').forEach(q => {
 });
 
 // ============================================
-// 9. БУРГЕР-МЕНЮ
+// 10. БУРГЕР-МЕНЮ
 // ============================================
 (function() {
     const navbarToggle = document.getElementById('navbarToggle');
@@ -206,7 +254,7 @@ document.querySelectorAll('.faq__question').forEach(q => {
 })();
 
 // ============================================
-// 10. БОКОВЫЕ КНОПКИ
+// 11. БОКОВЫЕ КНОПКИ
 // ============================================
 const btnsToggle = document.getElementById('btnsToggle');
 const sideButtons = document.getElementById('sideButtons');
@@ -220,7 +268,7 @@ if (btnsToggle && sideButtons) {
 }
 
 // ============================================
-// 11. МОДАЛЬНОЕ ОКНО
+// 12. МОДАЛЬНОЕ ОКНО
 // ============================================
 const cityBtn = document.getElementById('cityBtn');
 const cityModal = document.getElementById('cityModal');
@@ -239,7 +287,7 @@ if (cityBtn && cityModal) {
 }
 
 // ============================================
-// 12. ФИЛЬТР ГОРОДОВ
+// 13. ФИЛЬТР ГОРОДОВ
 // ============================================
 const citySearch = document.querySelector('.cities-search');
 const cityColumns = document.querySelectorAll('.city-column');
@@ -253,7 +301,7 @@ if (citySearch) {
 }
 
 // ============================================
-// 13. ГАЛЕРЕЯ РАБОТ
+// 14. ГАЛЕРЕЯ РАБОТ
 // ============================================
 let currentWork = 0;
 const works = document.querySelectorAll('.work');
@@ -283,14 +331,14 @@ dots.forEach((dot, index) => {
 if (works.length) showWork(0);
 
 // ============================================
-// 14. ОТКЛЮЧЕНИЕ ПУСТЫХ ССЫЛОК
+// 15. ОТКЛЮЧЕНИЕ ПУСТЫХ ССЫЛОК
 // ============================================
 document.querySelectorAll('a[href="javascript:void(0)"]').forEach(el => {
     el.addEventListener('click', function(e) { e.preventDefault(); });
 });
 
 // ============================================
-// 15. ОТПРАВКА ФОРМ
+// 16. ОТПРАВКА ФОРМ
 // ============================================
 document.querySelectorAll('form').forEach(form => {
     form.addEventListener('submit', function(e) {
@@ -301,7 +349,7 @@ document.querySelectorAll('form').forEach(form => {
 });
 
 // ============================================
-// 16. ПЛАВНАЯ ПРОКРУТКА
+// 17. ПЛАВНАЯ ПРОКРУТКА
 // ============================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
