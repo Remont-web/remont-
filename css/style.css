@@ -192,15 +192,14 @@ header .middle__content { justify-content: space-between; gap: 20px; }
 body.menu-open { overflow: hidden; }
 
 /* ============================================
-   ВСТРОЕННОЕ МЕНЮ-КНОПКИ (на верхней грани фото)
+   ВСТРОЕННОЕ МЕНЮ-КНОПКИ
+   Идёт как обычный блок в самом верху .main,
+   накрывает фон фото (лежит внутри, до .container)
    ============================================ */
 .menu-inline {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
-    padding: 12px 0;
+    position: relative;
+    z-index: 5;
+    padding: 15px 0 5px;
     background: transparent;
     border: none;
 }
@@ -271,11 +270,11 @@ body.menu-open { overflow: hidden; }
    ============================================ */
 .main {
     position: relative;
-    padding: 90px 0 70px;
+    padding: 0 0 70px;
     color: #fff;
     min-height: 640px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     overflow: hidden;
     background: #0a0a0a;
 }
@@ -288,8 +287,16 @@ body.menu-open { overflow: hidden; }
         url('../assets/main-bg.jpg') center/cover no-repeat;
     z-index: 0;
 }
-.main .container { position: relative; z-index: 1; width: 100%; }
-.main__content { gap: 40px; padding-top: 55px; }
+.main .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+.main__content {
+    gap: 40px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
 .main__info { flex: 1; min-width: 0; }
 .main__title { font-size: 42px; font-weight: 700; line-height: 1.15; margin-bottom: 15px; color: #fff; }
 .main__title small { font-size: 22px; font-weight: 400; display: block; color: #fff; }
@@ -860,7 +867,7 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
 @media (max-width: 992px) {
     .main__title { font-size: 36px; }
     .calculator-body { flex: 1 1 100%; max-width: 500px; margin: 0 auto; }
-    .main { padding: 80px 0 50px; min-height: auto; }
+    .main { padding: 0 0 50px; min-height: auto; }
     .price__item { flex: 0 0 calc(50% - 10px); }
     .category { flex: 0 0 calc(50% - 10px); }
     .repair__images { flex: 1 1 100%; }
@@ -960,16 +967,15 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
 
     /* === ГЛАВНЫЙ БАННЕР — почти весь экран === */
     .main {
-        padding: 40px 0 50px;
+        padding: 0 0 40px;
         min-height: calc(100vh - 120px);
         min-height: calc(100svh - 120px);
-        display: flex;
-        align-items: center;
     }
     .main .container { padding: 0 12px; }
     .main__content {
         gap: 0;
-        padding-top: 55px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         display: block;
     }
     .main__title {
@@ -1001,13 +1007,16 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
         box-shadow: 0 5px 25px rgba(0,0,0,0.1);
     }
 
-    /* === Кнопки меню-inline — показываем и на мобильных === */
+    /* === Кнопки menu-inline на мобильном — такие же, как на ПК === */
     .menu-inline {
-        padding: 10px 0;
+        padding: 10px 0 0;
+    }
+    .menu-inline .container {
+        padding: 0 8px;
     }
     .menu-inline__list {
         gap: 6px;
-        padding: 0 4px;
+        padding: 0;
     }
     .menu-inline__btn {
         padding: 6px 12px;
