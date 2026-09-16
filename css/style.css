@@ -192,7 +192,7 @@ header .middle__content { justify-content: space-between; gap: 20px; }
 body.menu-open { overflow: hidden; }
 
 /* ============================================
-   ВСТРОЕННОЕ МЕНЮ-КНОПКИ (на верхней грани фото, только ПК)
+   ВСТРОЕННОЕ МЕНЮ-КНОПКИ (на верхней грани фото)
    ============================================ */
 .menu-inline {
     position: absolute;
@@ -237,9 +237,6 @@ body.menu-open { overflow: hidden; }
 .menu-inline__btn:hover {
     background: #ff6a00;
     color: #fff;
-}
-@media (max-width: 768px) {
-    .menu-inline { display: none !important; }
 }
 
 /* БОКОВЫЕ КНОПКИ */
@@ -879,13 +876,8 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
 @media (max-width: 768px) {
 
     /* === ВЕРХНЯЯ ЧЁРНАЯ ПОЛОСА === */
-    header .top {
-        padding: 0;
-        background: #000;
-    }
-    header .top .container {
-        padding: 0 8px;
-    }
+    header .top { padding: 0; background: #000; }
+    header .top .container { padding: 0 8px; }
     header .top__content {
         gap: 0;
         align-items: stretch;
@@ -894,14 +886,8 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
     }
     header .top__menu { display: none !important; }
 
-    header .top__city {
-        padding: 12px 4px;
-        display: flex;
-        align-items: center;
-    }
-    header .top__city a {
-        font-size: 14px;
-    }
+    header .top__city { padding: 12px 4px; display: flex; align-items: center; }
+    header .top__city a { font-size: 14px; }
 
     header .top .btn {
         display: inline-flex !important;
@@ -928,11 +914,7 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
         margin-left: 0;
         margin-right: 2px;
     }
-    .navbar span {
-        width: 24px;
-        height: 2px;
-        background: #fff;
-    }
+    .navbar span { width: 24px; height: 2px; background: #fff; }
 
     /* === БЕЛАЯ ПОЛОСА === */
     header .middle { padding: 10px 0; }
@@ -987,7 +969,7 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
     .main .container { padding: 0 12px; }
     .main__content {
         gap: 0;
-        padding-top: 0;
+        padding-top: 55px;
         display: block;
     }
     .main__title {
@@ -995,10 +977,7 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
         line-height: 1.2;
         margin-bottom: 10px;
     }
-    .main__title small {
-        font-size: 16px;
-        margin-top: 4px;
-    }
+    .main__title small { font-size: 16px; margin-top: 4px; }
     .main__list { margin: 14px 0 0; }
     .main__list li {
         font-size: 13px;
@@ -1022,8 +1001,22 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
         box-shadow: 0 5px 25px rgba(0,0,0,0.1);
     }
 
-    /* Встроенные кнопки скрыты */
-    .menu-inline { display: none !important; }
+    /* === Кнопки меню-inline — показываем и на мобильных === */
+    .menu-inline {
+        padding: 10px 0;
+    }
+    .menu-inline__list {
+        gap: 6px;
+        padding: 0 4px;
+    }
+    .menu-inline__btn {
+        padding: 6px 12px;
+        font-size: 11px;
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.55);
+    }
+
+    /* Скрываем горизонтальное меню 2-го уровня */
     .menu { display: none !important; }
 
     /* === ОСТАЛЬНОЕ === */
@@ -1140,6 +1133,9 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
     .menu-mobile .menu-title { font-size: 11px; padding: 18px 15px 6px; }
     .menu-mobile .close-menu { top: 12px; right: 16px; font-size: 24px; }
     .btns-toggle { width: 20px; height: 34px; font-size: 10px; }
+
+    .menu-inline__btn { padding: 5px 10px; font-size: 10px; }
+    .menu-inline__list { gap: 5px; }
 }
 
 @media (max-width: 360px) {
