@@ -239,9 +239,58 @@ body.menu-open { overflow: hidden; }
     transform: translateY(0) scale(0.98);
 }
 
-/* На мобильных блок скрыт */
+/* ============================================
+   МОБИЛЬНАЯ ВЕРСИЯ БЛОКА КНОПОК НА БАННЕРЕ
+   ============================================ */
 @media (max-width: 768px) {
-    .menu-inline { display: none !important; }
+    /* Показываем блок кнопок внутри баннера */
+    .menu-inline {
+        display: block !important;
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        background: transparent;
+        border: none;
+        padding: 0;
+        z-index: 5;
+        pointer-events: none;
+    }
+    .menu-inline .container {
+        padding: 0 12px;
+        pointer-events: auto;
+    }
+    .menu-inline__list {
+        gap: 8px;
+        justify-content: center;
+    }
+    .menu-inline__list > li {
+        flex: 0 0 auto;
+    }
+    .menu-inline__btn {
+        display: inline-block;
+        padding: 8px 16px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        line-height: 1.2;
+        text-align: center;
+    }
+    .menu-inline__btn:hover,
+    .menu-inline__btn:active {
+        background: rgba(255, 106, 0, 0.85);
+        border-color: #ff6a00;
+        color: #fff;
+        transform: none;
+        box-shadow: none;
+    }
 }
 
 /* БОКОВЫЕ КНОПКИ */
