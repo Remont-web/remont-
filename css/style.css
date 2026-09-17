@@ -921,7 +921,7 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
     }
     .navbar span { width: 24px; height: 2px; background: #fff; }
 
-    /* === БЕЛАЯ ПОЛОСА — возвращаем полный логотип === */
+    /* === БЕЛАЯ ПОЛОСА — с полным логотипом === */
     header .middle { padding: 10px 0; }
     header .middle .container { padding: 0 10px; }
     header .middle__content {
@@ -930,11 +930,23 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
         align-items: center;
         justify-content: space-between;
     }
-    .logo { gap: 8px; flex: 0 0 auto; }
-    .logo img { height: 40px; }
-    /* НЕ скрываем текст логотипа */
-    .logo__info b { font-size: 18px; }
-    .logo__info p { font-size: 10px; }
+    .logo {
+        gap: 8px;
+        flex: 0 0 auto;
+        align-items: center;
+    }
+    .logo img { height: 38px; }
+    /* Оставляем блок с названием компании видимым */
+    .logo__info { display: block; }
+    .logo__info b {
+        font-size: 17px;
+        line-height: 1.1;
+    }
+    .logo__info p {
+        font-size: 10px;
+        line-height: 1.2;
+        margin-top: 2px;
+    }
 
     .header__contacts { display: none !important; }
 
