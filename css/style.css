@@ -247,7 +247,7 @@ body.menu-open { overflow: hidden; }
     .menu-inline {
         display: block !important;
         position: absolute;
-        bottom: 20px;
+        bottom: 15px;
         left: 0;
         right: 0;
         background: transparent;
@@ -257,35 +257,44 @@ body.menu-open { overflow: hidden; }
         pointer-events: none;
     }
     .menu-inline .container {
-        padding: 0 12px;
+        padding: 0 10px;
         pointer-events: auto;
     }
     .menu-inline__list {
-        gap: 8px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
         justify-content: center;
+        max-width: 420px;
+        margin: 0 auto;
     }
     .menu-inline__list > li {
-        flex: 0 0 auto;
+        display: flex;
     }
     .menu-inline__btn {
-        display: inline-block;
-        padding: 8px 16px;
-        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 7px 8px;
+        background: rgba(0, 0, 0, 0.6);
         color: #fff;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 16px;
         backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
         transition: all 0.3s ease;
         white-space: nowrap;
-        line-height: 1.2;
+        line-height: 1.15;
         text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .menu-inline__btn:hover,
     .menu-inline__btn:active {
-        background: rgba(255, 106, 0, 0.85);
+        background: rgba(255, 106, 0, 0.9);
         border-color: #ff6a00;
         color: #fff;
         transform: none;
@@ -1028,16 +1037,16 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
 
     /* === ГЛАВНЫЙ БАННЕР — почти весь экран === */
     .main {
-        padding: 40px 0 150px; /* увеличен нижний отступ, чтобы кнопки не перекрывали текст */
+        padding: 30px 0 200px; /* большой нижний отступ — текст уходит вверх */
         min-height: calc(100vh - 120px);
         min-height: calc(100svh - 120px);
         display: flex;
-        align-items: center;
+        align-items: flex-start;
     }
     .main .container { padding: 0 12px; }
     .main__content {
         gap: 0;
-        padding-top: 0;
+        padding-top: 20px;
         display: block;
     }
     .main__title {
@@ -1140,7 +1149,7 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
 }
 
 @media (max-width: 480px) {
-    .main { padding: 30px 0 130px; } /* ещё чуть больше отступ для маленьких экранов */
+    .main { padding: 20px 0 190px; } /* ещё больше отступ для маленьких экранов */
     .main__title { font-size: 23px; }
     .main__title small { font-size: 15px; }
     .main__list li { font-size: 12px; padding: 5px 0 5px 24px; background-size: 16px; }
@@ -1190,7 +1199,7 @@ footer { background: #000; color: #888; padding: 40px 0 0; }
 }
 
 @media (max-width: 360px) {
-    .main { padding: 25px 0 120px; }
+    .main { padding: 15px 0 180px; }
     .main__title { font-size: 19px; }
     .section__title { font-size: 18px; }
     .container { padding: 0 8px; }
